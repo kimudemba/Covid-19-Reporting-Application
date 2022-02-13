@@ -22,7 +22,7 @@ adminRouter.route('/admin').get((req, res) => {
         .find()
         .toArray();
 
-      res.send(response);
+      res.render(response);
     } catch (err) {
       debug(err.stack);
     }

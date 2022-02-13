@@ -56,6 +56,7 @@ If you haven't previously installed mongodb:
 $ brew tap mongodb/brew
 $ brew install mongodb-community
 $ brew services start mongodb-community
+$ brew services stop mongodb //if stopping
 ```
 
 If you have a previous version of mongodb
