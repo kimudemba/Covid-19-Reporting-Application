@@ -9,6 +9,7 @@
         "yarn": ">=1.22.5"
     },
     "scripts": {
+        "start": "DEBUG=index,index:* nodemon index.js",
         "debugServer": "npx nodemon inspect index.js",
         "server": "npx nodemon index.js",
         "test": "echo \"Error: no test specified\" && exit 1"

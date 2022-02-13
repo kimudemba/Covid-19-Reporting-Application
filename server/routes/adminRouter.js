@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('index: adminRouter');
 const { MongoClient } = require('mongodb');
 // TODO: const adminController = require('../controllers/admin-controller');
 
