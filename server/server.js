@@ -22,7 +22,7 @@ app.use(morgan('tiny')); //for logging errors
  **************/
 app.use('/api/exams', examsRouter); //first pg user sees
 app.use('/api/patients', patientsRouter, (req, res) => {
- res.json({ message: 'ok patients' }); 
+  res.json({ message: 'ok patients' });
 });
 
 /***************
@@ -32,10 +32,10 @@ async function start() {
   try {
     await db.on('connected db', () => {});
     app.listen(apiPort, () => {
-      console.log(`Server is listening on port ${apiPort}`);
+      morgan(`Server is listening on port ${apiPort}`);
     });
   } catch (err) {
-    console.error(err);
+    morgan(err);
   }
 }
 module.exports = start;
