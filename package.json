@@ -32,6 +32,8 @@
     },
     "dependencies": {
         "node-notifier": "^8.0.1",
-        "object-path": "^0.11.5"
+        "nodemon": "^2.0.15",
+        "object-path": "^0.11.5",
+        "yarn": "^1.22.17"
     }
 }

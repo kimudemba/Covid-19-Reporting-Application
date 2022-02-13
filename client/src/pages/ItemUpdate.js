@@ -181,9 +181,9 @@ class ItemUpdate extends Component {
     return (
       _id && (
         <Wrapper>
-          <Title>Create Item</Title>
+          <Title>Create Patient</Title>
 
-          <Label>Name: </Label>
+          <Label>Patient ID: </Label>
           <InputText type="text" value={name} onChange={this.handleChangeInputName} />
 
           <Fieldset>
@@ -204,7 +204,7 @@ class ItemUpdate extends Component {
             ))}
           </Fieldset>
 
-          <Label>Timeframe Note: </Label>
+          <Label>Exam ID: </Label>
           <InputText type="text" value={timeframeNote} onChange={this.handleChangeInputTimeframe} />
 
           <Label>Priority: </Label>
@@ -219,10 +219,35 @@ class ItemUpdate extends Component {
             onChange={this.handleChangeInputPriority}
           />
 
+        <Label>Zip code: </Label>  {/* This used to be Priority */} 
+        <InputText
+          type="number"
+          step="0.1"
+          lang="en-US"
+          min="0"
+          max="1000"
+          pattern="[0-9]+([,\.][0-9]+)?"
+          value={priority}
+          onChange={this.handleChangeInputZipCode}
+        />
+        <Label>Age: </Label> {/* This used to be priority */} 
+        <InputText
+          type="number"
+          step="0.1"
+          lang="en-US"
+          min="0"
+          max="1000"
+          pattern="[0-9]+([,\.][0-9]+)?"
+          value={priority}
+          onChange={this.handleChangeInputAge}
+        />
           <Label>Content: </Label>
           <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />
 
-          <Button onClick={this.confirmUpdateItem}>Update Item</Button>
+          <Label>Key Findings: </Label> {/* This used to be content */} 
+        <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />
+
+          <Button onClick={this.confirmUpdateItem}>Update Patient</Button>
           <CancelButton href={'/items'}>Cancel</CancelButton>
         </Wrapper>
       )

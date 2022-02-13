@@ -112,9 +112,26 @@ class ItemInsert extends Component {
     this.setState({ priority });
   };
 
+  handleChangeInputAge = async event => {
+    const age = event.target.validity.valid ? event.target.value : this.state.age;
+
+    this.setState({ age });
+  };
+
+  handleChangeInputZipCode = async event => {
+    const zipCode = event.target.validity.valid ? event.target.value : this.state.zipCode;
+
+    this.setState({ zipCode });
+  };
+
   handleChangeInputContent = async event => {
     const content = event.target.value;
     this.setState({ content });
+  };
+
+  handleChangeInputKeyFindings = async event => {
+    const keyFindings = event.target.value;
+    this.setState({ keyFindings });
   };
 
   insertSingleItem = item => {
@@ -139,8 +156,8 @@ class ItemInsert extends Component {
   handleInsertItem = event => {
     event.preventDefault();
 
-    const { name, daysOfWeek, timeframeNote, priority, content } = this.state;
-    const item = { name, daysOfWeek, timeframeNote, priority, content };
+    const { name, daysOfWeek, timeframeNote, priority, age, content } = this.state;
+    const item = { name, daysOfWeek, timeframeNote, priority, age, content };
 
     this.insertSingleItem(item)
       .then(resp => {
@@ -153,6 +170,7 @@ class ItemInsert extends Component {
             daysOfWeek: {},
             timeframeNote: '',
             priority: 0,
+            age: 0,
             content: '',
           });
         } else {
@@ -174,9 +192,9 @@ class ItemInsert extends Component {
 
     return (
       <Wrapper>
-        <Title>Create Item</Title>
+        <Title>Create Patient</Title>
 
-        <Label>Name: </Label>
+        <Label>Patient ID: </Label>
         <InputText type="text" value={name} onChange={this.handleChangeInputName} />
 
         <Fieldset>
@@ -197,7 +215,7 @@ class ItemInsert extends Component {
           ))}
         </Fieldset>
 
-        <Label>Timeframe Note: </Label>
+        <Label>Exam ID: </Label>
         <InputText type="text" value={timeframeNote} onChange={this.handleChangeInputTimeframe} />
 
         <Label>Priority: </Label>
@@ -212,10 +230,36 @@ class ItemInsert extends Component {
           onChange={this.handleChangeInputPriority}
         />
 
-        <Label>Content: </Label>
+        <Label>Zip code: </Label>  {/* This used to be Priority */} 
+        <InputText
+          type="number"
+          step="0.1"
+          lang="en-US"
+          min="0"
+          max="1000"
+          pattern="[0-9]+([,\.][0-9]+)?"
+          value={priority}
+          onChange={this.handleChangeInputZipCode}
+        />
+
+        <Label>Age: </Label> {/* This used to be priority */} 
+        <InputText
+          type="number"
+          step="0.1"
+          lang="en-US"
+          min="0"
+          max="1000"
+          pattern="[0-9]+([,\.][0-9]+)?"
+          value={priority}
+          onChange={this.handleChangeInputAge}
+        />
+        <Label> Content: </Label> 
         <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />
 
-        <Button onClick={this.handleInsertItem}>Add Item</Button>
+        <Label>Key Findings: </Label> {/* This used to be content */} 
+        <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />
+
+        <Button onClick={this.handleInsertItem}>Add Patient</Button>
         <CancelButton href={'/items'}>Cancel</CancelButton>
       </Wrapper>
     );
