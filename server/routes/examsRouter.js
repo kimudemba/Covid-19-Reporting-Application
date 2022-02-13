@@ -17,7 +17,7 @@
  // /api/exams
  examsRouter
    .route('/exams')
-   //   .get(mockController.getExams)
+   //   .get(mockController.getExams) - importing the controller and calling the ".get" method implemented in the controller
    .get(mockController)
    //   .post(mockController.createOneExam);
    .post(mockController);
