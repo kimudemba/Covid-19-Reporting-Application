@@ -2,28 +2,38 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const morgan = require('morgan');
 const db = require('./db');
-const itemRouter = require('./routes/item-router');
+
+const examsRouter = require('./routes/examsRouter');
+const patientsRouter = require('./routes/patientsRouter');
 
 const app = express();
 const apiPort = 3000;
 
+app.disable('x-powered-by'); //Hackers can exploit known vulnerabilities in Express/Node if they see that your site is powered by Express (or whichever framework you use) here we disable this vulnerability
 app.use(bodyParser.urlencoded({ extended: true })); //allows us to attach params to a url
-app.use(cors());
 app.use(bodyParser.json());
-app.use(morgan('combined')); //for logging errors
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+app.use(cors());
+app.use(morgan('tiny')); //for logging errors
 
 /***************
- registering routes on root server
+ registering routes on root server.js
  **************/
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-app.use('/api', itemRouter);
+app.use('/api/exams', examsRouter); //first pg user sees
+app.use('/api/patients', patientsRouter);
 
-app.listen(apiPort, () => {
-  console.log(`[Hack.Diversity React Template] - Server running on port ${apiPort}`);
-});
+/***************
+ app listening
+ **************/
+async function start() {
+  try {
+    await db.on('connected db', () => {});
+    app.listen(apiPort, () => {
+      console.log(`Server is listening on port ${apiPort}`);
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
+module.exports = start;
