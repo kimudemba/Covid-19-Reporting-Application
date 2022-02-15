@@ -79,6 +79,8 @@ class ItemInsert extends Component {
       daysOfWeek: {},
       timeframeNote: '',
       priority: 0,
+      age: 0,
+      zipCode: 0,
       content: '',
     };
   }
@@ -119,9 +121,9 @@ class ItemInsert extends Component {
   };
 
   handleChangeInputZipCode = async event => {
-    const zipCode = event.target.validity.valid ? event.target.value : this.state.zipCode;
+    const zipcode = event.target.validity.valid ? event.target.value : this.state.zipCode;
 
-    this.setState({ zipCode });
+    this.setState({ zipcode });
   };
 
   handleChangeInputContent = async event => {
@@ -156,10 +158,10 @@ class ItemInsert extends Component {
   handleInsertItem = event => {
     event.preventDefault();
 
-    const { name, daysOfWeek, timeframeNote, priority, age, content } = this.state;
-    const item = { name, daysOfWeek, timeframeNote, priority, age, content };
+    /*const { name, daysOfWeek, timeframeNote, priority, age, height, weight, zip, bmi, sex, content, patientID, race, sex } = this.state;
+    const item = { name, daysOfWeek, timeframeNote, priority, age, height, weight, zip, bmi, sex, content, patientID, race, sex };
 
-    this.insertSingleItem(item)
+     this.insertSingleItem(item)
       .then(resp => {
         console.log('handleInsertItem: resp');
         console.log(resp);
@@ -171,6 +173,13 @@ class ItemInsert extends Component {
             timeframeNote: '',
             priority: 0,
             age: 0,
+            height: 0,
+            weight: 0,
+            zip: 0,
+            bmi: 0,
+            sex: "",
+            race: "";
+            patientID: "";
             content: '',
           });
         } else {
@@ -182,11 +191,11 @@ class ItemInsert extends Component {
         window.alert(`There was an error creating the item... :(`);
         console.log('handleInsertItem: err');
         console.log(err);
-      });
+      }); */
   };
 
   render() {
-    const { name, daysOfWeek, timeframeNote, priority, content } = this.state;
+    const { name, daysOfWeek, timeframeNote, priority, age, zipcode, content /* height, weight, zip, bmi, sex, content, patientID, race, sex*/ } = this.state;
 
     const { DAYS_OF_WEEK } = shared;
 
@@ -230,7 +239,7 @@ class ItemInsert extends Component {
           onChange={this.handleChangeInputPriority}
         />
 
-        <Label>Zip code: </Label>  {/* This used to be Priority */} 
+        <Label>Zip Code: </Label>  {/* This used to be Priority */} 
         <InputText
           type="number"
           step="0.1"
@@ -238,7 +247,7 @@ class ItemInsert extends Component {
           min="0"
           max="1000"
           pattern="[0-9]+([,\.][0-9]+)?"
-          value={priority}
+          value={zipcode}
           onChange={this.handleChangeInputZipCode}
         />
 
@@ -250,7 +259,7 @@ class ItemInsert extends Component {
           min="0"
           max="1000"
           pattern="[0-9]+([,\.][0-9]+)?"
-          value={priority}
+          value={age }
           onChange={this.handleChangeInputAge}
         />
         <Label> Content: </Label> 

@@ -23,27 +23,40 @@ class ItemsList extends Component {
   componentDidMount() {
     console.log('ItemsList: props');
     console.log(this.props);
-    // if (((this.props.itemData || {}).items || []).length) return;
+    // if (((this.props.itemData || {}).items || []).length) return; 
 
-    this.fetchAllItems();
+    /* 
+    const response = {
+ patient: [age: 10, sex: 'M', ...] 
+}
+    this.fetchAllItems(); */
   }
 
   fetchAllItems = () => {
-    api
+
+    /*Faking this for now. Once we have the backend API set up we can use this function to make the HTTP request instead using api.getAllItems()...
+  this.setState({
+    items: [fakeItem1, fakeItem2, ...PATIENT_ID , AGE ,SEX, RACE, ZIP, BMI, WEIGHT, HEIGHT]
+} */
+    /* api
       .getAllItems()
       .then(resp => {
         debugger;
         const { items } = resp.data;
         console.log('getAllItems: resp');
-        console.log(items);
-        this.setState({ items });
-      })
-      .catch(err => {
+        console.log(items); */
+        const firstItem = { patientID: 'Test Name', age: 51, weight: 207, bmi: 37.7 };
+        const secondItem = { patientID: 'Test Name 2', age: 60, weight: 120, bmi: 20 };
+        const items = [firstItem, secondItem];
+        const dataForState = { items: items }; 
+        this.setState({ dataForState }); 
+      }
+
+      /*.catch(err => {
         console.error(`ERROR in 'getAllItems': ${err}`);
         console.error(err);
         return err;
-      });
-  };
+      }); */
 
   deleteSingleItem = itemId => {
     return api

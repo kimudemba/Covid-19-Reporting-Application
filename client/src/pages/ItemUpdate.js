@@ -174,7 +174,7 @@ class ItemUpdate extends Component {
   };
 
   render() {
-    const { _id, name, daysOfWeek, timeframeNote, priority, content } = this.state;
+    const { _id, name, daysOfWeek, timeframeNote, priority, age, zipcode, content } = this.state;
 
     const { DAYS_OF_WEEK } = shared;
 
@@ -227,7 +227,7 @@ class ItemUpdate extends Component {
           min="0"
           max="1000"
           pattern="[0-9]+([,\.][0-9]+)?"
-          value={priority}
+          value={zipcode}
           onChange={this.handleChangeInputZipCode}
         />
         <Label>Age: </Label> {/* This used to be priority */} 
@@ -238,7 +238,7 @@ class ItemUpdate extends Component {
           min="0"
           max="1000"
           pattern="[0-9]+([,\.][0-9]+)?"
-          value={priority}
+          value={age}
           onChange={this.handleChangeInputAge}
         />
           <Label>Content: </Label>
