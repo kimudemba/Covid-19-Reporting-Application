@@ -25,11 +25,10 @@ class ItemsList extends Component {
     console.log(this.props);
     // if (((this.props.itemData || {}).items || []).length) return; 
 
-    /* 
-    const response = {
- patient: [age: 10, sex: 'M', ...] 
-}
-    this.fetchAllItems(); */
+     
+   
+
+    this.fetchAllItems();
   }
 
   fetchAllItems = () => {
@@ -45,11 +44,11 @@ class ItemsList extends Component {
         const { items } = resp.data;
         console.log('getAllItems: resp');
         console.log(items); */
-        const firstItem = { patientID: 'Test Name', age: 51, weight: 207, bmi: 37.7 };
-        const secondItem = { patientID: 'Test Name 2', age: 60, weight: 120, bmi: 20 };
+        const firstItem = {patientID: 'Test Name', age: 51, zip: 7273, weight: 207, bmi: 37.7 };
+        const secondItem = { patientID: 'Test Name 2', age: 60, zip: 2940, weight: 120, bmi: 20 };
         const items = [firstItem, secondItem];
         const dataForState = { items: items }; 
-        this.setState({ dataForState }); 
+        this.setState(dataForState); 
       }
 
       /*.catch(err => {
@@ -89,7 +88,7 @@ class ItemsList extends Component {
 
     const columns = [
       {
-        Header: 'ID',
+        Header: 'Patient ID',
         accessor: '_id',
         filterable: true,
         Cell: props => {
@@ -97,7 +96,7 @@ class ItemsList extends Component {
         },
       },
       {
-        Header: 'Name',
+        Header: 'Exam ID',
         accessor: 'name',
         filterable: true,
         Cell: props => {
@@ -105,7 +104,7 @@ class ItemsList extends Component {
         },
       },
       {
-        Header: 'Day(s)',
+        Header: 'Image',
         accessor: 'daysOfWeek',
         filterable: true,
         Cell: props => {
@@ -127,20 +126,36 @@ class ItemsList extends Component {
         },
       },
       {
-        Header: 'Timeframe',
+        Header: 'Key Findings',
         accessor: 'timeframeNote',
         Cell: props => {
           return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
         },
       },
       {
-        Header: 'Priority',
-        accessor: 'priority',
+        Header: 'Age',
+        accessor: 'age',
         filterable: true,
         Cell: props => {
           return <span data-priority={props.original.priority}>{props.value}</span>;
         },
       },
+      {
+      Header: 'Zip code',
+        accessor: 'zip',
+        filterable: true,
+        Cell: props => {
+          return <span data-priority={props.original.priority}>{props.value}</span>;
+        },
+      },
+      {
+        Header: 'Weight',
+          accessor: 'weight',
+          filterable: true,
+          Cell: props => {
+            return <span data-priority={props.original.priority}>{props.value}</span>;
+          },
+        },
       {
         Header: '',
         accessor: '',
