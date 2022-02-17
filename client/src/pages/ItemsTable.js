@@ -23,27 +23,39 @@ class ItemsList extends Component {
   componentDidMount() {
     console.log('ItemsList: props');
     console.log(this.props);
-    // if (((this.props.itemData || {}).items || []).length) return;
+    // if (((this.props.itemData || {}).items || []).length) return; 
+
+     
+   
 
     this.fetchAllItems();
   }
 
   fetchAllItems = () => {
-    api
+
+    /*Faking this for now. Once we have the backend API set up we can use this function to make the HTTP request instead using api.getAllItems()...
+  this.setState({
+    items: [fakeItem1, fakeItem2, ...PATIENT_ID , AGE ,SEX, RACE, ZIP, BMI, WEIGHT, HEIGHT]
+} */
+    /* api
       .getAllItems()
       .then(resp => {
         debugger;
         const { items } = resp.data;
         console.log('getAllItems: resp');
-        console.log(items);
-        this.setState({ items });
-      })
-      .catch(err => {
+        console.log(items); */
+        const firstItem = {patientID: 'Test Name', age: 51, zip: 7273, weight: 207, bmi: 37.7 };
+        const secondItem = { patientID: 'Test Name 2', age: 60, zip: 2940, weight: 120, bmi: 20 };
+        const items = [firstItem, secondItem];
+        const dataForState = { items: items }; 
+        this.setState(dataForState); 
+      }
+
+      /*.catch(err => {
         console.error(`ERROR in 'getAllItems': ${err}`);
         console.error(err);
         return err;
-      });
-  };
+      }); */
 
   deleteSingleItem = itemId => {
     return api
@@ -76,7 +88,7 @@ class ItemsList extends Component {
 
     const columns = [
       {
-        Header: 'ID',
+        Header: 'Patient ID',
         accessor: '_id',
         filterable: true,
         Cell: props => {
@@ -84,7 +96,7 @@ class ItemsList extends Component {
         },
       },
       {
-        Header: 'Name',
+        Header: 'Exam ID',
         accessor: 'name',
         filterable: true,
         Cell: props => {
@@ -92,7 +104,7 @@ class ItemsList extends Component {
         },
       },
       {
-        Header: 'Day(s)',
+        Header: 'Image',
         accessor: 'daysOfWeek',
         filterable: true,
         Cell: props => {
@@ -114,20 +126,36 @@ class ItemsList extends Component {
         },
       },
       {
-        Header: 'Timeframe',
+        Header: 'Key Findings',
         accessor: 'timeframeNote',
         Cell: props => {
           return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
         },
       },
       {
-        Header: 'Priority',
-        accessor: 'priority',
+        Header: 'Age',
+        accessor: 'age',
         filterable: true,
         Cell: props => {
           return <span data-priority={props.original.priority}>{props.value}</span>;
         },
       },
+      {
+      Header: 'Zip code',
+        accessor: 'zip',
+        filterable: true,
+        Cell: props => {
+          return <span data-priority={props.original.priority}>{props.value}</span>;
+        },
+      },
+      {
+        Header: 'Weight',
+          accessor: 'weight',
+          filterable: true,
+          Cell: props => {
+            return <span data-priority={props.original.priority}>{props.value}</span>;
+          },
+        },
       {
         Header: '',
         accessor: '',
