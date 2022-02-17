@@ -34,16 +34,16 @@ const itemsPageVariants = [
     toPathname: routes.ITEMS,
     pageComonent: ItemsList,
   },
-  {
+  /*{
     name: 'Items (using react-table-v6)',
     toPathname: `${routes.ITEMS}/react-table-v6`,
     pageComponent: ItemsTable,
-  },
-  {
+  },*/
+  /*{
     name: 'Items (with only styled-components)',
     toPathname: `${routes.ITEMS}/items-plain`,
     pageComponent: ItemsPlain,
-  },
+  },*/
 ];
 
 class Items extends Component {
