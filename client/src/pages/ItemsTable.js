@@ -44,8 +44,8 @@ class ItemsList extends Component {
         const { items } = resp.data;
         console.log('getAllItems: resp');
         console.log(items); */
-        const firstItem = {patientID: 'Test Name', age: 51, zip: 7273, weight: 207, bmi: 37.7 };
-        const secondItem = { patientID: 'Test Name 2', age: 60, zip: 2940, weight: 120, bmi: 20 };
+        const firstItem = {patientID: 'COVID-123', examID: '2222', age: 51, zip: 7273, weight: 207, bmi: 37.7 };
+        const secondItem = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
         const items = [firstItem, secondItem];
         const dataForState = { items: items }; 
         this.setState(dataForState); 
@@ -88,7 +88,7 @@ class ItemsList extends Component {
 
     const columns = [
       {
-        Header: 'Patient ID',
+        Header: 'ID',
         accessor: '_id',
         filterable: true,
         Cell: props => {
@@ -96,11 +96,19 @@ class ItemsList extends Component {
         },
       },
       {
-        Header: 'Exam ID',
-        accessor: 'name',
+        Header: 'Patient ID',
+        accessor: 'patientID',
         filterable: true,
         Cell: props => {
-          return <span data-name={props.original.name}>{props.value}</span>;
+          return <span data-item-id={props.original.patientID}>{props.original.patientID}</span>;
+        },
+      },
+      {
+        Header: 'Exam ID',
+        accessor: 'examID',
+        filterable: true,
+        Cell: props => {
+          return <span data-name={props.original.examID}>{props.original.examID}</span>;
         },
       },
       {
