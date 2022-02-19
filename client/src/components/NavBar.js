@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { routes } from '../constants';
 
 import Links from './Links';
 
@@ -23,12 +24,12 @@ const Nav = styled.nav.attrs({
 
 const navBarItems = [
   {
-    name: 'Items',
-    toPathname: '/items',
+    name: 'Admin',
+    toPathname:/*'/items'*/ `${routes.ITEMS}/react-table-v6`,
     className: 'nav-link',
   },
   {
-    name: 'Create Item',
+    name: 'Create Patient',
     toPathname: '/item/create',
     className: 'nav-link',
   },
