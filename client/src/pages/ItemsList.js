@@ -119,7 +119,7 @@ class ItemsTable extends Component {
 
     const columns = [
       {
-        Header: 'ID',
+        Header: 'Patient ID',
         accessor: '_id',
         // filterable: true,
         Cell: props => {
@@ -129,7 +129,7 @@ class ItemsTable extends Component {
         },
       },
       {
-        Header: 'Name',
+        Header: 'Exam ID',
         accessor: 'name',
         // filterable: true,
         Cell: props => {
@@ -138,7 +138,7 @@ class ItemsTable extends Component {
         },
       },
       {
-        Header: 'Day(s)',
+        Header: 'Image',
         accessor: 'daysOfWeek',
         // filterable: true,
         Cell: props => {
@@ -160,7 +160,7 @@ class ItemsTable extends Component {
         },
       },
       {
-        Header: 'Timeframe',
+        Header: 'Key Findings',
         accessor: 'timeframeNote',
         Cell: props => {
           const { original } = props.cell.row;
@@ -168,7 +168,7 @@ class ItemsTable extends Component {
         },
       },
       {
-        Header: 'Priority',
+        Header: 'Age',
         accessor: 'priority',
         // filterable: true,
         Cell: props => {
