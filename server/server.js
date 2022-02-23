@@ -21,9 +21,7 @@ app.use(morgan('tiny')); //for logging errors
  registering routes on root server.js
  **************/
 app.use('/api/exams', examsRouter); //first pg user sees
-app.use('/api/patients', patientsRouter, (req, res) => {
-  res.json({ message: 'ok patients' });
-});
+app.use('/api/patients', patientsRouter);
 
 /***************
  app listening
