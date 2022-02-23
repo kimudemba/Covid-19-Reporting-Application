@@ -100,7 +100,8 @@ class ItemsList extends Component {
         accessor: 'patientID',
         filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.patientID}>{props.original.patientID}</span>;
+          
+          return <Link><span data-item-id={props.original.patientID}>{props.original.patientID}</span></Link>;
         },
       },
       {
@@ -108,7 +109,7 @@ class ItemsList extends Component {
         accessor: 'examID',
         filterable: true,
         Cell: props => {
-          return <span data-name={props.original.examID}>{props.original.examID}</span>;
+          return <Link><span data-name={props.original.examID}>{props.original.examID}</span></Link>;
         },
       },
       {

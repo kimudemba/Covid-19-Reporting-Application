@@ -33,6 +33,9 @@ const itemsPageVariants = [
     name: 'Items',
     toPathname: routes.ITEMS,
     pageComonent: ItemsList,
+
+    name: 'Create Patient',
+    toPathname: 
   },
   /*{
     name: 'Items (using react-table-v6)',
