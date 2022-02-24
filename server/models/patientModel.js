@@ -184,10 +184,10 @@ const Patient = new Schema(
         },
 
         //# ICU admits
-        #_ICU_admits: {
+       /* #_ICU_admits: {
             type: String,
             required: true
-        },
+        },*/
 
         //MORTALITY
         MORTALITY: {

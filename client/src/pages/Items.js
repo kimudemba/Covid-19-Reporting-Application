@@ -7,7 +7,7 @@ import { routes } from '../constants';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 
-import { ItemsList, ItemsPlain, ItemsTable } from '../pages';
+import { PatientList, ItemsPlain, ItemsTable } from '../pages';
 
 const LinksGridContainer = styled.div`
   display: grid;
@@ -30,9 +30,9 @@ const linkTextColor = linkPathname => {
 
 const itemsPageVariants = [
   {
-    name: 'Items',
-    toPathname: routes.ITEMS,
-    pageComonent: ItemsList,
+    name: 'Patients',
+    toPathname: routes.PATIENTS,
+    pageComonent: PatientList,
   },
   /*{
     name: 'Items (using react-table-v6)',
@@ -51,7 +51,7 @@ class Items extends Component {
     // TODO: would be better to dynamically create the routes based on page variations
     const itemsPages = (
       <Switch>
-        <Route exact path={routes.ITEMS} component={ItemsList} />
+        <Route exact path={routes.PATIENTS} component={PatientList} />
         <Route exact path={`${routes.ITEMS}/react-table-v6`} component={ItemsTable} />
         <Route exact path={`${routes.ITEMS}/items-plain`} component={ItemsPlain} />
       </Switch>

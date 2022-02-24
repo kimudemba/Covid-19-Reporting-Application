@@ -71,7 +71,7 @@ const CancelButton = styled.a.attrs({
   margin: 15px 15px 15px 5px;
 `;
 
-class ItemInsert extends Component {
+class PatientInsert extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -275,4 +275,4 @@ class ItemInsert extends Component {
   }
 }
 
-export default ItemInsert;
+export default PatientInsert;

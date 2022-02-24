@@ -57,65 +57,65 @@ const Table = ({ columns, data }) => {
   );
 };
 
-class ItemsTable extends Component {
+class PatientTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {},
+      patients: {},
     };
   }
 
   componentDidMount() {
-    console.log('ItemsList: props');
+    console.log('PatientList: props');
     console.log(this.props);
 
-    this.fetchAllItems();
+    this.fetchAllPatients();
   }
 
-  fetchAllItems = () => {
+  fetchAllPatients = () => {
     api
-      .getAllItems()
+      .getAllPatients()
       .then(resp => {
-        const { items } = resp.data;
-        console.log('getAllItems: resp');
-        console.log(items);
-        this.setState({ items });
+        const { patients } = resp.data;
+        console.log('getAllPatients: resp');
+        console.log(patients);
+        this.setState({ patients });
       })
       .catch(err => {
-        console.error(`ERROR in 'getAllItems': ${err}`);
+        console.error(`ERROR in 'getAllPatients': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  deleteSingleItem = itemId => {
+  deleteSingleItem = patientId => {
     return api
-      .deleteItemById(itemId)
+      .deletePatientById(patientId)
       .then(resp => {
-        console.log('deleteItemById: resp');
+        console.log('deletePatientById: resp');
         console.log(resp);
         return resp;
       })
       .catch(err => {
-        console.error(`ERROR in 'deleteSingleItem': ${err}`);
+        console.error(`ERROR in 'deleteSinglePatient': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  handleRemoveItem = data => {
-    const itemId = data;
+  handleRemovePatient = data => {
+    const patientId = data;
 
-    this.deleteSingleItem(itemId).then(resp => {
+    this.deleteSingleItem(patientId).then(resp => {
       console.log('handleRemoveItem: resp');
       console.log(resp);
-      this.fetchAllItems();
+      this.fetchAllPatients();
     });
   };
 
   render() {
-    const items = this.state.items || {};
-    console.log(items);
+    const patients = this.state.patients || {};
+    console.log(patients);
 
     const columns = [
       {
@@ -183,7 +183,7 @@ class ItemsTable extends Component {
           const { original } = props.cell.row;
 
           return (
-            <Link data-update-id={original._id} to={`/item/update/${original._id}`}>
+            <Link data-update-id={original._id} to={`/patient/update/${original._id}`}>
               Update
             </Link>
           );
@@ -206,8 +206,8 @@ class ItemsTable extends Component {
     return (
       <Wrapper>
         <CssBaseline />
-        {(items || []).length > 0 ? (
-          <Table data={items} columns={columns} />
+        {(patients || []).length > 0 ? (
+          <Table data={patients} columns={columns} />
         ) : (
           `No items to render... :(`
         )}
@@ -216,4 +216,4 @@ class ItemsTable extends Component {
   }
 }
 
-export default ItemsTable;
+export default PatientTable;
