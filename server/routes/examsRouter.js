@@ -34,4 +34,3 @@ examsRouter
 
 module.exports = examsRouter;
 
-//test

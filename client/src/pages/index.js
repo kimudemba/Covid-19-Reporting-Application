@@ -1,6 +1,6 @@
-import ItemInsert from './ItemInsert';
+import ItemInsert from './PatientInsert';
 import Items from './Items';
-import ItemsList from './ItemsList';
+import PatientList from './PatientList';
 import ItemsPlain from './ItemsPlain';
 import ItemsTable from './ItemsTable';
 import ItemUpdate from './ItemUpdate';
@@ -8,7 +8,7 @@ import ItemUpdate from './ItemUpdate';
 export {
     ItemInsert,
     Items,
-    ItemsList,
+    PatientList,
     ItemsPlain,
     ItemsTable,
     ItemUpdate

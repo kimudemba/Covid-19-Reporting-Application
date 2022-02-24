@@ -12,26 +12,34 @@ const Wrapper = styled.div`
   padding: 0 40px 40px 40px;
 `;
 
-class ItemsList extends Component {
+/*class ItemsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: {},
     };
-  }
+  }*/
+
+  class PatientList extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        patients: {},
+      };
+    }
 
   componentDidMount() {
-    console.log('ItemsList: props');
+    console.log('PatientList: props');
     console.log(this.props);
     // if (((this.props.itemData || {}).items || []).length) return; 
 
      
    
 
-    this.fetchAllItems();
+    this.fetchAllPatients();
   }
 
-  fetchAllItems = () => {
+  fetchAllPatients = () => {
 
     /*Faking this for now. Once we have the backend API set up we can use this function to make the HTTP request instead using api.getAllItems()...
   this.setState({
@@ -83,8 +91,8 @@ class ItemsList extends Component {
   };
 
   render() {
-    const items = this.state.items || {};
-    console.log(items);
+    const patients = this.state.patients || {};
+    console.log(patients);
 
     const columns = [
       {
@@ -169,7 +177,7 @@ class ItemsList extends Component {
         accessor: '',
         Cell: props => {
           return (
-            <Link data-update-id={props.original._id} to={`/item/update/${props.original._id}`}>
+            <Link data-update-id={props.original._id} to={`/patient/update/${props.original._id}`}>
               Update Item
             </Link>
           );
@@ -190,9 +198,9 @@ class ItemsList extends Component {
 
     return (
       <Wrapper>
-        {(items || []).length > 0 ? ( // defeats the purpose of using `isLoading` prop?
+        {(patients || []).length > 0 ? ( // defeats the purpose of using `isLoading` prop?
           <ReactTable
-            data={items}
+            data={patients}
             columns={columns}
             defaultPageSize={10}
             showPageSizeOptions={true}
@@ -206,4 +214,5 @@ class ItemsList extends Component {
   }
 }
 
-export default ItemsList;
+//export default ItemsList;
+export default PatientList;
