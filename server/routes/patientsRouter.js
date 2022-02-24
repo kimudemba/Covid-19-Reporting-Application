@@ -4,6 +4,7 @@
  const express = require('express');
  const debug = require('debug')('index: examsRouter');
  const { MongoClient } = require('mongodb');
+ const patientsController = require('../controllers/patientsController')
  
  // TODO: const patientsController = require('../controllers/patients-controller');
  
@@ -17,7 +18,7 @@
  // /api/patients
  patientsRouter
    .route('/patients')
-   //   .get(mockController.getPatients)
+      .get(patientsController.getPatients)
    .get(mockController)
    //   .post(mockController.createOnePatient);
    .post(mockController);
