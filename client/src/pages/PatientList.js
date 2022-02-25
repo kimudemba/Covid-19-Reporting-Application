@@ -41,7 +41,7 @@ const Table = ({ columns, data }) => {
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <TableRow data-row-item-id={row.values._id} {...row.getRowProps()}>
+            <TableRow data-row-patient-id={row.values._id} {...row.getRowProps()}>
               {row.cells.map(cell => {
                 return (
                   <TableCell {...cell.getCellProps()}>
@@ -61,7 +61,9 @@ class PatientTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      patients: {},
+      patients: [],
+      columns: [],
+      
     };
   }
 
@@ -88,7 +90,7 @@ class PatientTable extends Component {
       });
   };
 
-  deleteSingleItem = patientId => {
+  deleteSinglePatient = patientId => {
     return api
       .deletePatientById(patientId)
       .then(resp => {
@@ -106,8 +108,8 @@ class PatientTable extends Component {
   handleRemovePatient = data => {
     const patientId = data;
 
-    this.deleteSingleItem(patientId).then(resp => {
-      console.log('handleRemoveItem: resp');
+    this.deleteSinglePatient(patientId).then(resp => {
+      console.log('handleRemovePatient: resp');
       console.log(resp);
       this.fetchAllPatients();
     });
@@ -119,13 +121,13 @@ class PatientTable extends Component {
 
     const columns = [
       {
-        Header: 'Patient ID',
-        accessor: '_id',
+        Header: 'Patient',
+        accessor: 'patientId',
         // filterable: true,
         Cell: props => {
           console.log(props);
           const { original } = props.cell.row;
-          return <span data-item-id={original._id}>{props.value}</span>;
+          return <span data-patient-id={original.patientId}>{props.value}</span>;
         },
       },
       {
@@ -196,7 +198,7 @@ class PatientTable extends Component {
           const { original } = props.cell.row;
           return (
             <span data-delete-id={original._id}>
-              <DeleteButton id={original._id} onDelete={this.handleRemoveItem} />
+              <DeleteButton id={original._id} onDelete={this.handleRemovePatient} />
             </span>
           );
         },
@@ -209,7 +211,7 @@ class PatientTable extends Component {
         {(patients || []).length > 0 ? (
           <Table data={patients} columns={columns} />
         ) : (
-          `No items to render... :(`
+          `No patients to render... :(`
         )}
       </Wrapper>
     );

@@ -1,4 +1,4 @@
-const { execMap } = require('nodemon/lib/config/defaults')
+//const { execMap } = require('nodemon/lib/config/defaults')
 const Exam = require('../models/examModel')
 
 

@@ -11,12 +11,12 @@ const Delete = styled.div.attrs({
 `;
 
 class DeleteButton extends Component {
-  confirmDeleteItem = event => {
+  confirmDeletePatient = event => {
     event.preventDefault();
 
     if (
         window.confirm(
-            `Do you want to permanently delete this item? ${this.props.id}`
+            `Do you want to permanently delete this patient? ${this.props.id}`
         )
     ) {
          this.props.onDelete(this.props.id);
@@ -24,7 +24,7 @@ class DeleteButton extends Component {
   };
 
   render() {
-    return <Delete onClick={this.confirmDeleteItem}>Delete Item</Delete>;
+    return <Delete onClick={this.confirmDeletePatient}>Delete Patient</Delete>;
   }
 }
 

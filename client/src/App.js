@@ -13,7 +13,7 @@ import './styles/App.css';
 import { NavBar, Welcome } from './components';
 
 // Pages
-import { ItemInsert, Items, ItemUpdate } from './pages';
+import { PatientInsert, Items, PatientUpdate } from './pages';
 
 class App extends Component {
   render() {
@@ -21,14 +21,14 @@ class App extends Component {
     const publicViews = (
       <Switch>
         <Route exact path={routes.HOME}>
-          <Redirect to={routes.ITEMS} />
+          <Redirect to={routes.PATIENTS} />
         </Route>
-        <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
+        <Route exact path={routes.PATIENT_UPDATE} component={PatientUpdate} />
         <Route exact path={routes.HOME} component={Welcome} />
-        <Route exact path={routes.ITEMS} component={Items} />
-        <Route exact path={`${routes.ITEMS}/items-plain`} component={Items} />
-        <Route exact path={`${routes.ITEMS}/react-table-v6`} component={Items} />
-        <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
+        <Route exact path={routes.PATIENTS} component={Items} />
+        <Route exact path={`${routes.PATIENTS}/items-plain`} component={Items} />
+        <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={Items} />
+        <Route exact path={routes.PATIENT_INSERT} component={PatientInsert} />
       </Switch>
     );
 

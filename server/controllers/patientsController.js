@@ -17,7 +17,7 @@ getPatients = async (req, res) => {
         patients: [],
       });
     }
-    console.log(`[Hack.Diversity React Template] - 200 in 'getPatients': Items fetched!`);
+    console.log(`[Hack.Diversity React Template] - 200 in 'getPatients': Patients fetched!`);
     return res.status(200).json({
       success: true,
       patients: patients,
