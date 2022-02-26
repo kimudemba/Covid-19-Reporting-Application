@@ -32,7 +32,7 @@ const itemsPageVariants = [
   {
     name: 'Patients',
     toPathname: routes.PATIENTS,
-    pageComonent: PatientList,
+    pageComponent: PatientList,
   },
   /*{
     name: 'Items (using react-table-v6)',
@@ -74,10 +74,10 @@ class Patients extends Component {
             </LinkGridWrapper>
           ))}
         </LinksGridContainer>
-        {itemsPages}
+        {patientsPages}
       </>
     );
   }
 }
 
-export default Items;
+export default Patients;

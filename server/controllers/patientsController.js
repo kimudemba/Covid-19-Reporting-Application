@@ -130,6 +130,7 @@ updatePatient = async (req, res) => {
     timeframeNote: body.timeframeNote,
     priority: body.priority,
     content: body.content,
+    patient: patient.content
   };
 
   // console.log('----------------------- updatepatient: res -----------------------');

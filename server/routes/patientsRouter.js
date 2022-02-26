@@ -9,9 +9,9 @@
  // TODO: const patientsController = require('../controllers/patients-controller');
  
  //mock for inital testing purposes UNTIL controller is created
- const mockController = (req, res) => {
+  const mockController = (req, res) => {
    res.json({ message: 'ok patients' });
- };
+};
  
  const patientsRouter = express.Router();
  
