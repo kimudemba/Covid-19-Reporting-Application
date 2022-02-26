@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table-6';
 import { DeleteButton } from '../components/buttons';
@@ -11,7 +11,7 @@ import 'react-table-6/react-table.css';
 const Wrapper = styled.div`
   padding: 0 40px 40px 40px;
 `;
-*/
+
 /*class ItemsList extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +20,13 @@ const Wrapper = styled.div`
     };
   }*/
 
-  /*class PatientList extends Component {
+  class PatientList extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        patients: {},
+        patients: [],
+        columns: [],
+        isLoading: false,
       };
     }
 
@@ -39,7 +41,7 @@ const Wrapper = styled.div`
     this.fetchAllPatients();
   }
 
-  fetchAllPatients = () => { */
+  fetchAllPatients = () => {
 
     /*Faking this for now. Once we have the backend API set up we can use this function to make the HTTP request instead using api.getAllItems()...
   this.setState({
@@ -51,11 +53,11 @@ const Wrapper = styled.div`
         debugger;
         const { items } = resp.data;
         console.log('getAllItems: resp');
-        console.log(items); */ /*
-        const firstItem = {patientID: 'COVID-123', examID: '2222', age: 51, zip: 7273, weight: 207, bmi: 37.7 };
+        console.log(items); */
+        const firstPatient = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
         const secondItem = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
-        const items = [firstItem, secondItem];
-        const dataForState = { items: items }; 
+        const patients = [firstPatient];
+        const dataForState = { patients: patients}; 
         this.setState(dataForState); 
       }
 
@@ -65,28 +67,28 @@ const Wrapper = styled.div`
         return err;
       }); */
 
-  /* deleteSingleItem = itemId => {
+  deleteSinglePatient = patientId => {
     return api
-      .deleteItemById(itemId)
+      .deletePatientById(patientId)
       .then(resp => {
-        console.log('deleteItemById: resp');
+        console.log('deletePatientById: resp');
         console.log(resp);
         return resp;
       })
       .catch(err => {
-        console.error(`ERROR in 'deleteSingleItem': ${err}`);
+        console.error(`ERROR in 'deleteSinglePatient': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  handleRemoveItem = data => {
-    const itemId = data;
+  handleRemovePatient = data => {
+    const patientId = data;
 
-    this.deleteSingleItem(itemId).then(resp => {
-      console.log('handleRemoveItem: resp');
+    this.deleteSinglePatient(patientId).then(resp => {
+      console.log('handleRemovePatient: resp');
       console.log(resp);
-      this.fetchAllItems();
+      this.fetchAllPatients();
     });
   };
 
@@ -108,8 +110,7 @@ const Wrapper = styled.div`
         accessor: 'patientID',
         filterable: true,
         Cell: props => {
-          
-          return <Link><span data-item-id={props.original.patientID}>{props.original.patientID}</span></Link>;
+          return <span data-item-id={props.original.patientID}>{props.original.patientID}</span>;
         },
       },
       {
@@ -117,7 +118,7 @@ const Wrapper = styled.div`
         accessor: 'examID',
         filterable: true,
         Cell: props => {
-          return <Link><span data-name={props.original.examID}>{props.original.examID}</span></Link>;
+          return <span data-name={props.original.examID}>{props.original.examID}</span>;
         },
       },
       {
@@ -217,4 +218,3 @@ const Wrapper = styled.div`
 
 //export default ItemsList;
 export default PatientList;
-*/

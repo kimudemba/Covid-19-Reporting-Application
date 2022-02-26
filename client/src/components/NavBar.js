@@ -25,14 +25,22 @@ const Nav = styled.nav.attrs({
 const navBarItems = [
   {
     name: 'Admin',
-    toPathname:/*'/items'*/ `${routes.ITEMS}/react-table-v6`,
+    toPathname: `${routes.PATIENTS}/react-table-v6`,
     className: 'nav-link',
   },
+
   {
     name: 'Create Patient',
-    toPathname: '/item/create',
+    toPathname: '/patient/create',
     className: 'nav-link',
   },
+
+//  {
+//    name: 'Create Patient',
+//    toPathname: '/item/create',
+//    className: 'nav-link',
+//  }, 
+
 ];
 
 class NavBar extends Component {
