@@ -1,9 +1,20 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const mongoose = require('mongoose');
 
+const url = process.env.DATABASE_ACCESS;
 mongoose
-  .connect('mongodb://127.0.0.1:27017/items', { useNewUrlParser: true})
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
+  .then(() => {
+    console.log('Connection estabislished with MongoDB');
+  })
   .catch(e => {
-    console.error('Connection error', e.message);
+    console.error('CONNECTION ERROR IS:', e.message);
   });
 
 const db = mongoose.connection;

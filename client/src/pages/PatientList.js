@@ -41,7 +41,7 @@ const Table = ({ columns, data }) => {
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <TableRow data-row-item-id={row.values._id} {...row.getRowProps()}>
+            <TableRow data-row-patient-id={row.values._id} {...row.getRowProps()}>
               {row.cells.map(cell => {
                 return (
                   <TableCell {...cell.getCellProps()}>
@@ -57,75 +57,77 @@ const Table = ({ columns, data }) => {
   );
 };
 
-class ItemsTable extends Component {
+class PatientTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {},
+      patients: [],
+      columns: [],
+      
     };
   }
 
   componentDidMount() {
-    console.log('ItemsList: props');
+    console.log('PatientList: props');
     console.log(this.props);
 
-    this.fetchAllItems();
+    this.fetchAllPatients();
   }
 
-  fetchAllItems = () => {
+  fetchAllPatients = () => {
     api
-      .getAllItems()
+      .getAllPatients()
       .then(resp => {
-        const { items } = resp.data;
-        console.log('getAllItems: resp');
-        console.log(items);
-        this.setState({ items });
+        const { patients } = resp.data;
+        console.log('getAllPatients: resp');
+        console.log(patients);
+        this.setState({ patients });
       })
       .catch(err => {
-        console.error(`ERROR in 'getAllItems': ${err}`);
+        console.error(`ERROR in 'getAllPatients': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  deleteSingleItem = itemId => {
+  deleteSinglePatient = patientId => {
     return api
-      .deleteItemById(itemId)
+      .deletePatientById(patientId)
       .then(resp => {
-        console.log('deleteItemById: resp');
+        console.log('deletePatientById: resp');
         console.log(resp);
         return resp;
       })
       .catch(err => {
-        console.error(`ERROR in 'deleteSingleItem': ${err}`);
+        console.error(`ERROR in 'deleteSinglePatient': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  handleRemoveItem = data => {
-    const itemId = data;
+  handleRemovePatient = data => {
+    const patientId = data;
 
-    this.deleteSingleItem(itemId).then(resp => {
-      console.log('handleRemoveItem: resp');
+    this.deleteSinglePatient(patientId).then(resp => {
+      console.log('handleRemovePatient: resp');
       console.log(resp);
-      this.fetchAllItems();
+      this.fetchAllPatients();
     });
   };
 
   render() {
-    const items = this.state.items || {};
-    console.log(items);
+    const patients = this.state.patients || {};
+    console.log(patients);
 
     const columns = [
       {
-        Header: 'Patient ID',
-        accessor: '_id',
+        Header: 'Patient',
+        accessor: 'patientId',
         // filterable: true,
         Cell: props => {
           console.log(props);
           const { original } = props.cell.row;
-          return <span data-item-id={original._id}>{props.value}</span>;
+          return <span data-patient-id={original.patientId}>{props.value}</span>;
         },
       },
       {
@@ -183,7 +185,7 @@ class ItemsTable extends Component {
           const { original } = props.cell.row;
 
           return (
-            <Link data-update-id={original._id} to={`/item/update/${original._id}`}>
+            <Link data-update-id={original._id} to={`/patient/update/${original._id}`}>
               Update
             </Link>
           );
@@ -196,7 +198,7 @@ class ItemsTable extends Component {
           const { original } = props.cell.row;
           return (
             <span data-delete-id={original._id}>
-              <DeleteButton id={original._id} onDelete={this.handleRemoveItem} />
+              <DeleteButton id={original._id} onDelete={this.handleRemovePatient} />
             </span>
           );
         },
@@ -206,14 +208,14 @@ class ItemsTable extends Component {
     return (
       <Wrapper>
         <CssBaseline />
-        {(items || []).length > 0 ? (
-          <Table data={items} columns={columns} />
+        {(patients || []).length > 0 ? (
+          <Table data={patients} columns={columns} />
         ) : (
-          `No items to render... :(`
+          `No patients to render... :(`
         )}
       </Wrapper>
     );
   }
 }
 
-export default ItemsTable;
+export default PatientTable;

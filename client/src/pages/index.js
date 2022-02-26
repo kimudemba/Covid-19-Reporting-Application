@@ -1,15 +1,19 @@
-import ItemInsert from './ItemInsert';
+import PatientInsert from './PatientInsert';
 import Items from './Items';
-import ItemsList from './ItemsList';
+import PatientList from './PatientList';
 import ItemsPlain from './ItemsPlain';
-import ItemsTable from './ItemsTable';
-import ItemUpdate from './ItemUpdate';
+// import ItemsTable from './ItemsTable'; 
+//import ItemUpdate from './ItemUpdate';
+import PatientTable from './PatientTable';
+import PatientUpdate from './PatientUpdate';
 
 export {
-    ItemInsert,
     Items,
-    ItemsList,
+    PatientList,
     ItemsPlain,
-    ItemsTable,
-    ItemUpdate
+   // ItemsTable,
+   // ItemUpdate,
+    PatientTable,
+    PatientUpdate,
+    PatientInsert,
 };
