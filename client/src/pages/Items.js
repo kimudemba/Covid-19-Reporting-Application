@@ -34,8 +34,7 @@ const itemsPageVariants = [
     toPathname: routes.ITEMS,
     pageComonent: ItemsList,
 
-    name: 'Create Patient',
-    toPathname: 
+
   },
   /*{
     name: 'Items (using react-table-v6)',
@@ -47,6 +46,10 @@ const itemsPageVariants = [
     toPathname: `${routes.ITEMS}/items-plain`,
     pageComponent: ItemsPlain,
   },*/
+  {
+    name: 'Create Patient',
+    toPathname: routes.ITEM_INSERT,
+  }
 ];
 
 class Items extends Component {
