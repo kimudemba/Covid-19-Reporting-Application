@@ -28,11 +28,19 @@ const navBarItems = [
     toPathname: `${routes.PATIENTS}/react-table-v6`,
     className: 'nav-link',
   },
+
   {
     name: 'Create Patient',
     toPathname: '/patient/create',
     className: 'nav-link',
   },
+
+//  {
+//    name: 'Create Patient',
+//    toPathname: '/item/create',
+//    className: 'nav-link',
+//  }, 
+
 ];
 
 class NavBar extends Component {
