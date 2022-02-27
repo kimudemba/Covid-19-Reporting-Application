@@ -1,5 +1,5 @@
 // Public routes
-const HOME = '/';
+const Exams = '/api/exams';
 const ABOUT = '/about';
 const SIGN_UP = '/signup';
 const LOG_IN = '/login';
@@ -19,7 +19,7 @@ const PATIENTS = '/patients';
 const EXAMS = '/exams';
 
 export const routes = {
-  HOME,
+  Exams,
   ABOUT,
   SIGN_UP,
   LOG_IN,

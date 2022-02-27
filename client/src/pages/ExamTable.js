@@ -12,37 +12,24 @@ const Wrapper = styled.div`
   padding: 0 40px 40px 40px;
 `;
 
-/*class ItemsList extends Component {
+class ExamList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {},
+      exams: [],
+      columns: [],
+      isLoading: false,
     };
-  }*/
-
-  class PatientList extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        patients: [],
-        columns: [],
-        isLoading: false,
-      };
-    }
-
-  componentDidMount() {
-    console.log('PatientList: props');
-    console.log(this.props);
-    // if (((this.props.itemData || {}).items || []).length) return; 
-
-     
-   
-
-    this.fetchAllPatients();
   }
 
-  fetchAllPatients = () => {
+  componentDidMount() {
+    console.log('ExamList: props');
+    console.log(this.props);
+    // if (((this.props.itemData || {}).items || []).length) return;
+    this.fetchAllExams();
+  }
 
+  fetchAllExams = () => {
     /*Faking this for now. Once we have the backend API set up we can use this function to make the HTTP request instead using api.getAllItems()...
   this.setState({
     items: [fakeItem1, fakeItem2, ...PATIENT_ID , AGE ,SEX, RACE, ZIP, BMI, WEIGHT, HEIGHT]
@@ -54,47 +41,52 @@ const Wrapper = styled.div`
         const { items } = resp.data;
         console.log('getAllItems: resp');
         console.log(items); */
-        // const firstPatient = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
-        const secondItem = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
-        // const patients = [firstPatient];
-        // const dataForState = { patients: patients}; 
-        // this.setState(dataForState); 
-      }
+    // const firstExam = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
+    // const secondItem = {
+    //   patient_Id: 'COVID-19-AR-16434409',
+    //   key_findings: 'Subtle patchy bibasilar and right upper lobe airspace  opacities',
+    //   png_filename: 'COVID-19-AR-16434409_XR_CHEST_AP_PORTABLE_1.png',
+    //   exam_Id: 'Exam-1',
+    // };
+    // const exams = [firstExam];
+    // const dataForState = { exams: exams};
+    // this.setState(dataForState);
+  };
 
-      /*.catch(err => {
+  /*.catch(err => {
         console.error(`ERROR in 'getAllItems': ${err}`);
         console.error(err);
         return err;
       }); */
 
-  deleteSinglePatient = patientId => {
+  deleteSingleExam = examId => {
     return api
-      .deletePatientById(patientId)
+      .deleteExamById(examId)
       .then(resp => {
-        console.log('deletePatientById: resp');
+        console.log('deleteExamById: resp');
         console.log(resp);
         return resp;
       })
       .catch(err => {
-        console.error(`ERROR in 'deleteSinglePatient': ${err}`);
+        console.error(`ERROR in 'deleteSingleExam': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  handleRemovePatient = data => {
-    const patientId = data;
+  handleRemoveExam = data => {
+    const examId = data;
 
-    this.deleteSinglePatient(patientId).then(resp => {
-      console.log('handleRemovePatient: resp');
+    this.deleteSingleExam(examId).then(resp => {
+      console.log('handleRemoveExam: resp');
       console.log(resp);
-      this.fetchAllPatients();
+      this.fetchAllExams();
     });
   };
 
   render() {
-    const patients = this.state.patients || {};
-    console.log(patients);
+    const exams = this.state.exams || {};
+    console.log(exams);
 
     const columns = [
       {
@@ -106,11 +98,11 @@ const Wrapper = styled.div`
         },
       },
       {
-        Header: 'Patient ID',
-        accessor: 'patientID',
+        Header: 'Exam ID',
+        accessor: 'examID',
         filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.patientID}>{props.original.patientID}</span>;
+          return <span data-item-id={props.original.examID}>{props.original.examID}</span>;
         },
       },
       {
@@ -159,7 +151,7 @@ const Wrapper = styled.div`
         },
       },
       {
-      Header: 'Zip code',
+        Header: 'Zip code',
         accessor: 'zip',
         filterable: true,
         Cell: props => {
@@ -168,18 +160,18 @@ const Wrapper = styled.div`
       },
       {
         Header: 'Weight',
-          accessor: 'weight',
-          filterable: true,
-          Cell: props => {
-            return <span data-priority={props.original.priority}>{props.value}</span>;
-          },
+        accessor: 'weight',
+        filterable: true,
+        Cell: props => {
+          return <span data-priority={props.original.priority}>{props.value}</span>;
         },
+      },
       {
         Header: '',
         accessor: '',
         Cell: props => {
           return (
-            <Link data-update-id={props.original._id} to={`/patient/update/${props.original._id}`}>
+            <Link data-update-id={props.original._id} to={`/exam/update/${props.original._id}`}>
               Update Item
             </Link>
           );
@@ -200,9 +192,9 @@ const Wrapper = styled.div`
 
     return (
       <Wrapper>
-        {(patients || []).length > 0 ? ( // defeats the purpose of using `isLoading` prop?
+        {(exams || []).length > 0 ? ( // defeats the purpose of using `isLoading` prop?
           <ReactTable
-            data={patients}
+            data={exams}
             columns={columns}
             defaultPageSize={10}
             showPageSizeOptions={true}
@@ -217,4 +209,4 @@ const Wrapper = styled.div`
 }
 
 //export default ItemsList;
-export default PatientList;
+export default ExamList;

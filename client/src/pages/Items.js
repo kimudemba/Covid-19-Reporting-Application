@@ -33,11 +33,11 @@ const itemsPageVariants = [
 
     name: 'Patients',
     toPathname: routes.PATIENTS,
-    pageComonent: PatientList,
+    pageComponent: PatientList,
 
     name: 'Items',
     toPathname: routes.ITEMS,
-    pageComonent: ItemsList,
+    pageComonent: ItemsPlain,
 
 
 
@@ -86,10 +86,10 @@ class Patients extends Component {
             </LinkGridWrapper>
           ))}
         </LinksGridContainer>
-        {itemsPages}
+        {patientsPages}
       </>
     );
   }
 }
 
-export default Items;
+export default Patients;

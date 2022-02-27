@@ -14,6 +14,7 @@ import { NavBar, Welcome } from './components';
 
 // Pages
 import { PatientInsert, Items, PatientUpdate } from './pages';
+import { ExamBasicTable } from './components/ExamSpecificComp/ExamBasictable';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
         </Route>
         <Route exact path={routes.PATIENT_UPDATE} component={PatientUpdate} />
         <Route exact path={routes.HOME} component={Welcome} />
+        <Route exact path={routes.Exams} component={ExamBasicTable} />
         <Route exact path={routes.PATIENTS} component={Items} />
         <Route exact path={`${routes.PATIENTS}/items-plain`} component={Items} />
         <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={Items} />
@@ -38,6 +40,8 @@ class App extends Component {
         <NavBar />
         <div className="app--main">
           <div className="view-container">{publicViews}</div>
+          {/* uncomment to see Exam table component*/}
+        {/* <ExamBasicTable></ExamBasicTable> */}
         </div>
       </BrowserRouter>
     );
