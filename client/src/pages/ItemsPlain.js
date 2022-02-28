@@ -75,81 +75,81 @@ class ItemsPlain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {},
+      patients: {},
     };
   }
 
   componentDidMount() {
-    console.log('ItemsList: props');
+    console.log('PatientList: props');
     console.log(this.props);
     // if (((this.props.itemData || {}).items || []).length) return;
 
-    this.fetchAllItems();
+    this.fetchAllPatients();
   }
 
-  fetchAllItems = () => {
+  fetchAllPatients = () => {
     api
-      .getAllItems()
+      .getAllPatients()
       .then(resp => {
-        const { items } = resp.data;
-        console.log('getAllItems: resp');
-        console.log(items);
-        this.setState({ items });
+        const { patients } = resp.data;
+        console.log('getAllPatients: resp');
+        console.log(patients);
+        this.setState({ patients });
       })
       .catch(err => {
-        console.error(`ERROR in 'getAllItems': ${err}`);
+        console.error(`ERROR in 'getAllPatients': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  deleteSingleItem = itemId => {
+  deleteSinglePatient = patientId => {
     return api
-      .deleteItemById(itemId)
+      .deletePatientById(patientId)
       .then(resp => {
-        console.log('deleteItemById: resp');
+        console.log('deletePatientById: resp');
         console.log(resp);
         return resp;
       })
       .catch(err => {
-        console.error(`ERROR in 'deleteSingleItem': ${err}`);
+        console.error(`ERROR in 'deleteSinglePatient': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  handleRemoveItem = data => {
-    const itemId = data;
+  handleRemovePatient = data => {
+    const patientId = data;
 
-    this.deleteSingleItem(itemId).then(resp => {
-      console.log('handleRemoveItem: resp');
+    this.deleteSinglePatient(patientId).then(resp => {
+      console.log('handleRemovePatient: resp');
       console.log(resp);
-      this.fetchAllItems();
+      this.fetchAllPatients();
     });
   };
 
   render() {
-    const items = this.state.items || {};
-    console.log(items);
+    const patients = this.state.patients || {};
+    console.log(patients);
 
     return (
       <Wrapper>
-        {(items || []).length > 0
-          ? items.map(item => (
-              <ItemContainer key={item._id}>
+        {(patients || []).length > 0
+          ? patients.map(patient => (
+              <ItemContainer key={patient._id}>
                 <ItemImage src={generateRandomCat()}></ItemImage>
-                <NameHeader>{item.name}</NameHeader>
-                <DetailParagraph>ID: {item._id}</DetailParagraph>
-                <DetailParagraph>Priority: {item.priority}</DetailParagraph>
+                <NameHeader>{patient.name}</NameHeader>
+                <DetailParagraph>ID: {patient._id}</DetailParagraph>
+                <DetailParagraph>Priority: {patient.priority}</DetailParagraph>
                 <ButtonsWrapper>
-                  <Link data-update-id={item._id} to={`/item/update/${item._id}`}>
-                    Update Item
+                  <Link data-update-id={patient._id} to={`/patient/update/${patient._id}`}>
+                    Update Patient
                   </Link>
-                  <DeleteButton id={item._id} onDelete={this.handleRemoveItem} />
+                  <DeleteButton id={patient._id} onDelete={this.handleRemovePatient} />
                 </ButtonsWrapper>
               </ItemContainer>
             ))
-          : `No items to render... :(`}
+          : `No patients to render... :(`}
       </Wrapper>
     );
   }

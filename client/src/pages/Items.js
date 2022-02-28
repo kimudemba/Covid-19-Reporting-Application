@@ -7,7 +7,7 @@ import { routes } from '../constants';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 
-import { PatientList, ItemsPlain, ItemsTable } from '../pages';
+import { PatientList, ItemsPlain, PatientTable } from '../pages';
 
 const LinksGridContainer = styled.div`
   display: grid;
@@ -30,9 +30,19 @@ const linkTextColor = linkPathname => {
 
 const itemsPageVariants = [
   {
+
     name: 'Patients',
     toPathname: routes.PATIENTS,
-    pageComonent: PatientList,
+    pageComponent: PatientList,
+
+
+    name: 'Items',
+    toPathname: routes.ITEMS,
+    pageComponent: ItemsPlain,
+
+
+
+
   },
   /*{
     name: 'Items (using react-table-v6)',
@@ -44,16 +54,20 @@ const itemsPageVariants = [
     toPathname: `${routes.ITEMS}/items-plain`,
     pageComponent: ItemsPlain,
   },*/
+  {
+    name: 'Create Patient',
+    toPathname: routes.ITEM_INSERT,
+  }
 ];
 
-class Items extends Component {
+class Patients extends Component {
   render() {
     // TODO: would be better to dynamically create the routes based on page variations
-    const itemsPages = (
+    const patientsPages = (
       <Switch>
         <Route exact path={routes.PATIENTS} component={PatientList} />
-        <Route exact path={`${routes.ITEMS}/react-table-v6`} component={ItemsTable} />
-        <Route exact path={`${routes.ITEMS}/items-plain`} component={ItemsPlain} />
+        <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={PatientTable} />
+        <Route exact path={`${routes.PATIENTS}/items-plain`} component={ItemsPlain} />
       </Switch>
     );
 
@@ -74,10 +88,10 @@ class Items extends Component {
             </LinkGridWrapper>
           ))}
         </LinksGridContainer>
-        {itemsPages}
+        {patientsPages}
       </>
     );
   }
 }
 
-export default Items;
+export default Patients;

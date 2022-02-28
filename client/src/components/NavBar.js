@@ -10,6 +10,8 @@ const Container = styled.div.attrs({
   max-width: 100%;
   padding-left: 0px;
   padding-right: 0px;
+  font-size: 1.3em;
+  font-weight: bold;
 `;
 
 const Nav = styled.nav.attrs({
@@ -24,15 +26,28 @@ const Nav = styled.nav.attrs({
 
 const navBarItems = [
   {
-    name: 'Admin',
-    toPathname:/*'/items'*/ `${routes.ITEMS}/react-table-v6`,
+    name: 'Exams',
+    toPathname: `api${routes.EXAMS}/`,
     className: 'nav-link',
   },
   {
-    name: 'Create Patient',
-    toPathname: '/item/create',
+    name: 'Admin',
+    toPathname: `${routes.PATIENTS}/react-table-v6`,
     className: 'nav-link',
   },
+
+  {
+    name: 'Create Patient',
+    toPathname: '/patient/create',
+    className: 'nav-link',
+  },
+
+//  {
+//    name: 'Create Patient',
+//    toPathname: '/item/create',
+//    className: 'nav-link',
+//  }, 
+
 ];
 
 class NavBar extends Component {
