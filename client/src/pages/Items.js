@@ -35,9 +35,11 @@ const itemsPageVariants = [
     toPathname: routes.PATIENTS,
     pageComponent: PatientList,
 
+
     name: 'Items',
     toPathname: routes.ITEMS,
-    pageComonent: ItemsPlain,
+    pageComponent: ItemsPlain,
+
 
 
 

@@ -2,6 +2,7 @@
 const patient = require('../models/patientModel');
 
 getPatients = async (req, res) => {
+
   await patient
     .find({}, (err, patients) => {
       if (err) {
@@ -57,6 +58,8 @@ getpatientById = async (req, res) => {
       return res.status(200).json({
         success: true,
         patient: patient[0],
+
+
       });
     })
     .catch(err => {
@@ -67,6 +70,8 @@ getpatientById = async (req, res) => {
 };
 
 createOnePatient = (req, res) => {
+
+
   const body = req.body;
   // console.log('----------------------- createpatient: req -----------------------')
   // console.log(req);
@@ -81,9 +86,11 @@ createOnePatient = (req, res) => {
   const patient = new patient(body);
 
   if (!patient) {
+
     console.error(
       `[Hack.Diversity React Template] - 400 in 'createpatient': 'patient' is malformed.`,
     );
+
     return res.status(400).json({
       success: false,
       message: "'patient' is malformed",
@@ -96,7 +103,7 @@ createOnePatient = (req, res) => {
   return patient
     .save()
     .then(() => {
-      console.error(`[Hack.Diversity React Template] - 201 in 'createpatient': patient created!`);
+      console.error(`[Hack.Diversity React Template] - 201 in 'createPatient': patient created!`);
       return res.status(201).json({
         success: true,
         id: patient._id,
@@ -104,7 +111,7 @@ createOnePatient = (req, res) => {
       });
     })
     .catch(err => {
-      console.error(`[Hack.Diversity React Template] - caught error in 'createpatient'`);
+      console.error(`[Hack.Diversity React Template] - caught error in 'createPatient'`);
       Object.keys(err.errors).forEach(errorKey => {
         console.error(`[Hack.Diversity React Template] ERROR for: ${errorKey}`);
         console.error(
@@ -124,6 +131,7 @@ createOnePatient = (req, res) => {
 updatePatient = async (req, res) => {
   const body = req.body;
   if (!body) {
+
     console.error(
       `[Hack.Diversity React Template] - 400 in 'updatePatient': You must provide a patient to update.`,
     );
@@ -140,6 +148,7 @@ updatePatient = async (req, res) => {
     timeframeNote: body.timeframeNote,
     priority: body.priority,
     content: body.content,
+    patient: patient.content
   };
 
   // console.log('----------------------- updatePatient: res -----------------------');
@@ -163,6 +172,7 @@ updatePatient = async (req, res) => {
     message: 'patient updated!',
   });
 };
+
 
 deleteOnePatient = async (req, res) => {
   await patient
@@ -195,6 +205,7 @@ deleteOnePatient = async (req, res) => {
       console.error(err);
       return err;
     });
+
 };
 
 /*const myEndPoint = async (req, res) => {
@@ -206,8 +217,10 @@ deleteOnePatient = async (req, res) => {
 
 module.exports = {
   getPatients,
+
   getpatientById,
   createOnePatient,
   updatePatient,
   deleteOnePatient,
+
 };
