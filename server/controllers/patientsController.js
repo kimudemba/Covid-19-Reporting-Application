@@ -2,65 +2,76 @@
 const patient = require('../models/patientModel');
 
 getPatients = async (req, res) => {
-  await patient.find({}, (err, patients) => {
-    if (err) {
-      console.error(`[Hack.Diversity React Template] - 400 in 'getPatients': ${err}`);
-      return res.status(400).json({
-        success: false,
-        error: err,
-      });
-    }
-    if (!patients.length) {
-      console.error(`[Hack.Diversity React Template] - 404 in 'getPatients': Patients not found`);
+
+  await patient
+    .find({}, (err, patients) => {
+      if (err) {
+        console.error(`[Hack.Diversity React Template] - 400 in 'getPatients': ${err}`);
+        return res.status(400).json({
+          success: false,
+          error: err,
+        });
+      }
+      if (!patients.length) {
+        console.error(`[Hack.Diversity React Template] - 404 in 'getPatients': Patients not found`);
+        return res.status(200).json({
+          success: true,
+          patients: [],
+        });
+      }
+      console.log(`[Hack.Diversity React Template] - 200 in 'getPatients': patients fetched!`);
       return res.status(200).json({
         success: true,
-        patients: [],
+        patients: patients,
       });
-    }
-    console.log(`[Hack.Diversity React Template] - 200 in 'getPatients': patients fetched!`);
-    return res.status(200).json({
-      success: true,
-      patients: patients,
-    });
-  }).catch(err => {
-    console.error(`[Hack.Diversity React Template] - caught error in 'getPatients': ${err}`);
-    console.error(err);
-    return res.status(404).json({
-      success: false,
-      error: err,
-    });
-  });
-};
-
-getPatientById = async (req, res) => {
-  await patient.find({_id: req.params.id }, (err, patients) => {
-    if (err) {
-      console.error(`[Hack.Diversity React Template] - 400 in 'getPatientById': ${err}`);
-      throw res.status(400).json({
+    })
+    .catch(err => {
+      console.error(`[Hack.Diversity React Template] - caught error in 'getPatients': ${err}`);
+      console.error(err);
+      return res.status(404).json({
         success: false,
         error: err,
       });
-    }
-    if (!patient.length) {
-      console.error(`[Hack.Diversity React Template] - 404 in 'getPatientById': patient not found`);
-      return res.status(404).json({
-        success: false,
-        error: 'patient not found',
-      });
-    }
-    console.log(`[Hack.Diversity React Template] - 200 in 'getpatientById': patient fetched!`);
-    return res.status(200).json({
-      success: true,
-      patient: patient[0],
     });
-  }).catch(err => {
-    console.error(`[Hack.Diversity React Template] - caught error in 'getPatientById': ${err}`);
-    console.error(err);
-    return err;
-  });
 };
 
-createPatient = (req, res) => {
+getpatientById = async (req, res) => {
+  await patient
+    .find({ _id: req.params.id }, (err, patients) => {
+      if (err) {
+        console.error(`[Hack.Diversity React Template] - 400 in 'getpatientById': ${err}`);
+        throw res.status(400).json({
+          success: false,
+          error: err,
+        });
+      }
+      if (!patient.length) {
+        console.error(
+          `[Hack.Diversity React Template] - 404 in 'getpatientById': patient not found`,
+        );
+        return res.status(404).json({
+          success: false,
+          error: 'patient not found',
+        });
+      }
+      console.log(`[Hack.Diversity React Template] - 200 in 'getpatientById': patient fetched!`);
+      return res.status(200).json({
+        success: true,
+        patient: patient[0],
+
+
+      });
+    })
+    .catch(err => {
+      console.error(`[Hack.Diversity React Template] - caught error in 'getpatientById': ${err}`);
+      console.error(err);
+      return err;
+    });
+};
+
+createOnePatient = (req, res) => {
+
+
   const body = req.body;
   // console.log('----------------------- createpatient: req -----------------------')
   // console.log(req);
@@ -75,7 +86,11 @@ createPatient = (req, res) => {
   const patient = new patient(body);
 
   if (!patient) {
-    console.error(`[Hack.Diversity React Template] - 400 in 'createPatient': 'patient' is malformed.`);
+
+    console.error(
+      `[Hack.Diversity React Template] - 400 in 'createpatient': 'patient' is malformed.`,
+    );
+
     return res.status(400).json({
       success: false,
       message: "'patient' is malformed",
@@ -116,7 +131,10 @@ createPatient = (req, res) => {
 updatePatient = async (req, res) => {
   const body = req.body;
   if (!body) {
-    console.error(`[Hack.Diversity React Template] - 400 in 'updatePatient': You must provide a patient to update.`);
+
+    console.error(
+      `[Hack.Diversity React Template] - 400 in 'updatePatient': You must provide a patient to update.`,
+    );
     return res.status(400).json({
       success: false,
       error: 'You must provide an patient to update.',
@@ -133,7 +151,7 @@ updatePatient = async (req, res) => {
     patient: patient.content
   };
 
-  // console.log('----------------------- updatepatient: res -----------------------');
+  // console.log('----------------------- updatePatient: res -----------------------');
   // console.log(res);
 
   try {
@@ -155,33 +173,39 @@ updatePatient = async (req, res) => {
   });
 };
 
-deletePatient = async (req, res) => {
-  await patient.findOneAndDelete({ _id: req.params.id }, (err, patient) => {
-    if (err) {
-      console.error(`[Hack.Diversity React Template] - 400 in 'deletePatient': ${err}`);
-      return res.status(400).json({
-        succes: false,
-        error: err,
-      });
-    }
 
-    if (!patient) {
-      console.error(`[Hack.Diversity React Template] - 400 in 'deletePatient': patient not found!`);
-      return res.status(400).json({
-        success: false,
-        error: 'patient not found!',
-      });
-    }
+deleteOnePatient = async (req, res) => {
+  await patient
+    .findOneAndDelete({ _id: req.params.id }, (err, patient) => {
+      if (err) {
+        console.error(`[Hack.Diversity React Template] - 400 in 'deleteOnePatient': ${err}`);
+        return res.status(400).json({
+          succes: false,
+          error: err,
+        });
+      }
 
-    return res.status(200).json({
-      success: true,
-      patient: patient,
+      if (!patient) {
+        console.error(
+          `[Hack.Diversity React Template] - 400 in 'deleteOnePatient': patient not found!`,
+        );
+        return res.status(400).json({
+          success: false,
+          error: 'patient not found!',
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        patient: patient,
+      });
+    })
+    .catch(err => {
+      console.error(`[Hack.Diversity React Template] - caught error in 'deleteOnePatient': ${err}`);
+      console.error(err);
+      return err;
     });
-  }).catch(err => {
-    console.error(`[Hack.Diversity React Template] - caught error in 'deletePatient': ${err}`);
-    console.error(err);
-    return err;
-  });
+
 };
 
 /*const myEndPoint = async (req, res) => {
@@ -191,11 +215,12 @@ deletePatient = async (req, res) => {
     });
   };*/
 
-  module.exports = {
+module.exports = {
   getPatients,
-  getPatientById,
-  createPatient,
+
+  getpatientById,
+  createOnePatient,
   updatePatient,
-  deletePatient,
-  //myEndPoint,
+  deleteOnePatient,
+
 };
