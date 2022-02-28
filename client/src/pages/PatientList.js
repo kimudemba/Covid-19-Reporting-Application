@@ -120,12 +120,21 @@ class PatientTable extends Component {
 
     const columns = [
       {
-        Header: 'Patient',
-        accessor: 'patientId',
+        Header: 'ID',
+        accessor: '_id',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
           return <span data-patient-id={original._id}>{original._id}</span>;
+        },
+      },
+      {
+        Header: 'Patient',
+        accessor: 'patientID',
+        // filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-patient-id={original.patientID}>{original.patientID}</span>;
         },
       },
       {

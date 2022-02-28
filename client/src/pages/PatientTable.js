@@ -47,27 +47,29 @@ const Wrapper = styled.div`
   this.setState({
     items: [fakeItem1, fakeItem2, ...PATIENT_ID , AGE ,SEX, RACE, ZIP, BMI, WEIGHT, HEIGHT]
 } */
-    /* api
-      .getAllItems()
+    api
+      .getAllPatients()
       .then(resp => {
         debugger;
-        const { items } = resp.data;
-        console.log('getAllItems: resp');
-        console.log(items); */
+        const { patients } = resp.data;
+        console.log('getAllPatients: resp');
+        console.log(patients);
+        this.setState({patients}); 
     
         //const firstPatient = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
-        const secondPatient = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
+        /*const secondPatient = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
         const patients = [secondPatient];
         const dataForState = { patients: patients}; 
-        this.setState(dataForState); 
+        this.setState(dataForState); */
 
-      }
+      })
 
-      /*.catch(err => {
+      .catch(err => {
         console.error(`ERROR in 'getAllItems': ${err}`);
         console.error(err);
         return err;
-      }); */
+      }); 
+    };
 
   deleteSinglePatient = patientId => {
     return api
