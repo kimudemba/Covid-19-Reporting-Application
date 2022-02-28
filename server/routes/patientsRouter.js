@@ -10,9 +10,9 @@ const patientsRouter = express.Router();
 
 // '/' === '/api/patients'
 // http://localhost:3000/api/patients/ - inside server.js this uses stmt: app.use('/api/patients', patientsRouter) - to get all patients
-// patientsRouter.get('/', patientsController.getPatients);
+patientsRouter.get('/', patientsController.getPatients);
 
-// patientsRouter.post('/', patientsController.createOnePatient);
+patientsRouter.post('/', patientsController.createOnePatient);
 
 // /api/patients/:id
 // patientsRouter.get('/:PATIENT_ID', patientsController.getpatientById);
