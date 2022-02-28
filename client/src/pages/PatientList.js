@@ -117,7 +117,6 @@ class PatientTable extends Component {
 
   render() {
     const patients = this.state.patients || {};
-    console.log(patients);
 
     const columns = [
       {
@@ -125,9 +124,8 @@ class PatientTable extends Component {
         accessor: 'patientId',
         // filterable: true,
         Cell: props => {
-          console.log(props);
           const { original } = props.cell.row;
-          return <span data-patient-id={original.patientId}>{props.value}</span>;
+          return <span data-patient-id={original._id}>{original._id}</span>;
         },
       },
       {
