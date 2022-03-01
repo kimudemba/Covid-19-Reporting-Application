@@ -4,7 +4,7 @@ const Exam = require('../models/examModel');
 //to be getExams
 getExams = async (req, res) => {
 
-  await patient
+  await exam
     .find({}, (err, exams) => {
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'getExams': ${err}`);
@@ -27,7 +27,7 @@ getExams = async (req, res) => {
       });
     })
     .catch(err => {
-      console.error(`[Hack.Diversity React Template] - caught error in 'getPatients': ${err}`);
+      console.error(`[Hack.Diversity React Template] - caught error in 'getExams': ${err}`);
       console.error(err);
       return res.status(404).json({
         success: false,
@@ -217,5 +217,5 @@ module.exports = {
   createOneExam,
   updateExam,
   deleteOneExam,
-  
+
 };
