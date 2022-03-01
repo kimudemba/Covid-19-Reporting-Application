@@ -5,6 +5,7 @@
 const express = require('express');
 const debug = require('debug')('index: examsRouter');
 const patientsController = require('../controllers/patientsController');
+const { MongoClient } = require('mongodb');
 
 const patientsRouter = express.Router();
 
@@ -14,14 +15,14 @@ patientsRouter.get('/', patientsController.getPatients);
 
 patientsRouter.post('/', patientsController.createOnePatient);
 
-/* api/patients/:id
+// api/patients/:id
 patientsRouter.get('/:PATIENT_ID', patientsController.getpatientById);
 
 patientsRouter.put('/:PATIENT_ID', patientsController.updatePatient);
 
 patientsRouter.delete('/:PATIENT_ID', patientsController.deleteOnePatient);
 
-module.exports = patientsRouter; */
+module.exports = patientsRouter; 
 
 /* const express = require('express');
  const debug = require('debug')('index: examsRouter');

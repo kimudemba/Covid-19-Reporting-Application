@@ -24,9 +24,7 @@ const Wrapper = styled.div`
     constructor(props) {
       super(props);
       this.state = {
-        patients: [],
-        columns: [],
-        isLoading: false,
+        patients:{}
       };
     }
 
@@ -103,7 +101,7 @@ const Wrapper = styled.div`
     const columns = [
       {
         Header: 'ID',
-        accessor: '_id',
+        accessor: '._id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
@@ -111,18 +109,18 @@ const Wrapper = styled.div`
       },
       {
         Header: 'Patient ID',
-        accessor: 'patientID',
+        accessor: 'PATIENT_ID',
         filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.patientID}>{props.original.patientID}</span>;
+          return <span data-item-id={props.original.patients}>{props.original.patients}</span>;
         },
       },
       {
         Header: 'Exam ID',
-        accessor: 'examID',
+        accessor: 'exam_Id',
         filterable: true,
         Cell: props => {
-          return <span data-name={props.original.examID}>{props.original.examID}</span>;
+          return <span data-name={props.original.exam_Id}>{props.original.examId}</span>;
         },
       },
       {
