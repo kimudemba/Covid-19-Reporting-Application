@@ -130,20 +130,20 @@ class PatientTable extends Component {
       },
       {
         Header: 'Patient',
-        accessor: 'PATIENTID',
+        accessor: 'PATIENT_ID',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-patient-id={original.PATIENTID}>{original.PATIENTID})</span>;
+          return <span data-PATIENT_ID={original.PATIENT_ID}>{original.PATIENT_ID})</span>;
         },
       },
       {
         Header: 'Exam ID',
-        accessor: 'name',
+        accessor: 'exam_Id',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-name={original.exam}>{props.value}</span>;
+          return <span data-exam_Id={original.exam_Id}>{original.exam_Id}</span>;
         },
       },
       {
@@ -170,10 +170,10 @@ class PatientTable extends Component {
       },
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-timeframe={original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={original.key_findings}>{original.key_findings}</span>;
         },
       },
       {
@@ -182,7 +182,7 @@ class PatientTable extends Component {
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-priority={original.AGE}>{original.AGE}</span>;
+          return <span data-AGE={original.AGE}>{original.AGE}</span>;
         },
       },
       {

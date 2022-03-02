@@ -112,7 +112,7 @@ const Wrapper = styled.div`
         accessor: 'PATIENT_ID',
         filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.patients}>{props.original.patients}</span>;
+          return <span data-PATIENT_ID={props.original.PATIENT_ID}>{props.original.PATIENT_ID}</span>;
         },
       },
       {
@@ -120,7 +120,7 @@ const Wrapper = styled.div`
         accessor: 'exam_Id',
         filterable: true,
         Cell: props => {
-          return <span data-name={props.original.exam_Id}>{props.original.examId}</span>;
+          return <span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span>;
         },
       },
       {
@@ -147,25 +147,25 @@ const Wrapper = styled.div`
       },
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
-          return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={props.original.key_findings}>{props.original.key_findings}</span>;
         },
       },
       {
         Header: 'Age',
-        accessor: 'age',
+        accessor: 'AGE',
         filterable: true,
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-AGE={props.original.AGE}>{props.original.AGE}</span>;
         },
       },
       {
       Header: 'Zip code',
-        accessor: 'zip',
+        accessor: 'ZIP',
         filterable: true,
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-ZIP={props.original.ZIP}>{props.original.ZIP}</span>;
         },
       },
       {
@@ -173,7 +173,7 @@ const Wrapper = styled.div`
           accessor: 'weight',
           filterable: true,
           Cell: props => {
-            return <span data-priority={props.original.priority}>{props.value}</span>;
+            return <span data-LATEST_WEIGHT={props.original.LATEST_WEIGHT}>{props.original.LATEST_WEIGHT}</span>;
           },
         },
       {
