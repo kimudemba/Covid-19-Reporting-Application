@@ -131,36 +131,34 @@ createOneExam = (req, res) => {
     });
 };
 
-updateExam = async (req, res) => {
-  const body = req.body;
+updateOneExam = async (req, res) => {
+  const {patient_Id, exam_Id, png_filename, key_findings} = req.body;
   if (!body) {
 
     console.error(
-      `[Hack.Diversity React Template] - 400 in 'updateExam': You must provide a exam to update.`,
+      `[Hack.Diversity React Template] - 400 in 'updateOneExam': You must provide a exam to update.`,
     );
     return res.status(400).json({
       success: false,
       error: 'You must provide an exam to update.',
     });
   }
-  //to be changed soon with the proper tables from the database
+  //changed to match Yams's test controllers
   const examForUpdate = {
-    _id: req.params.id, //do i let req.params.id be the same here as it is in patientControllers
-    name: body.name,
-    daysOfWeek: body.daysOfWeek,
-    timeframeNote: body.timeframeNote,
-    priority: body.priority,
-    content: body.content,
-    patient: patient.content
+    _id: req.params.id, 
+    patient_Id = patient_Id,
+    exam_Id =  exam_Id,
+    png_filename = png_filename,
+    key_findings = key_findings,
   };
 
-  // console.log('----------------------- updateExam: res -----------------------');
+  // console.log('----------------------- updateOneExam: res -----------------------');
   // console.log(res);
 
   try {
     await exam.findOneAndUpdate({ _id: req.params.id }, examForUpdate);
   } catch (err) {
-    console.error(`[Hack.Diversity React Template] - caught error in 'updateExam': ${err}`);
+    console.error(`[Hack.Diversity React Template] - caught error in 'updateOneExam': ${err}`);
     console.error(err);
     return res.status(400).json({
       success: false,
@@ -168,7 +166,7 @@ updateExam = async (req, res) => {
     });
   }
 
-  console.log(`[Hack.Diversity React Template] - 200 in 'updateExam': exam updated!`);
+  console.log(`[Hack.Diversity React Template] - 200 in 'updateOneExam': exam updated!`);
   return res.status(200).json({
     success: true,
     id: req.params.id,
@@ -215,7 +213,7 @@ module.exports = {
 
   getexamById,
   createOneExam,
-  updateExam,
+  updateOneExam,
   deleteOneExam,
 
 };
