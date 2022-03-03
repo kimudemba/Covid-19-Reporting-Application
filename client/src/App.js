@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Constants
 import { routes } from './constants';
@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
 // Static/Stateless
-import { NavBar, Welcome } from './components';
+import { NavBar } from './components';
 
 // Pages
 import { PatientInsert, Items, PatientUpdate, PatientList } from './pages';

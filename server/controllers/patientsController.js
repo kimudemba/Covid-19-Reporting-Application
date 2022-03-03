@@ -37,7 +37,7 @@ getPatients = async (req, res) => {
 
 getpatientById = async (req, res) => {
   await patient
-    .find({ _id: req.params.id }, (err, patients) => {
+    .find({ _id: req.params.id }, (err, patient) => { //changed from patients
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'getpatientById': ${err}`);
         throw res.status(400).json({

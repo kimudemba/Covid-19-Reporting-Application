@@ -36,11 +36,11 @@ const navBarItems = [
     className: 'nav-link',
   },
 
-  {
+ /* {
     name: 'Create Patient',
     toPathname: '/patient/create',
     className: 'nav-link',
-  },
+  },*/
 
 //  {
 //    name: 'Create Patient',
