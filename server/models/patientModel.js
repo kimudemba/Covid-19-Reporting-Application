@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Patient = new Schema(
   {
     //PATIENT_ID
-    PATIENT_ID: {
+    PATIENTID: {
       type: String,
       required: true,
     },
