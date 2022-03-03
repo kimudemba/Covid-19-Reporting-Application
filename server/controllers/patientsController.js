@@ -143,7 +143,7 @@ updatePatient = async (req, res) => {
 
   const patientForUpdate = {
     _id: req.params.id,
-    name: body.name,
+    PATIENT_ID: body.PATIENT_ID,
     daysOfWeek: body.daysOfWeek,
     timeframeNote: body.timeframeNote,
     priority: body.priority,
