@@ -119,7 +119,7 @@ class PatientTable extends Component {
     const patients = this.state.patients || {};
     
     const columns = [
-      {
+     /* {
         Header: 'ID',
         accessor: '._id',
         //filterable: true,
@@ -127,14 +127,14 @@ class PatientTable extends Component {
           const { original } = props.cell.row;
           return <span data-patient-id={original._id}>{original._id}</span>; 
         },
-      },
+      },*/
       {
         Header: 'Patient',
         accessor: 'PATIENTID',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-PATIENTID={original.PATIENTID}>{original.PATIENTID})</span>;
+          return <Link><span data-PATIENTID={original.PATIENTID}>{original.PATIENTID}</span></Link>
         },
       },
       {
@@ -146,7 +146,16 @@ class PatientTable extends Component {
           return <span data-exam_Id={original.exam_Id}>{original.exam_Id}</span>;
         },
       },
+
       {
+        Header: 'Image',
+        accessor: 'png_filename',
+        //filterable: true,
+        Cell: props => {
+          return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
+        },
+      },
+     /* {
         Header: 'Image',
         accessor: 'daysOfWeek',
         // filterable: true,
@@ -167,7 +176,7 @@ class PatientTable extends Component {
             </span>
           );
         },
-      },
+      },*/
       {
         Header: 'Key Findings',
         accessor: 'key_findings',
@@ -185,6 +194,23 @@ class PatientTable extends Component {
           return <span data-AGE={original.AGE}>{original.AGE}</span>;
         },
       },
+      {
+        Header: 'Sex',
+        accessor: 'SEX',
+        //filterable: true,
+        Cell: props => {
+          return <span data-SEX={props.original.SEX}>{props.original.SEX}</span>;
+        },
+      },
+  
+      {
+        Header: 'Weight',
+          accessor: 'weight',
+          //filterable: true,
+          Cell: props => {
+            return <span data-LATEST_WEIGHT={props.original.LATEST_WEIGHT}>{props.original.LATEST_WEIGHT}</span>;
+          },
+        },
       {
         Header: 'Update',
         accessor: '_update',

@@ -99,31 +99,40 @@ const Wrapper = styled.div`
     console.log(patients);
 
     const columns = [
-      {
+      /*{
         Header: 'ID',
         accessor: '._id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
         },
-      },
+      },*/
       {
         Header: 'Patient ID',
         accessor: 'PATIENTID',
-        filterable: true,
+        //filterable: true,
         Cell: props => {
-          return <span data-PATIENTID={props.original.PATIENTID}>{props.original.PATIENTID}</span>;
+          return <Link><span data-PATIENTID={props.original.PATIENTID}>{props.original.PATIENTID}</span></Link>;
         },
       },
       {
         Header: 'Exam ID',
         accessor: 'exam_Id',
-        filterable: true,
+        //filterable: true,
         Cell: props => {
-          return <span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span>;
+          return <Link><span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span></Link>
         },
       },
+
       {
+        Header: 'Image',
+        accessor: 'png_filename',
+        //filterable: true,
+        Cell: props => {
+          return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
+        },
+      },
+      /*{
         Header: 'Image',
         accessor: 'daysOfWeek',
         filterable: true,
@@ -144,7 +153,7 @@ const Wrapper = styled.div`
             </span>
           );
         },
-      },
+      },*/
       {
         Header: 'Key Findings',
         accessor: 'key_findings',
@@ -155,27 +164,44 @@ const Wrapper = styled.div`
       {
         Header: 'Age',
         accessor: 'AGE',
-        filterable: true,
+        //filterable: true,
         Cell: props => {
           return <span data-AGE={props.original.AGE}>{props.original.AGE}</span>;
         },
       },
       {
-      Header: 'Zip code',
-        accessor: 'ZIP',
-        filterable: true,
+        Header: 'Sex',
+        accessor: 'SEX',
+        //filterable: true,
         Cell: props => {
-          return <span data-ZIP={props.original.ZIP}>{props.original.ZIP}</span>;
+          return <span data-SEX={props.original.SEX}>{props.original.SEX}</span>;
         },
       },
+  
       {
         Header: 'Weight',
           accessor: 'weight',
-          filterable: true,
+          //filterable: true,
           Cell: props => {
             return <span data-LATEST_WEIGHT={props.original.LATEST_WEIGHT}>{props.original.LATEST_WEIGHT}</span>;
           },
         },
+        {
+          Header: 'Zip code',
+            accessor: 'ZIP',
+            //filterable: true,
+            Cell: props => {
+              return <span data-ZIP={props.original.ZIP}>{props.original.ZIP}</span>;
+            },
+          },
+          {
+            Header: 'Covid Positive',
+             accessor: 'COVID_TEST_POSITIVE',
+              //filterable: true,
+              Cell: props => {
+                return <span data-COVID_TEST_POSITIVE={props.original.COVID_TEST_POSITIVE}>{props.original.COVID_TEST_POSITIVE}</span>;
+              },
+            },
       {
         Header: '',
         accessor: '',
@@ -206,7 +232,7 @@ const Wrapper = styled.div`
           <ReactTable
             data={patients}
             columns={columns}
-            defaultPageSize={10}
+            defaultPageSize={20}
             showPageSizeOptions={true}
             minRows={10}
           />

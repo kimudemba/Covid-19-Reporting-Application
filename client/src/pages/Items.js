@@ -56,7 +56,7 @@ const itemsPageVariants = [
   },*/
   {
     name: 'Create Patient',
-    toPathname: routes.ITEM_INSERT,
+    toPathname: routes.PATIENT_INSERT,
   }
 ];
 
