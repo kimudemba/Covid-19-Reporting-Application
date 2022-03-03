@@ -13,19 +13,21 @@ import './styles/App.css';
 import { NavBar, Welcome } from './components';
 
 // Pages
-import { PatientInsert, Items, PatientUpdate } from './pages';
+import { PatientInsert, Items, PatientUpdate, PatientList } from './pages';
+import { ExamBasicTable } from './components/ExamSpecificComp/ExamBasictable';
 
 class App extends Component {
   render() {
     // TODO: maybe only need one route for Items?
     const publicViews = (
       <Switch>
-        <Route exact path={routes.HOME}>
+        {/* <Route exact path={routes.HOME}>
           <Redirect to={routes.PATIENTS} />
-        </Route>
+        </Route> */}
         <Route exact path={routes.PATIENT_UPDATE} component={PatientUpdate} />
-        <Route exact path={routes.HOME} component={Welcome} />
-        <Route exact path={routes.PATIENTS} component={Items} />
+        {/* <Route exact path={routes.HOME} component={Welcome} /> */}
+        <Route exact path={routes.Exams} component={ExamBasicTable} /> 
+        <Route exact path={routes.PATIENTS} component={PatientList} />
         <Route exact path={`${routes.PATIENTS}/items-plain`} component={Items} />
         <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={Items} />
         <Route exact path={routes.PATIENT_INSERT} component={PatientInsert} />
@@ -38,6 +40,8 @@ class App extends Component {
         <NavBar />
         <div className="app--main">
           <div className="view-container">{publicViews}</div>
+          {/* uncomment to see Exam table component*/}
+         {/*<ExamBasicTable></ExamBasicTable> */}
         </div>
       </BrowserRouter>
     );
