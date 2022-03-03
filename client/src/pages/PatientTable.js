@@ -63,7 +63,7 @@ const Wrapper = styled.div`
       })
 
       .catch(err => {
-        console.error(`ERROR in 'getAllItems': ${err}`);
+        console.error(`ERROR in 'getAllPatients': ${err}`);
         console.error(err);
         return err;
       }); 

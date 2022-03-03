@@ -192,7 +192,7 @@ class ExamTable extends Component {
           const { original } = props.cell.row;
 
           return (
-            <Link data-update-id={original._id} to={`/patient/update/${original._id}`}>
+            <Link data-update-id={original._id} to={`/exam/update/${original._id}`}>
               Update
             </Link>
           );
@@ -215,14 +215,14 @@ class ExamTable extends Component {
     return (
       <Wrapper>
         <CssBaseline />
-        {(patients || []).length > 0 ? (
-          <Table data={patients} columns={columns} />
+        {(exams || []).length > 0 ? (
+          <Table data={exams} columns={columns} />
         ) : (
-          `No patients to render... :(`
+          `No exams to render... :(`
         )}
       </Wrapper>
     );
   }
 }
 
-export default PatientTable;
+export default ExamTable;

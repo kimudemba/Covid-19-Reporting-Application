@@ -1,5 +1,5 @@
 //const { execMap } = require('nodemon/lib/config/defaults')
-const Exam = require('../models/examModel');
+const exam = require('../models/examModel');
 
 //to be getExams
 getExams = async (req, res) => {
@@ -23,7 +23,7 @@ getExams = async (req, res) => {
       console.log(`[Hack.Diversity React Template] - 200 in 'getExams': Exams fetched!`);
       return res.status(200).json({
         success: true,
-        Exams: Exams,
+        exams: exams,
       });
     })
     .catch(err => {
@@ -39,7 +39,7 @@ getExams = async (req, res) => {
 //to be getExamById
 getexamById = async (req, res) => {
   await exam
-    .find({ _id: req.params.id }, (err, exams) => {
+    .find({ _id: req.params.id }, (err, exam) => {
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'getexamById': ${err}`);
         throw res.status(400).json({
@@ -209,8 +209,8 @@ deleteOneExam = async (req, res) => {
 };
 
 module.exports = {
-  createExam,
-
+  //createExam,
+  getExams,
   getexamById,
   createOneExam,
   updateOneExam,
