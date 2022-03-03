@@ -200,7 +200,8 @@ class PatientTable extends Component {
         accessor: 'SEX',
         //filterable: true,
         Cell: props => {
-          return <span data-SEX={props.original.SEX}>{props.original.SEX}</span>;
+          const { original } = props.cell.row;
+          return <span data-SEX={original.SEX}>{original.SEX}</span>;
         },
       },
   
@@ -209,7 +210,8 @@ class PatientTable extends Component {
           accessor: 'weight',
           //filterable: true,
           Cell: props => {
-            return <span data-LATEST_WEIGHT={props.original.LATEST_WEIGHT}>{props.original.LATEST_WEIGHT}</span>;
+            const { original } = props.cell.row;
+            return <span data-LATEST_WEIGHT={original.LATEST_WEIGHT}>{original.LATEST_WEIGHT}</span>;
           },
         },
       {
