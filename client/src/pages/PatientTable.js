@@ -109,10 +109,10 @@ const Wrapper = styled.div`
       },
       {
         Header: 'Patient ID',
-        accessor: 'PATIENT_ID',
+        accessor: 'PATIENTID',
         filterable: true,
         Cell: props => {
-          return <span data-PATIENT_ID={props.original.PATIENT_ID}>{props.original.PATIENT_ID}</span>;
+          return <span data-PATIENTID={props.original.PATIENTID}>{props.original.PATIENTID}</span>;
         },
       },
       {

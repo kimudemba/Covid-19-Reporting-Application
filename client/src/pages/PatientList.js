@@ -130,11 +130,11 @@ class PatientTable extends Component {
       },
       {
         Header: 'Patient',
-        accessor: 'PATIENT_ID',
+        accessor: 'PATIENTID',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-PATIENT_ID={original.PATIENT_ID}>{original.PATIENT_ID})</span>;
+          return <span data-PATIENTID={original.PATIENTID}>{original.PATIENTID})</span>;
         },
       },
       {

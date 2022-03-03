@@ -71,16 +71,18 @@ class PatientUpdate extends Component {
   componentDidMount() {
     const patientId = this.props.match.params.id;
     this.fetchSinglePatient(patientId).then(resp => {
-      const { patient } = resp.data;
+      const { patient } = undefined || {} || resp.data;
       this.setState({ ...patient });
+      console.log(patient)
+      
     });
   }
 
   fetchSinglePatient = patientId => {
     return api
-      .getPatientById(patientId)
+      .getpatientById(patientId)
       .then(resp => {
-        console.log('getPatientById: resp');
+        console.log('getpatientById: resp');
         console.log(resp);
         return resp;
       })
