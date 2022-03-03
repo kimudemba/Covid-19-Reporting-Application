@@ -152,7 +152,8 @@ class PatientTable extends Component {
         accessor: 'png_filename',
         //filterable: true,
         Cell: props => {
-          return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
+          const { original } = props.cell.row;
+          return <span data-png_filename={original.png_filename}>{original.png_filename}</span>;
         },
       },
      /* {

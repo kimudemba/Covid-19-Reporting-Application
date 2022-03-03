@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from '../api';
-import { shared } from '../constants';
+//import { shared } from '../constants';
 
 import styled from 'styled-components';
 
