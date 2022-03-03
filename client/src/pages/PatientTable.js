@@ -63,7 +63,7 @@ const Wrapper = styled.div`
       })
 
       .catch(err => {
-        console.error(`ERROR in 'getAllItems': ${err}`);
+        console.error(`ERROR in 'getAllPatients': ${err}`);
         console.error(err);
         return err;
       }); 
@@ -99,31 +99,40 @@ const Wrapper = styled.div`
     console.log(patients);
 
     const columns = [
-      {
+      /*{
         Header: 'ID',
         accessor: '._id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
         },
-      },
+      },*/
       {
         Header: 'Patient ID',
-        accessor: 'PATIENT_ID',
-        filterable: true,
+        accessor: 'PATIENTID',
+        //filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.patients}>{props.original.patients}</span>;
+          return <Link><span data-PATIENTID={props.original.PATIENTID}>{props.original.PATIENTID}</span></Link>;
         },
       },
       {
         Header: 'Exam ID',
         accessor: 'exam_Id',
-        filterable: true,
+        //filterable: true,
         Cell: props => {
-          return <span data-name={props.original.exam_Id}>{props.original.examId}</span>;
+          return <Link><span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span></Link>
         },
       },
+
       {
+        Header: 'Image',
+        accessor: 'png_filename',
+        //filterable: true,
+        Cell: props => {
+          return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
+        },
+      },
+      /*{
         Header: 'Image',
         accessor: 'daysOfWeek',
         filterable: true,
@@ -144,38 +153,55 @@ const Wrapper = styled.div`
             </span>
           );
         },
-      },
+      },*/
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
-          return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={props.original.key_findings}>{props.original.key_findings}</span>;
         },
       },
       {
         Header: 'Age',
-        accessor: 'age',
-        filterable: true,
+        accessor: 'AGE',
+        //filterable: true,
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-AGE={props.original.AGE}>{props.original.AGE}</span>;
         },
       },
       {
-      Header: 'Zip code',
-        accessor: 'zip',
-        filterable: true,
+        Header: 'Sex',
+        accessor: 'SEX',
+        //filterable: true,
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-SEX={props.original.SEX}>{props.original.SEX}</span>;
         },
       },
+  
       {
         Header: 'Weight',
           accessor: 'weight',
-          filterable: true,
+          //filterable: true,
           Cell: props => {
-            return <span data-priority={props.original.priority}>{props.value}</span>;
+            return <span data-LATEST_WEIGHT={props.original.LATEST_WEIGHT}>{props.original.LATEST_WEIGHT}</span>;
           },
         },
+        {
+          Header: 'Zip code',
+            accessor: 'ZIP',
+            //filterable: true,
+            Cell: props => {
+              return <span data-ZIP={props.original.ZIP}>{props.original.ZIP}</span>;
+            },
+          },
+          {
+            Header: 'Covid Positive',
+             accessor: 'COVID_TEST_POSITIVE',
+              //filterable: true,
+              Cell: props => {
+                return <span data-COVID_TEST_POSITIVE={props.original.COVID_TEST_POSITIVE}>{props.original.COVID_TEST_POSITIVE}</span>;
+              },
+            },
       {
         Header: '',
         accessor: '',
@@ -206,7 +232,7 @@ const Wrapper = styled.div`
           <ReactTable
             data={patients}
             columns={columns}
-            defaultPageSize={10}
+            defaultPageSize={20}
             showPageSizeOptions={true}
             minRows={10}
           />

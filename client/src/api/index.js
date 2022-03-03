@@ -16,6 +16,10 @@ export const getpatientById = id => api.get(`/patient/${id}`);
 export const insertPatient = payload => api.post(`/patient`, payload);
 export const updatePatientById = (id, payload) => api.put(`/patient/${id}`, payload);
 export const deletePatientById = id => api.delete(`/patient/${id}`);
+export const getAllExams = payload => api.get(`/exams`, payload);
+export const getexamById = id => api.get(`/exam/${id}`);
+export const updateExamById = (id, payload) => api.put(`/exam/${id}`, payload);
+export const deleteExamById = id => api.delete(`/exam/${id}`);
 
 
 const apis = {
@@ -24,6 +28,10 @@ const apis = {
   insertPatient,
   updatePatientById,
   deletePatientById,
+  getAllExams,
+  getexamById,
+  updateExamById,
+  deleteExamById,
 };
 
 export default apis;

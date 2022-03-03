@@ -37,7 +37,7 @@ getPatients = async (req, res) => {
 
 getpatientById = async (req, res) => {
   await patient
-    .find({ _id: req.params.id }, (err, patients) => {
+    .find({ _id: req.params.id }, (err, patient) => { //changed from patients
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'getpatientById': ${err}`);
         throw res.status(400).json({
@@ -71,7 +71,7 @@ getpatientById = async (req, res) => {
 
 createOnePatient = (req, res) => {
 
-
+  //do the same with "body" like examController
   const body = req.body;
   // console.log('----------------------- createpatient: req -----------------------')
   // console.log(req);
@@ -129,7 +129,7 @@ createOnePatient = (req, res) => {
 };
 
 updatePatient = async (req, res) => {
-  const body = req.body;
+  const {PATIENTID, exam_Id, png_filename, key_findings, AGE, SEX, LATEST_BMI, ZIP} = req.body;
   if (!body) {
 
     console.error(
@@ -140,15 +140,17 @@ updatePatient = async (req, res) => {
       error: 'You must provide an patient to update.',
     });
   }
-
+  //changed to match Yams's test controller
   const patientForUpdate = {
     _id: req.params.id,
-    PATIENT_ID: body.PATIENT_ID,
-    daysOfWeek: body.daysOfWeek,
-    timeframeNote: body.timeframeNote,
-    priority: body.priority,
-    content: body.content,
-    patient: patient.content
+    PATIENTID = PATIENTID,
+    exam_Id = exam_Id,
+    png_filename = png_filename,
+    key_findings = key_findings,
+    AGE = AGE,
+    SEX = SEX,
+    LATEST_BMI = LATEST_BMI,
+    ZIP = ZIP,
   };
 
   // console.log('----------------------- updatePatient: res -----------------------');
