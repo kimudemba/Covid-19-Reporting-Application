@@ -36,9 +36,9 @@ const itemsPageVariants = [
     pageComponent: PatientList,
 
 
-    name: 'Items',
+    /*name: 'Items',
     toPathname: routes.ITEMS,
-    pageComponent: ItemsPlain,
+    pageComponent: ItemsPlain,*/
 
 
 

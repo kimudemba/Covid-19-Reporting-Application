@@ -24,9 +24,7 @@ const Wrapper = styled.div`
     constructor(props) {
       super(props);
       this.state = {
-        patients: [],
-        columns: [],
-        isLoading: false,
+        patients:{}
       };
     }
 
@@ -47,27 +45,29 @@ const Wrapper = styled.div`
   this.setState({
     items: [fakeItem1, fakeItem2, ...PATIENT_ID , AGE ,SEX, RACE, ZIP, BMI, WEIGHT, HEIGHT]
 } */
-    /* api
-      .getAllItems()
+    api
+      .getAllPatients()
       .then(resp => {
         debugger;
-        const { items } = resp.data;
-        console.log('getAllItems: resp');
-        console.log(items); */
+        const { patients } = resp.data;
+        console.log('getAllPatients: resp');
+        console.log(patients);
+        this.setState({patients}); 
     
         //const firstPatient = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
-        const secondPatient = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
+        /*const secondPatient = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
         const patients = [secondPatient];
         const dataForState = { patients: patients}; 
-        this.setState(dataForState); 
+        this.setState(dataForState); */
 
-      }
+      })
 
-      /*.catch(err => {
+      .catch(err => {
         console.error(`ERROR in 'getAllItems': ${err}`);
         console.error(err);
         return err;
-      }); */
+      }); 
+    };
 
   deleteSinglePatient = patientId => {
     return api
@@ -101,7 +101,7 @@ const Wrapper = styled.div`
     const columns = [
       {
         Header: 'ID',
-        accessor: '_id',
+        accessor: '._id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
@@ -109,18 +109,18 @@ const Wrapper = styled.div`
       },
       {
         Header: 'Patient ID',
-        accessor: 'patientID',
+        accessor: 'PATIENT_ID',
         filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.patientID}>{props.original.patientID}</span>;
+          return <span data-item-id={props.original.patients}>{props.original.patients}</span>;
         },
       },
       {
         Header: 'Exam ID',
-        accessor: 'examID',
+        accessor: 'exam_Id',
         filterable: true,
         Cell: props => {
-          return <span data-name={props.original.examID}>{props.original.examID}</span>;
+          return <span data-name={props.original.exam_Id}>{props.original.examId}</span>;
         },
       },
       {

@@ -117,15 +117,24 @@ class PatientTable extends Component {
 
   render() {
     const patients = this.state.patients || {};
-
+    
     const columns = [
       {
+        Header: 'ID',
+        accessor: '._id',
+        //filterable: true,
+       Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-patient-id={original._id}>{original._id}</span>; 
+        },
+      },
+      {
         Header: 'Patient',
-        accessor: 'patientId',
+        accessor: 'PATIENTID',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-patient-id={original._id}>{original._id}</span>;
+          return <span data-patient-id={original.PATIENTID}>{original.PATIENTID})</span>;
         },
       },
       {
@@ -134,7 +143,7 @@ class PatientTable extends Component {
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-name={original.name}>{props.value}</span>;
+          return <span data-name={original.exam}>{props.value}</span>;
         },
       },
       {
@@ -169,11 +178,11 @@ class PatientTable extends Component {
       },
       {
         Header: 'Age',
-        accessor: 'priority',
+        accessor: 'AGE',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-priority={original.priority}>{props.value}</span>;
+          return <span data-priority={original.AGE}>{original.AGE}</span>;
         },
       },
       {

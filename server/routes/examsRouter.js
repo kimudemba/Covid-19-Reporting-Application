@@ -14,12 +14,12 @@ const examsRouter = express.Router();
 /****** Eddy ? to implement remaining below methods in examsController.js ******/
 
 // /api/exams/:id
-// examsRouter.get('/', examsController.getExams);
+examsRouter.get('/', examsController.getExams);
 
-// examsRouter.get('/:PATIENT_ID', examsController.getOneExam);
+examsRouter.get('/:PATIENT_ID', examsController.getOneExam);
 
-// examsRouter.put('/:PATIENT_ID', examsController.updateOneExam);
+examsRouter.put('/:PATIENT_ID', examsController.updateOneExam);
 
-// examsRouter.delete('/:PATIENT_ID', examsController.deleteOneExam);
+examsRouter.delete('/:PATIENT_ID', examsController.deleteOneExam);
 
 module.exports = examsRouter;
