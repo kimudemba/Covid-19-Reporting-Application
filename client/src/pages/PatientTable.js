@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table-6';
 import { DeleteButton } from '../components/buttons';
@@ -11,7 +11,7 @@ import 'react-table-6/react-table.css';
 const Wrapper = styled.div`
   padding: 0 40px 40px 40px;
 `;
-*/
+
 /*class ItemsList extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +20,11 @@ const Wrapper = styled.div`
     };
   }*/
 
-  /*class PatientList extends Component {
+  class PatientList extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        patients: {},
+        patients:{}
       };
     }
 
@@ -39,54 +39,58 @@ const Wrapper = styled.div`
     this.fetchAllPatients();
   }
 
-  fetchAllPatients = () => { */
+  fetchAllPatients = () => {
 
     /*Faking this for now. Once we have the backend API set up we can use this function to make the HTTP request instead using api.getAllItems()...
   this.setState({
     items: [fakeItem1, fakeItem2, ...PATIENT_ID , AGE ,SEX, RACE, ZIP, BMI, WEIGHT, HEIGHT]
 } */
-    /* api
-      .getAllItems()
+    api
+      .getAllPatients()
       .then(resp => {
         debugger;
-        const { items } = resp.data;
-        console.log('getAllItems: resp');
-        console.log(items); */ /*
-        const firstItem = {patientID: 'COVID-123', examID: '2222', age: 51, zip: 7273, weight: 207, bmi: 37.7 };
-        const secondItem = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
-        const items = [firstItem, secondItem];
-        const dataForState = { items: items }; 
-        this.setState(dataForState); 
-      }
+        const { patients } = resp.data;
+        console.log('getAllPatients: resp');
+        console.log(patients);
+        this.setState({patients}); 
+    
+        //const firstPatient = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
+        /*const secondPatient = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
+        const patients = [secondPatient];
+        const dataForState = { patients: patients}; 
+        this.setState(dataForState); */
 
-      /*.catch(err => {
-        console.error(`ERROR in 'getAllItems': ${err}`);
+      })
+
+      .catch(err => {
+        console.error(`ERROR in 'getAllPatients': ${err}`);
         console.error(err);
         return err;
-      }); */
+      }); 
+    };
 
-  /* deleteSingleItem = itemId => {
+  deleteSinglePatient = patientId => {
     return api
-      .deleteItemById(itemId)
+      .deletePatientById(patientId)
       .then(resp => {
-        console.log('deleteItemById: resp');
+        console.log('deletePatientById: resp');
         console.log(resp);
         return resp;
       })
       .catch(err => {
-        console.error(`ERROR in 'deleteSingleItem': ${err}`);
+        console.error(`ERROR in 'deleteSinglePatient': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  handleRemoveItem = data => {
-    const itemId = data;
+  handleRemovePatient = data => {
+    const patientId = data;
 
-    this.deleteSingleItem(itemId).then(resp => {
-      console.log('handleRemoveItem: resp');
+    this.deleteSinglePatient(patientId).then(resp => {
+      console.log('handleRemovePatient: resp');
       console.log(resp);
-      this.fetchAllItems();
+      this.fetchAllPatients();
     });
   };
 
@@ -95,42 +99,45 @@ const Wrapper = styled.div`
     console.log(patients);
 
     const columns = [
-      {
+      /*{
         Header: 'ID',
-        accessor: '_id',
+        accessor: '._id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
         },
-      },
+      },*/
       {
         Header: 'Patient ID',
-        accessor: 'patientID',
-        filterable: true,
+        accessor: 'PATIENTID',
+        //filterable: true,
         Cell: props => {
-          
-          return <Link><span data-item-id={props.original.patientID}>{props.original.patientID}</span></Link>;
+          return <Link><span data-PATIENTID={props.original.PATIENTID}>{props.original.PATIENTID}</span></Link>;
         },
       },
       {
         Header: 'Exam ID',
-        accessor: 'examID',
-        filterable: true,
+        accessor: 'exam_Id',
+        //filterable: true,
         Cell: props => {
-          return <Link><span data-name={props.original.examID}>{props.original.examID}</span></Link>;
+          return <Link><span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span></Link>
         },
       },
+
       {
+        Header: 'Image',
+        accessor: 'png_filename',
+        //filterable: true,
+        Cell: props => {
+          return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
+        },
+      },
+      /*{
         Header: 'Image',
         accessor: 'daysOfWeek',
         filterable: true,
         Cell: props => {
-          const { daysOfWeek } = props.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
+          
             }
           }
           return (
@@ -141,38 +148,55 @@ const Wrapper = styled.div`
             </span>
           );
         },
-      },
+      },*/
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
-          return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={props.original.key_findings}>{props.original.key_findings}</span>;
         },
       },
       {
         Header: 'Age',
-        accessor: 'age',
-        filterable: true,
+        accessor: 'AGE',
+        //filterable: true,
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-AGE={props.original.AGE}>{props.original.AGE}</span>;
         },
       },
       {
-      Header: 'Zip code',
-        accessor: 'zip',
-        filterable: true,
+        Header: 'Sex',
+        accessor: 'SEX',
+        //filterable: true,
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-SEX={props.original.SEX}>{props.original.SEX}</span>;
         },
       },
+  
       {
         Header: 'Weight',
           accessor: 'weight',
-          filterable: true,
+          //filterable: true,
           Cell: props => {
-            return <span data-priority={props.original.priority}>{props.value}</span>;
+            return <span data-LATEST_WEIGHT={props.original.LATEST_WEIGHT}>{props.original.LATEST_WEIGHT}</span>;
           },
         },
+        {
+          Header: 'Zip code',
+            accessor: 'ZIP',
+            //filterable: true,
+            Cell: props => {
+              return <span data-ZIP={props.original.ZIP}>{props.original.ZIP}</span>;
+            },
+          },
+          {
+            Header: 'Covid Positive',
+             accessor: 'COVID_TEST_POSITIVE',
+              //filterable: true,
+              Cell: props => {
+                return <span data-COVID_TEST_POSITIVE={props.original.COVID_TEST_POSITIVE}>{props.original.COVID_TEST_POSITIVE}</span>;
+              },
+            },
       {
         Header: '',
         accessor: '',
@@ -203,7 +227,7 @@ const Wrapper = styled.div`
           <ReactTable
             data={patients}
             columns={columns}
-            defaultPageSize={10}
+            defaultPageSize={20}
             showPageSizeOptions={true}
             minRows={10}
           />
@@ -217,4 +241,3 @@ const Wrapper = styled.div`
 
 //export default ItemsList;
 export default PatientList;
-*/

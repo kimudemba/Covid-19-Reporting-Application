@@ -185,10 +185,18 @@ deleteItem = async (req, res) => {
   });
 };
 
-module.exports = {
+/*const myEndPoint = async (req, res) => {
+  return res.status(200).json({
+    myValue({ _id: req.params.id }, (err, items) => {
+
+    });
+  };*/
+
+  module.exports = {
   getItems,
   getItemById,
   createItem,
   updateItem,
   deleteItem,
+  myEndPoint,
 };

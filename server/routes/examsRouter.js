@@ -3,34 +3,25 @@
  **/
 const express = require('express');
 const debug = require('debug')('index: examsRouter');
+const examsController = require('../controllers/examsController');
 const { MongoClient } = require('mongodb');
-
-// TODO: const examsController = require('../controllers/exams-controller');
-
-//mock for inital testing purposes UNTIL controller is created
-const mockController = (req, res) => {
-  res.json({ message: 'ok exams' });
-};
-
 const examsRouter = express.Router();
 
-// /api/exams
-examsRouter
-  .route('/exams')
-  //   .get(mockController.getExams) - importing the controller and calling the ".get" method implemented in the controller
-  .get(mockController)
-  //   .post(mockController.createOneExam);
-  .post(mockController);
+// '/' === '/api/exams'
+// http://localhost:3000/api/exams/ - inside server.js this uses stmt: app.use('/api/exams', examsRouter) - to get all exams
+// examsRouter.post('/', examsController.createExam);
+
+/****** Eddy ? to implement remaining below methods in examsController.js ******/
 
 // /api/exams/:id
-examsRouter
-  .route('/exams/:id')
-  //   .get(mockController.getOneExam)
-  .get(mockController)
-  //   .put(mockController.updateOneExam)
-  .put(mockController)
-  //   .delete(mockController.deleteOneExam);
-  .delete(mockController);
+examsRouter.get('/', examsController.getExams);
+
+examsRouter.get('/:PATIENTID', examsController.getexamById);
+
+examsRouter.post('/:PATIENTID', examsController.createOneExam); //this was added
+
+examsRouter.put('/:PATIENTID', examsController.updateOneExam);
+
+examsRouter.delete('/:PATIENTID', examsController.deleteOneExam);
 
 module.exports = examsRouter;
-
