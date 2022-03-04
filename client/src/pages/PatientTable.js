@@ -137,12 +137,7 @@ const Wrapper = styled.div`
         accessor: 'daysOfWeek',
         filterable: true,
         Cell: props => {
-          const { daysOfWeek } = props.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
+          
             }
           }
           return (
