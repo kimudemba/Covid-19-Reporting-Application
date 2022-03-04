@@ -103,10 +103,16 @@ class PatientInsert extends Component {
     this.setState({ daysOfWeek });
   };
 
-  handleChangeInputTimeframe = async event => {
-    const timeframeNote = event.target.value;
-    this.setState({ timeframeNote });
+  handleChangeInputPatientID = async event => {
+    const patientID = event.target.value;
+    this.setState({ patientID });
   };
+
+  handleChangeInputExamID = async event => {
+    const examID = event.target.value;
+    this.setState({ examID });
+  };
+
 
   handleChangeInputPriority = async event => {
     const priority = event.target.validity.valid ? event.target.value : this.state.priority;
@@ -126,9 +132,9 @@ class PatientInsert extends Component {
     this.setState({ zipcode });
   };
 
-  handleChangeInputContent = async event => {
-    const content = event.target.value;
-    this.setState({ content });
+  handleChangeInputSex = async event => {
+    const sex = event.target.value;
+    this.setState({ sex });
   };
 
   handleChangeInputKeyFindings = async event => {
@@ -195,7 +201,7 @@ class PatientInsert extends Component {
   };
 
   render() {
-    const { patientId, daysOfWeek, timeframeNote, priority, age, zipcode, content /* height, weight, zip, bmi, sex, content, patientID, race, sex*/ } = this.state;
+    const { examID, keyFindings, age, zipcode, weight, zip, bmi, sex, patientID } = this.state;
 
     //const { DAYS_OF_WEEK } = shared;
 
@@ -204,7 +210,9 @@ class PatientInsert extends Component {
         <Title>Create Patient</Title>
 
         <Label>Patient ID: </Label>
-          <InputText type="text" value={patientId} onChange={this.handleChangeInputPatientID} />
+          <InputText type="text" value={patientID} onChange={this.handleChangeInputPatientID} />
+          <Label>Exam ID: </Label>
+          <InputText type="text" value={examID} onChange={this.handleChangeInputExamID} />
 
           {/*<Fieldset>
             <legend>Day(s) of the Week: </legend>
@@ -224,8 +232,8 @@ class PatientInsert extends Component {
             ))}
           </Fieldset>*/}
 
-          <Label>Exam ID: </Label>
-          <InputText type="text" value={timeframeNote} onChange={this.handleChangeInputTimeframe} />
+          <Label>Key Findings: </Label>
+          <InputText type="text" value={keyFindings} onChange={this.keyFindings} />
 
           {/*<Label>Age: </Label>
           <InputText
