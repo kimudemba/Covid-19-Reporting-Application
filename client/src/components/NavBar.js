@@ -27,7 +27,7 @@ const Nav = styled.nav.attrs({
 const navBarItems = [
   {
     name: 'Exams',
-    toPathname: `api${routes.EXAMS}/react-table-v6`,//`${routes.EXAMS}/react-table-v6`,
+    toPathname: routes.EXAMS,
     className: 'nav-link',
   },
   {
