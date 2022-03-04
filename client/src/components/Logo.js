@@ -16,7 +16,7 @@ class Logo extends Component {
 
     return (
       <Wrapper>
-        {/* <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" /> */}
+         <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" /> 
       </Wrapper>
     );
   }

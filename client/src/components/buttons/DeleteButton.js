@@ -20,6 +20,7 @@ class DeleteButton extends Component {
         )
     ) {
          this.props.onDelete(this.props.id);
+        // this.confirmDeletePatient(onDelete)
     }
   };
 

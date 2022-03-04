@@ -1,5 +1,5 @@
 //const { execMap } = require('nodemon/lib/config/defaults')
-const Exam = require('../models/examModel');
+const exam = require('../models/examModel');
 
 //to be getExams
 getExams = async (req, res) => {
@@ -23,7 +23,7 @@ getExams = async (req, res) => {
       console.log(`[Hack.Diversity React Template] - 200 in 'getExams': Exams fetched!`);
       return res.status(200).json({
         success: true,
-        Exams: Exams,
+        exams: exams,
       });
     })
     .catch(err => {
@@ -39,7 +39,7 @@ getExams = async (req, res) => {
 //to be getExamById
 getexamById = async (req, res) => {
   await exam
-    .find({ _id: req.params.id }, (err, exams) => {
+    .find({ _id: req.params.id }, (err, exam) => {
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'getexamById': ${err}`);
         throw res.status(400).json({
@@ -77,9 +77,9 @@ createOneExam = (req, res) => {
 
   const body = req.body;
   // console.log('----------------------- createexam: req -----------------------')
-  // console.log(req);
+  console.log(req);
   // console.log('----------------------- createexam: body -----------------------')
-  // console.log(body);
+ console.log(body);
   if (!body) {
     return res.status(400).json({
       success: false,
@@ -101,7 +101,7 @@ createOneExam = (req, res) => {
   }
 
   // console.log('----------------------- createexam: exam -----------------------')
-  // console.log(exam);
+  console.log(exam);
 
   return exam
     .save()
@@ -132,7 +132,7 @@ createOneExam = (req, res) => {
 };
 
 updateOneExam = async (req, res) => {
-  const {patient_Id, exam_Id, png_filename, key_findings} = req.body;
+  const body /*{patient_Id, exam_Id, png_filename, key_findings}*/ = req.body;
   if (!body) {
 
     console.error(
@@ -143,17 +143,17 @@ updateOneExam = async (req, res) => {
       error: 'You must provide an exam to update.',
     });
   }
-  //changed to match Yams's test controllers
+  //i changed controllers format to fix error
   const examForUpdate = {
     _id: req.params.id, 
-    patient_Id = patient_Id,
-    exam_Id =  exam_Id,
-    png_filename = png_filename,
-    key_findings = key_findings,
+    patient_Id: patient_Id.body,
+    exam_Id: exam_Id.body,
+    png_filename: png_filename.body,
+    key_findings: key_findings.body
   };
 
   // console.log('----------------------- updateOneExam: res -----------------------');
-  // console.log(res);
+  console.log(res);
 
   try {
     await exam.findOneAndUpdate({ _id: req.params.id }, examForUpdate);
@@ -209,8 +209,8 @@ deleteOneExam = async (req, res) => {
 };
 
 module.exports = {
-  createExam,
-
+  //createExam,
+  getExams,
   getexamById,
   createOneExam,
   updateOneExam,
