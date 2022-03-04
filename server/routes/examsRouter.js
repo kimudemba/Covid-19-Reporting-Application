@@ -4,7 +4,7 @@
 const express = require('express');
 const debug = require('debug')('index: examsRouter');
 const examsController = require('../controllers/examsController');
-
+const { MongoClient } = require('mongodb');
 const examsRouter = express.Router();
 
 // '/' === '/api/exams'
@@ -16,10 +16,12 @@ const examsRouter = express.Router();
 // /api/exams/:id
 examsRouter.get('/', examsController.getExams);
 
-examsRouter.get('/:PATIENT_ID', examsController.getOneExam);
+examsRouter.get('/:PATIENTID', examsController.getexamById);
 
-examsRouter.put('/:PATIENT_ID', examsController.updateOneExam);
+examsRouter.post('/:PATIENTID', examsController.createOneExam); //this was added
 
-examsRouter.delete('/:PATIENT_ID', examsController.deleteOneExam);
+examsRouter.put('/:PATIENTID', examsController.updateOneExam);
+
+examsRouter.delete('/:PATIENTID', examsController.deleteOneExam);
 
 module.exports = examsRouter;

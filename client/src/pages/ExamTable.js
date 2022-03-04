@@ -16,9 +16,9 @@ class ExamList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      exams: [],
-      columns: [],
-      isLoading: false,
+      exams: {},
+      //columns: [],
+     // isLoading: false,
     };
   }
 
@@ -34,13 +34,14 @@ class ExamList extends Component {
   this.setState({
     items: [fakeItem1, fakeItem2, ...PATIENT_ID , AGE ,SEX, RACE, ZIP, BMI, WEIGHT, HEIGHT]
 } */
-    /* api
-      .getAllItems()
+     api
+      .getAllExams()
       .then(resp => {
         debugger;
-        const { items } = resp.data;
-        console.log('getAllItems: resp');
-        console.log(items); */
+        const { exams } = resp.data;
+        console.log('getAllExams: resp');
+        console.log(exams); 
+        this.setState({exams});
     // const firstExam = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
     // const secondItem = {
     //   patient_Id: 'COVID-19-AR-16434409',
@@ -51,13 +52,14 @@ class ExamList extends Component {
     // const exams = [firstExam];
     // const dataForState = { exams: exams};
     // this.setState(dataForState);
-  };
+  })
 
-  /*.catch(err => {
-        console.error(`ERROR in 'getAllItems': ${err}`);
+  .catch(err => {
+        console.error(`ERROR in 'getAllExams': ${err}`);
         console.error(err);
         return err;
-      }); */
+      }); 
+    }
 
   deleteSingleExam = examId => {
     return api
@@ -99,41 +101,20 @@ class ExamList extends Component {
       },
       {
         Header: 'Exam ID',
-        accessor: 'examID',
+        accessor: 'exam_Id',
         filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.examID}>{props.original.examID}</span>;
-        },
-      },
-      {
-        Header: 'Exam ID',
-        accessor: 'examID',
-        filterable: true,
-        Cell: props => {
-          return <span data-name={props.original.examID}>{props.original.examID}</span>;
+          return <span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span>;
         },
       },
       {
         Header: 'Image',
-        accessor: 'daysOfWeek',
-        filterable: true,
+        accessor: 'png_filename',
+        //filterable: true,
         Cell: props => {
-          const { daysOfWeek } = props.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-            }
-          }
-          return (
-            <span
-              data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-              data-daysofweek-by-id={props.original._id}>
-              {daysToDisplay || '-'}
-            </span>
-          );
-        },
+          //const { original } = props.cell.row;
+          return <url><span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span></url>
+        },//https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/
       },
       {
         Header: 'Key Findings',

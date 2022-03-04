@@ -119,7 +119,7 @@ class PatientTable extends Component {
     const patients = this.state.patients || {};
     
     const columns = [
-      {
+     /* {
         Header: 'ID',
         accessor: '._id',
         //filterable: true,
@@ -127,26 +127,36 @@ class PatientTable extends Component {
           const { original } = props.cell.row;
           return <span data-patient-id={original._id}>{original._id}</span>; 
         },
-      },
+      },*/
       {
         Header: 'Patient',
         accessor: 'PATIENTID',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-patient-id={original.PATIENTID}>{original.PATIENTID})</span>;
+          return <Link><span data-PATIENTID={original.PATIENTID}>{original.PATIENTID}</span></Link>
         },
       },
       {
         Header: 'Exam ID',
-        accessor: 'name',
+        accessor: 'exam_Id',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-name={original.exam}>{props.value}</span>;
+          return <span data-exam_Id={original.exam_Id}>{original.exam_Id}</span>;
         },
       },
+
       {
+        Header: 'Image',
+        accessor: 'png_filename',
+        //filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-png_filename={original.png_filename}>{original.png_filename}</span>;
+        },
+      },
+     /* {
         Header: 'Image',
         accessor: 'daysOfWeek',
         // filterable: true,
@@ -167,13 +177,13 @@ class PatientTable extends Component {
             </span>
           );
         },
-      },
+      },*/
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-timeframe={original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={original.key_findings}>{original.key_findings}</span>;
         },
       },
       {
@@ -182,9 +192,28 @@ class PatientTable extends Component {
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-priority={original.AGE}>{original.AGE}</span>;
+          return <span data-AGE={original.AGE}>{original.AGE}</span>;
         },
       },
+      {
+        Header: 'Sex',
+        accessor: 'SEX',
+        //filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-SEX={original.SEX}>{original.SEX}</span>;
+        },
+      },
+  
+      {
+        Header: 'Weight',
+          accessor: 'weight',
+          //filterable: true,
+          Cell: props => {
+            const { original } = props.cell.row;
+            return <span data-LATEST_WEIGHT={original.LATEST_WEIGHT}>{original.LATEST_WEIGHT}</span>;
+          },
+        },
       {
         Header: 'Update',
         accessor: '_update',

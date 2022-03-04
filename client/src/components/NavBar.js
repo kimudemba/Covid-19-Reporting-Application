@@ -27,7 +27,7 @@ const Nav = styled.nav.attrs({
 const navBarItems = [
   {
     name: 'Exams',
-    toPathname: `api${routes.EXAMS}/`,
+    toPathname: routes.EXAMS,
     className: 'nav-link',
   },
   {
@@ -36,11 +36,11 @@ const navBarItems = [
     className: 'nav-link',
   },
 
-  {
+ /* {
     name: 'Create Patient',
     toPathname: '/patient/create',
     className: 'nav-link',
-  },
+  },*/
 
 //  {
 //    name: 'Create Patient',
