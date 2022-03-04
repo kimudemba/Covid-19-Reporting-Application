@@ -8,6 +8,7 @@ import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 
 import { PatientList, ItemsPlain, PatientTable, ExamTable} from '../pages';
+import ExamList from './ExamTable'; //for some reason this has to be imported seperately
 //import {ExamList} from './pages/ExamList';
 const LinksGridContainer = styled.div`
   display: grid;
@@ -34,22 +35,11 @@ const itemsPageVariants = [
     name: 'Patients',
     toPathname: routes.PATIENTS,
     pageComponent: PatientList,
-
-    /*name: 'Exams',
-    toPathname: routes.EXAMS,*/
-   // pageComponent: ExamList,
-    /*name: 'Items',
-    toPathname: routes.ITEMS,
-    pageComponent: ItemsPlain,*/
-
-
-
-
   },
   {
     name: 'Exams',
-    toPathname: `${routes.EXAMS}/react-table-v6`,
-    pageComponent: ExamTable,
+    toPathname: routes.EXAMS,//`${routes.EXAMS}/react-table-v6`,//i removed react table
+    pageComponent: ExamList,
   },
   /*{
     name: 'Items (with only styled-components)',
@@ -64,13 +54,13 @@ const itemsPageVariants = [
 
 class Patients extends Component {
   render() {
-    // TODO: would be better to dynamically create the routes based on page variations
+    // TODO: would be better to dynamically create the routes based on page variations. I had to add extra exam routes
     const patientsPages = (
       <Switch>
         <Route exact path={routes.PATIENTS} component={PatientList} />
         <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={PatientTable} />
         <Route exact path={`${routes.PATIENTS}/items-plain`} component={ItemsPlain} />
-        {/*<Route exact path={routes.EXAMS} component={ExamList} />
+        <Route exact path={routes.EXAMS} component={ExamList} />
         <Route exact path={`${routes.EXAMS}/react-table-v6`} component={ExamTable} />
        {/* <Route exact path={`${routes.EXAMS}/items-plain`} component={ItemsPlain} />*/}
       </Switch>

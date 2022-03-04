@@ -141,7 +141,8 @@ updatePatient = async (req, res) => {
     });
   }
   //changed to match Yams's test controller
-  const patientForUpdate = {
+  //kim: for some reason this is causing an error; will discuss as a team
+ /* const patientForUpdate = {
     _id: req.params.id,
     PATIENTID = PATIENTID,
     exam_Id = exam_Id,
@@ -150,8 +151,8 @@ updatePatient = async (req, res) => {
     AGE = AGE,
     SEX = SEX,
     LATEST_BMI = LATEST_BMI,
-    ZIP = ZIP,
-  };
+    ZIP = ZIP
+  };*/
 
   // console.log('----------------------- updatePatient: res -----------------------');
   // console.log(res);

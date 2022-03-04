@@ -144,13 +144,13 @@ updateOneExam = async (req, res) => {
     });
   }
   //changed to match Yams's test controllers
-  const examForUpdate = {
+  /*const examForUpdate = {
     _id: req.params.id, 
     patient_Id = patient_Id,
     exam_Id =  exam_Id,
     png_filename = png_filename,
     key_findings = key_findings,
-  };
+  };*/
 
   // console.log('----------------------- updateOneExam: res -----------------------');
   // console.log(res);
