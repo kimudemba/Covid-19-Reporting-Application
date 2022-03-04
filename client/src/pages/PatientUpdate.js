@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from '../api';
-import { shared } from '../constants';
+//import { shared } from '../constants';
 
 import styled from 'styled-components';
 
@@ -60,10 +60,10 @@ class PatientUpdate extends Component {
     super(props);
     this.state = {
       _id: '',
-      name: '',
+      patientId: '',
       daysOfWeek: {},
       timeframeNote: '',
-      priority: 0,
+      age: 0,
       content: '',
     };
   }
@@ -71,16 +71,18 @@ class PatientUpdate extends Component {
   componentDidMount() {
     const patientId = this.props.match.params.id;
     this.fetchSinglePatient(patientId).then(resp => {
-      const { patient } = resp.data;
+      const { patient } = undefined || {} || resp.data;
       this.setState({ ...patient });
+      console.log(patient)
+      
     });
   }
 
   fetchSinglePatient = patientId => {
     return api
-      .getPatientById(patientId)
+      .getpatientById(patientId)
       .then(resp => {
-        console.log('getPatientById: resp');
+        console.log('getpatientById: resp');
         console.log(resp);
         return resp;
       })
@@ -91,12 +93,12 @@ class PatientUpdate extends Component {
       });
   };
 
-  handleChangeInputName = async event => {
-    const name = event.target.value;
-    this.setState({ name });
+  handleChangeInputPatientID = async event => {
+    const patientId = event.target.value;
+    this.setState({ patientId });
   };
 
-  handleChangeDays = async event => {
+  /*handleChangeDays = async event => {
     const { checked } = event.target;
     const { dayIndex } = event.target.dataset;
     const { daysOfWeek } = this.state;
@@ -108,7 +110,7 @@ class PatientUpdate extends Component {
       delete daysOfWeek[dayIndex];
     }
     this.setState({ daysOfWeek: daysOfWeek });
-  };
+  };*/
 
   updateSinglePatient = patient => {
     return api
@@ -134,20 +136,20 @@ class PatientUpdate extends Component {
     this.setState({ timeframeNote });
   };
 
-  handleChangeInputPriority = async event => {
-    const priority = event.target.validity.valid ? event.target.value : this.state.priority;
+  handleChangeInputZipCode = async event => {
+    const zipcode = event.target.validity.valid ? event.target.value : this.state.priority;
 
-    this.setState({ priority });
+    this.setState({ zipcode });
   };
 
-  handleChangeInputContent = async event => {
-    const content = event.target.value;
-    this.setState({ content });
+  handleChangeInputAge = async event => {
+    const age = event.target.value;
+    this.setState({ age });
   };
 
   handleUpdatePatient = event => {
-    const { _id, name, daysOfWeek, timeframeNote, priority, content } = this.state;
-    const patient = { _id, name, daysOfWeek, timeframeNote, priority, content };
+    const { _id, patientId, age, zipcode } = this.state;
+    const patient = { _id, patientId, age, zipcode};
 
     return this.updateSinglePatient(patient)
       .then(resp => {
@@ -174,9 +176,9 @@ class PatientUpdate extends Component {
   };
 
   render() {
-    const { _id, name, daysOfWeek, timeframeNote, priority, age, zipcode, content } = this.state;
+    const { _id, patientId, timeframeNote, age, zipcode, } = this.state;
 
-    const { DAYS_OF_WEEK } = shared;
+    //const { DAYS_OF_WEEK } = shared;
 
     return (
       _id && (
@@ -184,9 +186,9 @@ class PatientUpdate extends Component {
           <Title>Create Patient</Title>
 
           <Label>Patient ID: </Label>
-          <InputText type="text" value={name} onChange={this.handleChangeInputName} />
+          <InputText type="text" value={patientId} onChange={this.handleChangeInputPatientID} />
 
-          <Fieldset>
+          {/*<Fieldset>
             <legend>Day(s) of the Week: </legend>
             {Object.keys(DAYS_OF_WEEK).map((dayInt, i) => (
               <React.Fragment key={DAYS_OF_WEEK[dayInt]}>
@@ -202,12 +204,12 @@ class PatientUpdate extends Component {
                 <Label htmlFor={DAYS_OF_WEEK[dayInt]}>{DAYS_OF_WEEK[dayInt]}</Label>
               </React.Fragment>
             ))}
-          </Fieldset>
+          </Fieldset>*/}
 
           <Label>Exam ID: </Label>
           <InputText type="text" value={timeframeNote} onChange={this.handleChangeInputTimeframe} />
 
-          <Label>Priority: </Label>
+          {/*<Label>Age: </Label>
           <InputText
             type="number"
             step="0.1"
@@ -217,7 +219,7 @@ class PatientUpdate extends Component {
             pattern="[0-9]+([,\.][0-9]+)?"
             value={priority}
             onChange={this.handleChangeInputPriority}
-          />
+          />*/}
 
         <Label>Zip code: </Label>  {/* This used to be Priority */} 
         <InputText
@@ -241,11 +243,11 @@ class PatientUpdate extends Component {
           value={age}
           onChange={this.handleChangeInputAge}
         />
-          <Label>Content: </Label>
-          <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />
+          {/*<Label>Content: </Label>
+          <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />*/}
 
-          <Label>Key Findings: </Label> {/* This used to be content */} 
-        <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />
+         {/* <Label>Key Findings: </Label> {/* This used to be content 
+        <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />*/}
 
           <Button onClick={this.confirmUpdatePatient}>Update Patient</Button>
           <CancelButton href={'/patients'}>Cancel</CancelButton>

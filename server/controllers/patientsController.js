@@ -37,7 +37,7 @@ getPatients = async (req, res) => {
 
 getpatientById = async (req, res) => {
   await patient
-    .find({ _id: req.params.id }, (err, patients) => {
+    .find({ _id: req.params.id }, (err, patient) => { //changed from patients
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'getpatientById': ${err}`);
         throw res.status(400).json({
@@ -71,12 +71,12 @@ getpatientById = async (req, res) => {
 
 createOnePatient = (req, res) => {
 
-
+  //do the same with "body" like examController
   const body = req.body;
   // console.log('----------------------- createpatient: req -----------------------')
   // console.log(req);
   // console.log('----------------------- createpatient: body -----------------------')
-  // console.log(body);
+  console.log(body);
   if (!body) {
     return res.status(400).json({
       success: false,
@@ -98,7 +98,7 @@ createOnePatient = (req, res) => {
   }
 
   // console.log('----------------------- createpatient: patient -----------------------')
-  // console.log(patient);
+  console.log(patient);
 
   return patient
     .save()
@@ -129,7 +129,7 @@ createOnePatient = (req, res) => {
 };
 
 updatePatient = async (req, res) => {
-  const body = req.body;
+  const body /*{PATIENTID, exam_Id, png_filename, key_findings, AGE, SEX, LATEST_BMI, ZIP}*/ = req.body;
   if (!body) {
 
     console.error(
@@ -140,19 +140,23 @@ updatePatient = async (req, res) => {
       error: 'You must provide an patient to update.',
     });
   }
-
-  const patientForUpdate = {
+  //changed to match Yams's test controller
+  //for some reason this is causing an error; will discuss as a team
+  //updated these ; no longer an error will discuss with team
+ const patientForUpdate = {
     _id: req.params.id,
-    PATIENT_ID: body.PATIENT_ID,
-    daysOfWeek: body.daysOfWeek,
-    timeframeNote: body.timeframeNote,
-    priority: body.priority,
-    content: body.content,
-    patient: patient.content
+    PATIENTID: body.PATIENTID,
+    exam_Id: body.exam_Id,
+    png_filename: body.png_filename,
+    key_findings: body.key_findings,
+    AGE: body.AGE,
+    SEX: body.SEX,
+    LATEST_BMI: body.LATEST_BMI,
+    ZIP: body.ZIP
   };
 
   // console.log('----------------------- updatePatient: res -----------------------');
-  // console.log(res);
+  console.log(res);
 
   try {
     await patient.findOneAndUpdate({ _id: req.params.id }, patientForUpdate);

@@ -52,7 +52,7 @@ class Links extends Component {
         <HomeWrapper>
           <Logo logoStyles={logoStyles} />
           <Link to="/" className="navbar-brand" style={homeStyles}>
-            Home
+            
           </Link>
         </HomeWrapper>
         <Collapse>

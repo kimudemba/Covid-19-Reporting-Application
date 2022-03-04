@@ -1,5 +1,5 @@
 //const { execMap } = require('nodemon/lib/config/defaults')
-const Exam = require('../models/examModel');
+const exam = require('../models/examModel');
 
 //to be getExams
 getExams = async (req, res) => {
@@ -23,7 +23,7 @@ getExams = async (req, res) => {
       console.log(`[Hack.Diversity React Template] - 200 in 'getExams': Exams fetched!`);
       return res.status(200).json({
         success: true,
-        Exams: Exams,
+        exams: exams,
       });
     })
     .catch(err => {
@@ -39,7 +39,7 @@ getExams = async (req, res) => {
 //to be getExamById
 getexamById = async (req, res) => {
   await exam
-    .find({ _id: req.params.id }, (err, exams) => {
+    .find({ _id: req.params.id }, (err, exam) => {
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'getexamById': ${err}`);
         throw res.status(400).json({
@@ -77,9 +77,9 @@ createOneExam = (req, res) => {
 
   const body = req.body;
   // console.log('----------------------- createexam: req -----------------------')
-  // console.log(req);
+  console.log(req);
   // console.log('----------------------- createexam: body -----------------------')
-  // console.log(body);
+ console.log(body);
   if (!body) {
     return res.status(400).json({
       success: false,
@@ -101,7 +101,7 @@ createOneExam = (req, res) => {
   }
 
   // console.log('----------------------- createexam: exam -----------------------')
-  // console.log(exam);
+  console.log(exam);
 
   return exam
     .save()
@@ -131,36 +131,34 @@ createOneExam = (req, res) => {
     });
 };
 
-updateExam = async (req, res) => {
-  const body = req.body;
+updateOneExam = async (req, res) => {
+  const body /*{patient_Id, exam_Id, png_filename, key_findings}*/ = req.body;
   if (!body) {
 
     console.error(
-      `[Hack.Diversity React Template] - 400 in 'updateExam': You must provide a exam to update.`,
+      `[Hack.Diversity React Template] - 400 in 'updateOneExam': You must provide a exam to update.`,
     );
     return res.status(400).json({
       success: false,
       error: 'You must provide an exam to update.',
     });
   }
-  //to be changed soon with the proper tables from the database
+  //i changed controllers format to fix error
   const examForUpdate = {
-    _id: req.params.id, //do i let req.params.id be the same here as it is in patientControllers
-    name: body.name,
-    daysOfWeek: body.daysOfWeek,
-    timeframeNote: body.timeframeNote,
-    priority: body.priority,
-    content: body.content,
-    patient: patient.content
+    _id: req.params.id, 
+    patient_Id: patient_Id.body,
+    exam_Id: exam_Id.body,
+    png_filename: png_filename.body,
+    key_findings: key_findings.body
   };
 
-  // console.log('----------------------- updateExam: res -----------------------');
-  // console.log(res);
+  // console.log('----------------------- updateOneExam: res -----------------------');
+  console.log(res);
 
   try {
     await exam.findOneAndUpdate({ _id: req.params.id }, examForUpdate);
   } catch (err) {
-    console.error(`[Hack.Diversity React Template] - caught error in 'updateExam': ${err}`);
+    console.error(`[Hack.Diversity React Template] - caught error in 'updateOneExam': ${err}`);
     console.error(err);
     return res.status(400).json({
       success: false,
@@ -168,7 +166,7 @@ updateExam = async (req, res) => {
     });
   }
 
-  console.log(`[Hack.Diversity React Template] - 200 in 'updateExam': exam updated!`);
+  console.log(`[Hack.Diversity React Template] - 200 in 'updateOneExam': exam updated!`);
   return res.status(200).json({
     success: true,
     id: req.params.id,
@@ -211,11 +209,11 @@ deleteOneExam = async (req, res) => {
 };
 
 module.exports = {
-  createExam,
-
+  //createExam,
+  getExams,
   getexamById,
   createOneExam,
-  updateExam,
+  updateOneExam,
   deleteOneExam,
 
 };

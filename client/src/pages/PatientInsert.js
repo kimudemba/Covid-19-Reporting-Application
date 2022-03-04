@@ -103,10 +103,16 @@ class PatientInsert extends Component {
     this.setState({ daysOfWeek });
   };
 
-  handleChangeInputTimeframe = async event => {
-    const timeframeNote = event.target.value;
-    this.setState({ timeframeNote });
+  handleChangeInputPatientID = async event => {
+    const patientID = event.target.value;
+    this.setState({ patientID });
   };
+
+  handleChangeInputExamID = async event => {
+    const examID = event.target.value;
+    this.setState({ examID });
+  };
+
 
   handleChangeInputPriority = async event => {
     const priority = event.target.validity.valid ? event.target.value : this.state.priority;
@@ -126,9 +132,9 @@ class PatientInsert extends Component {
     this.setState({ zipcode });
   };
 
-  handleChangeInputContent = async event => {
-    const content = event.target.value;
-    this.setState({ content });
+  handleChangeInputSex = async event => {
+    const sex = event.target.value;
+    this.setState({ sex });
   };
 
   handleChangeInputKeyFindings = async event => {
@@ -195,51 +201,53 @@ class PatientInsert extends Component {
   };
 
   render() {
-    const { name, daysOfWeek, timeframeNote, priority, age, zipcode, content /* height, weight, zip, bmi, sex, content, patientID, race, sex*/ } = this.state;
+    const { examID, keyFindings, age, zipcode, weight, zip, bmi, sex, patientID } = this.state;
 
-    const { DAYS_OF_WEEK } = shared;
+    //const { DAYS_OF_WEEK } = shared;
 
     return (
       <Wrapper>
         <Title>Create Patient</Title>
 
         <Label>Patient ID: </Label>
-        <InputText type="text" value={name} onChange={this.handleChangeInputName} />
+          <InputText type="text" value={patientID} onChange={this.handleChangeInputPatientID} />
+          <Label>Exam ID: </Label>
+          <InputText type="text" value={examID} onChange={this.handleChangeInputExamID} />
 
-        <Fieldset>
-          <legend>Day(s) of the Week: </legend>
-          {Object.keys(DAYS_OF_WEEK).map((day, i) => (
-            <React.Fragment key={day}>
-              <Label htmlFor={day}>
+          {/*<Fieldset>
+            <legend>Day(s) of the Week: </legend>
+            {Object.keys(DAYS_OF_WEEK).map((dayInt, i) => (
+              <React.Fragment key={DAYS_OF_WEEK[dayInt]}>
                 <DayInput
                   type="checkbox"
-                  id={day}
-                  value={day}
+                  id={DAYS_OF_WEEK[dayInt]}
+                  className="day-checkbox-input"
+                  defaultValue={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ''}
+                  data-day-index={dayInt}
                   onChange={this.handleChangeDays}
-                  checked={typeof daysOfWeek[day] === 'string'}
+                  defaultChecked={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ''}
                 />
-                {DAYS_OF_WEEK[day]}
-              </Label>
-            </React.Fragment>
-          ))}
-        </Fieldset>
+                <Label htmlFor={DAYS_OF_WEEK[dayInt]}>{DAYS_OF_WEEK[dayInt]}</Label>
+              </React.Fragment>
+            ))}
+          </Fieldset>*/}
 
-        <Label>Exam ID: </Label>
-        <InputText type="text" value={timeframeNote} onChange={this.handleChangeInputTimeframe} />
+          <Label>Key Findings: </Label>
+          <InputText type="text" value={keyFindings} onChange={this.keyFindings} />
 
-        <Label>Priority: </Label>
-        <InputText
-          type="number"
-          step="0.1"
-          lang="en-US"
-          min="0"
-          max="1000"
-          pattern="[0-9]+([,\.][0-9]+)?"
-          value={priority}
-          onChange={this.handleChangeInputPriority}
-        />
+          {/*<Label>Age: </Label>
+          <InputText
+            type="number"
+            step="0.1"
+            lang="en-US"
+            min="0"
+            max="1000"
+            pattern="[0-9]+([,\.][0-9]+)?"
+            value={priority}
+            onChange={this.handleChangeInputPriority}
+          />*/}
 
-        <Label>Zip Code: </Label>  {/* This used to be Priority */} 
+        <Label>Zip code: </Label>  {/* This used to be Priority */} 
         <InputText
           type="number"
           step="0.1"
@@ -250,7 +258,6 @@ class PatientInsert extends Component {
           value={zipcode}
           onChange={this.handleChangeInputZipCode}
         />
-
         <Label>Age: </Label> {/* This used to be priority */} 
         <InputText
           type="number"
@@ -259,19 +266,19 @@ class PatientInsert extends Component {
           min="0"
           max="1000"
           pattern="[0-9]+([,\.][0-9]+)?"
-          value={age }
+          value={age}
           onChange={this.handleChangeInputAge}
         />
-        <Label> Content: </Label> 
-        <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />
+          {/*<Label>Content: </Label>
+          <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />*/}
 
-        <Label>Key Findings: </Label> {/* This used to be content */} 
-        <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />
+         {/* <Label>Key Findings: </Label> {/* This used to be content 
+        <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />*/}
 
-        <Button onClick={this.handleInsertItem}>Add Patient</Button>
-        <CancelButton href={'/items'}>Cancel</CancelButton>
-      </Wrapper>
-    );
+          <Button onClick={this.confirmUpdatePatient}>Update Patient</Button>
+          <CancelButton href={'/patients'}>Cancel</CancelButton>
+        </Wrapper>
+      );
   }
 }
 
