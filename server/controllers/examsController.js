@@ -77,9 +77,9 @@ createOneExam = (req, res) => {
 
   const body = req.body;
   // console.log('----------------------- createexam: req -----------------------')
-  // console.log(req);
+  console.log(req);
   // console.log('----------------------- createexam: body -----------------------')
-  // console.log(body);
+ console.log(body);
   if (!body) {
     return res.status(400).json({
       success: false,
@@ -101,7 +101,7 @@ createOneExam = (req, res) => {
   }
 
   // console.log('----------------------- createexam: exam -----------------------')
-  // console.log(exam);
+  console.log(exam);
 
   return exam
     .save()
@@ -132,7 +132,7 @@ createOneExam = (req, res) => {
 };
 
 updateOneExam = async (req, res) => {
-  const {patient_Id, exam_Id, png_filename, key_findings} = req.body;
+  const body /*{patient_Id, exam_Id, png_filename, key_findings}*/ = req.body;
   if (!body) {
 
     console.error(
@@ -143,17 +143,17 @@ updateOneExam = async (req, res) => {
       error: 'You must provide an exam to update.',
     });
   }
-  //changed to match Yams's test controllers
-  /*const examForUpdate = {
+  //i changed controllers format to fix error
+  const examForUpdate = {
     _id: req.params.id, 
-    patient_Id = patient_Id,
-    exam_Id =  exam_Id,
-    png_filename = png_filename,
-    key_findings = key_findings,
-  };*/
+    patient_Id: patient_Id.body,
+    exam_Id: exam_Id.body,
+    png_filename: png_filename.body,
+    key_findings: key_findings.body
+  };
 
   // console.log('----------------------- updateOneExam: res -----------------------');
-  // console.log(res);
+  console.log(res);
 
   try {
     await exam.findOneAndUpdate({ _id: req.params.id }, examForUpdate);
