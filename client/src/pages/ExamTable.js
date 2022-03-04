@@ -108,34 +108,13 @@ class ExamList extends Component {
         },
       },
       {
-        Header: 'Exam ID',
-        accessor: 'examID',
-        filterable: true,
-        Cell: props => {
-          return <span data-name={props.original.examID}>{props.original.examID}</span>;
-        },
-      },
-      {
         Header: 'Image',
-        accessor: 'daysOfWeek',
-        filterable: true,
+        accessor: 'png_filename',
+        //filterable: true,
         Cell: props => {
-          const { daysOfWeek } = props.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-            }
-          }
-          return (
-            <span
-              data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-              data-daysofweek-by-id={props.original._id}>
-              {daysToDisplay || '-'}
-            </span>
-          );
-        },
+          //const { original } = props.cell.row;
+          return <url><span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span></url>
+        },//https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/
       },
       {
         Header: 'Key Findings',

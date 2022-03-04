@@ -148,24 +148,11 @@ class ExamTable extends Component {
       },
       {
         Header: 'Image',
-        accessor: 'daysOfWeek',
-        // filterable: true,
+        accessor: 'png_filename',
+        //filterable: true,
         Cell: props => {
-          const { daysOfWeek } = props.cell.row.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-            }
-          }
-          return (
-            <span
-              data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-              data-daysofweek-by-id={props.value}>
-              {daysToDisplay || '-'}
-            </span>
-          );
+          const { original } = props.cell.row;
+          return <span data-png_filename={original.png_filename}>{original.png_filename}</span>;
         },
       },
       {
