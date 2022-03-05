@@ -91,20 +91,21 @@ class ExamList extends Component {
     console.log(exams);
 
     const columns = [
-      {
+      /*{
         Header: 'ID',
         accessor: '_id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
         },
-      },
+      },*/
+
       {
         Header: 'Exam ID',
         accessor: 'exam_Id',
         filterable: true,
         Cell: props => {
-          return <span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span>;
+          return <Link><span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span></Link>;
         },
       },
       {
@@ -118,11 +119,21 @@ class ExamList extends Component {
       },
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
-          return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={props.original.key_findings}>{props.original.key_findings}</span>;
         },
       },
+
+      {
+        Header: 'Diag_to_img_study_days',
+        accessor: 'Diag_to_img_study_days',
+        Cell: props => {
+          return <span data-Diag_to_img_study_days={props.original.Diag_to_img_study_days}>{props.original.Diag_to_img_study_days}</span>;
+        },
+      },
+
+
       {
         Header: 'Age',
         accessor: 'age',
@@ -139,6 +150,9 @@ class ExamList extends Component {
           return <span data-priority={props.original.priority}>{props.value}</span>;
         },
       },
+      
+      
+
       {
         Header: 'Weight',
         accessor: 'weight',
