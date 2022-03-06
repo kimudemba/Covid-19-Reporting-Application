@@ -37,7 +37,7 @@ const InputText = styled.input.attrs({
   }
 `;
 
-const Fieldset = styled.fieldset.attrs({
+/*const Fieldset = styled.fieldset.attrs({
   className: 'form-control',
 })`
   background-color: transparent;
@@ -54,11 +54,11 @@ const Fieldset = styled.fieldset.attrs({
 
 const DayInput = styled.input.attrs({
   className: '',
-})`
+})
   margin: 5px 5px 5px auto;
   text-align: center;
 `;
-
+*/
 const Button = styled.button.attrs({
   className: 'btn btn-primary',
 })`
@@ -75,17 +75,18 @@ class PatientInsert extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      daysOfWeek: {},
-      timeframeNote: '',
-      priority: 0,
+      patientID: '',
+      sex: '',
+      keyFindings: '',
+      bmi: 0,
       age: 0,
       zipCode: 0,
-      content: '',
+      weight: 0,
+      examID: '',
     };
   }
 
-  handleChangeInputName = async event => {
+  /*handleChangeInputName = async event => {
     const name = event.target.value;
     this.setState({ name });
   };
@@ -102,7 +103,7 @@ class PatientInsert extends Component {
     }
     this.setState({ daysOfWeek });
   };
-
+*/
   handleChangeInputPatientID = async event => {
     const patientID = event.target.value;
     this.setState({ patientID });
@@ -114,22 +115,32 @@ class PatientInsert extends Component {
   };
 
 
-  handleChangeInputPriority = async event => {
+  /*handleChangeInputPriority = async event => {
     const priority = event.target.validity.valid ? event.target.value : this.state.priority;
 
     this.setState({ priority });
-  };
+  };*/
 
   handleChangeInputAge = async event => {
     const age = event.target.validity.valid ? event.target.value : this.state.age;
 
     this.setState({ age });
   };
+  handleChangeInputWeight = async event => {
+    const weight = event.target.validity.valid ? event.target.value : this.state.weight;
 
+    this.setState({ weight });
+  };
   handleChangeInputZipCode = async event => {
     const zipcode = event.target.validity.valid ? event.target.value : this.state.zipCode;
 
     this.setState({ zipcode });
+  };
+
+  handleChangeInputBmi = async event => {
+    const bmi = event.target.validity.valid ? event.target.value : this.state.bmi;
+
+    this.setState({ bmi });
   };
 
   handleChangeInputSex = async event => {
@@ -164,8 +175,8 @@ class PatientInsert extends Component {
   handleInsertItem = event => {
     event.preventDefault();
 
-    /*const { name, daysOfWeek, timeframeNote, priority, age, height, weight, zip, bmi, sex, content, patientID, race, sex } = this.state;
-    const item = { name, daysOfWeek, timeframeNote, priority, age, height, weight, zip, bmi, sex, content, patientID, race, sex };
+    const { examID, keyFindings, age, zipcode, weight, bmi, sex, patientID} = this.state;
+    const item = { examID, keyFindings, age, zipcode, weight, bmi, sex, patientID };
 
      this.insertSingleItem(item)
       .then(resp => {
@@ -174,19 +185,14 @@ class PatientInsert extends Component {
         if (typeof resp === 'object' && resp.status < 300 && resp.status >= 200) {
           window.alert('Item inserted successfully');
           this.setState({
-            name: '',
-            daysOfWeek: {},
-            timeframeNote: '',
-            priority: 0,
-            age: 0,
-            height: 0,
-            weight: 0,
-            zip: 0,
+            patientID: '',
+            sex: '',
+            keyFindings: '',
             bmi: 0,
-            sex: "",
-            race: "";
-            patientID: "";
-            content: '',
+            age: 0,
+            zipCode: 0,
+            weight: 0,
+            examID: '',
           });
         } else {
           throw resp;
@@ -197,11 +203,17 @@ class PatientInsert extends Component {
         window.alert(`There was an error creating the item... :(`);
         console.log('handleInsertItem: err');
         console.log(err);
-      }); */
+      });
+  };
+  confirmUpdatePatient = event => {
+    if (window.confirm(`Are you sure you want to update this patient? ${this.state._id}`)) {
+      return this.handleUpdatePatient(event);
+    }
   };
 
+
   render() {
-    const { examID, keyFindings, age, zipcode, weight, zip, bmi, sex, patientID } = this.state;
+    const { examID, keyFindings, age, zipcode, weight, bmi, sex, patientID } = this.state;
 
     //const { DAYS_OF_WEEK } = shared;
 
@@ -233,50 +245,31 @@ class PatientInsert extends Component {
           </Fieldset>*/}
 
           <Label>Key Findings: </Label>
-          <InputText type="text" value={keyFindings} onChange={this.keyFindings} />
+          <InputText type="text" value={keyFindings} onChange={this.handleChangeInputKeyFindings} />
 
-          {/*<Label>Age: </Label>
-          <InputText
-            type="number"
-            step="0.1"
-            lang="en-US"
-            min="0"
-            max="1000"
-            pattern="[0-9]+([,\.][0-9]+)?"
-            value={priority}
-            onChange={this.handleChangeInputPriority}
-          />*/}
+        
 
         <Label>Zip code: </Label>  {/* This used to be Priority */} 
-        <InputText
-          type="number"
-          step="0.1"
-          lang="en-US"
-          min="0"
-          max="1000"
-          pattern="[0-9]+([,\.][0-9]+)?"
-          value={zipcode}
-          onChange={this.handleChangeInputZipCode}
-        />
+        <InputText type="text" value={zipcode} onChange={this.handleChangeInputZipCode} />
+
+        
         <Label>Age: </Label> {/* This used to be priority */} 
-        <InputText
-          type="number"
-          step="0.1"
-          lang="en-US"
-          min="0"
-          max="1000"
-          pattern="[0-9]+([,\.][0-9]+)?"
-          value={age}
-          onChange={this.handleChangeInputAge}
-        />
-          {/*<Label>Content: </Label>
-          <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />*/}
+        <InputText type="text" value={age} onChange={this.handleChangeInputAge} />
+
+        <Label>Weight: </Label> {/* This used to be priority */} 
+        <InputText type="text" value={weight} onChange={this.handleChangeInputWeight} />
+
+        <Label>Sex: </Label> {/* This used to be priority */} 
+        <InputText type="text" value={sex} onChange={this.handleChangeInputSex} />
+        <Label>BMI: </Label> {/* This used to be priority */} 
+        <InputText type="text" value={bmi} onChange={this.handleChangeInputBmi} />
+
 
          {/* <Label>Key Findings: </Label> {/* This used to be content 
         <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />*/}
 
-          <Button onClick={this.confirmUpdatePatient}>Update Patient</Button>
-          <CancelButton href={'/patients'}>Cancel</CancelButton>
+        <Button onClick={this.handleInsertItem}>Add Item</Button>
+        <CancelButton href={'/patients'}>Cancel</CancelButton>
         </Wrapper>
       );
   }
