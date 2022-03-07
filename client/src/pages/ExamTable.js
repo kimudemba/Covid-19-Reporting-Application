@@ -91,59 +91,49 @@ class ExamList extends Component {
     console.log(exams);
 
     const columns = [
-      {
+      /*{
         Header: 'ID',
         accessor: '_id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
         },
-      },
+      },*/
+
       {
         Header: 'Exam ID',
         accessor: 'exam_Id',
         filterable: true,
         Cell: props => {
-          return <span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span>;
-        },
-      },
-      {
-        Header: 'Exam ID',
-        accessor: 'examID',
-        filterable: true,
-        Cell: props => {
-          return <span data-name={props.original.examID}>{props.original.examID}</span>;
+          return <Link><span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span></Link>;
         },
       },
       {
         Header: 'Image',
-        accessor: 'daysOfWeek',
-        filterable: true,
+        accessor: 'png_filename',
+        //filterable: true,
         Cell: props => {
-          const { daysOfWeek } = props.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-            }
-          }
-          return (
-            <span
-              data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-              data-daysofweek-by-id={props.original._id}>
-              {daysToDisplay || '-'}
-            </span>
-          );
-        },
+          //const { original } = props.cell.row;
+          return <url><span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span></url>
+        },//https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/
       },
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
-          return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={props.original.key_findings}>{props.original.key_findings}</span>;
         },
       },
+
+      {
+        Header: 'Diag_to_img_study_days',
+        accessor: 'Diag_to_img_study_days',
+        Cell: props => {
+          return <span data-Diag_to_img_study_days={props.original.Diag_to_img_study_days}>{props.original.Diag_to_img_study_days}</span>;
+        },
+      },
+
+
       {
         Header: 'Age',
         accessor: 'age',
@@ -160,6 +150,9 @@ class ExamList extends Component {
           return <span data-priority={props.original.priority}>{props.value}</span>;
         },
       },
+      
+      
+
       {
         Header: 'Weight',
         accessor: 'weight',
@@ -198,7 +191,7 @@ class ExamList extends Component {
           <ReactTable
             data={exams}
             columns={columns}
-            defaultPageSize={10}
+            defaultPageSize={20}
             showPageSizeOptions={true}
             minRows={10}
           />

@@ -130,59 +130,73 @@ class ExamTable extends Component {
       },
       {
         Header: 'Patient',
-        accessor: 'PATIENTID',
+        accessor: 'patient_Id',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-patient-id={original.PATIENTID}>{original.PATIENTID})</span>;
+          return <span data-patient_Id={original.patient_Id}>{original.patient_Id})</span>;
         },
       },
       {
         Header: 'Exam ID',
-        accessor: 'name',
+        accessor: 'exam_Id',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-name={original.exam}>{props.value}</span>;
+          return <Link><span data-exam_Id={original.exam_Id}>{original.exam_Id}</span></Link>;
         },
       },
       {
         Header: 'Image',
-        accessor: 'daysOfWeek',
-        // filterable: true,
+        accessor: 'png_filename',
+        //filterable: true,
         Cell: props => {
-          const { daysOfWeek } = props.cell.row.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-            }
-          }
-          return (
-            <span
-              data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-              data-daysofweek-by-id={props.value}>
-              {daysToDisplay || '-'}
-            </span>
-          );
+          const { original } = props.cell.row;
+          return<span data-png_filename={original.png_filename}>{original.png_filename}</span>;
         },
       },
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-timeframe={original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={original.key_findings}>{original.key_findings}</span>
         },
       },
       {
-        Header: 'Age',
-        accessor: 'AGE',
+        Header: 'FIO2',
+        accessor: 'FIO2_at_time_of_img_study',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-priority={original.AGE}>{original.AGE}</span>;
+          return <span data-FIO2_at_time_of_img_study={original.FIO2_at_time_of_img_study}>{original.FIO2_at_time_of_img_study}</span>;
+        },
+      },
+      {
+        Header: 'Diagnosis',
+        accessor: 'FDiagnosis_to_Imaging_time_hrs',
+        // filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-Diagnosis_to_Imaging_time_hrs={original.Diagnosis_to_Imaging_time_hrs}>{original.Diagnosis_to_Imaging_time_hrs}</span>;
+        },
+      },
+      {
+        Header: 'Image Study',
+        accessor: 'Image_Study_Description',
+        // filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-Image_Study_Description={original.Image_Study_Description}>{original.Image_Study_Description}</span>;
+        },
+      },
+      {
+        Header: 'Study Modality',
+        accessor: 'study_modality',
+        // filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-study_modality={original.study_modality}>{original.study_modality}</span>;
         },
       },
       {
