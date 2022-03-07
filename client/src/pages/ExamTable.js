@@ -91,22 +91,61 @@ class ExamList extends Component {
     console.log(exams);
 
     const columns = [
-      {
+      /*{
         Header: 'ID',
         accessor: '_id',
         filterable: true,
         Cell: props => {
           return <span data-item-id={props.original._id}>{props.original._id}</span>;
         },
+      },*/
+
+      {
+        Header: 'patient_Id',
+        accessor: 'patient_Id',
+        filterable: true,
+        Cell: props => {
+          return <span data-patient_Id={props.original.patient_Id}>{props.original.patient_Id}</span>;
+        },
       },
+
       {
         Header: 'Exam ID',
         accessor: 'exam_Id',
         filterable: true,
         Cell: props => {
-          return <span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span>;
+          return <Link><span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span></Link>;
         },
       },
+
+      {
+        Header: 'Age',
+        accessor: 'age',
+        filterable: true,
+        Cell: props => {
+          return <span data-priority={props.original.priority}>{props.value}</span>;
+        },
+      },
+
+      {
+        Header: 'Zip code',
+        accessor: 'zip',
+        filterable: true,
+        Cell: props => {
+          return <span data-priority={props.original.priority}>{props.value}</span>;
+        },
+      },
+      
+       {
+        Header: 'Weight',
+        accessor: 'weight',
+        filterable: true,
+        Cell: props => {
+          return <span data-priority={props.original.priority}>{props.value}</span>;
+        },
+      },
+
+
       {
         Header: 'Image',
         accessor: 'png_filename',
@@ -116,37 +155,57 @@ class ExamList extends Component {
           return <url><span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span></url>
         },//https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/
       },
+      
       {
         Header: 'Key Findings',
-        accessor: 'timeframeNote',
+        accessor: 'key_findings',
         Cell: props => {
-          return <span data-timeframe={props.original.timeframeNote}>{props.value || '-'}</span>;
+          return <span data-key_findings={props.original.key_findings}>{props.original.key_findings}</span>;
         },
       },
+
       {
-        Header: 'Age',
-        accessor: 'age',
-        filterable: true,
+        Header: 'Diag_to_img_study_days',
+        accessor: 'Diag_to_img_study_days',
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-Diag_to_img_study_days={props.original.Diag_to_img_study_days}>{props.original.Diag_to_img_study_days}</span>;
         },
       },
+
       {
-        Header: 'Zip code',
-        accessor: 'zip',
-        filterable: true,
+        Header: 'Diagnosis_to_Imaging_time_hrs',
+        accessor: 'Diagnosis_to_Imaging_time_hrs',
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-Diagnosis_to_Imaging_time_hrs={props.original.Diagnosis_to_Imaging_time_hrs}>{props.original.Diagnosis_to_Imaging_time_hrs}</span>;
         },
       },
+
       {
-        Header: 'Weight',
-        accessor: 'weight',
-        filterable: true,
+        Header: 'Image_Study_Description',
+        accessor: 'Image_Study_Description',
         Cell: props => {
-          return <span data-priority={props.original.priority}>{props.value}</span>;
+          return <span data-Image_Study_Description={props.original.Image_Study_Description}>{props.original.Image_Study_Description}</span>;
         },
       },
+
+      
+      {
+        Header: 'study_modality',
+        accessor: ' study_modality',
+        Cell: props => {
+          return <span data- study_modality={props.original.study_modality}>{props.original. study_modality}</span>;
+        },
+      },
+
+
+      {
+        Header: 'FIO2_at_time_of_img_study',
+        accessor: 'FIO2_at_time_of_img_study',
+        Cell: props => {
+          return <span data-FIO2_at_time_of_img_study={props.original.FIO2_at_time_of_img_study}>{props.original.FIO2_at_time_of_img_study}</span>;
+        },
+      },
+
       {
         Header: '',
         accessor: '',
@@ -177,7 +236,7 @@ class ExamList extends Component {
           <ReactTable
             data={exams}
             columns={columns}
-            defaultPageSize={10}
+            defaultPageSize={20}
             showPageSizeOptions={true}
             minRows={10}
           />
