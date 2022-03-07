@@ -58,7 +58,7 @@ class ExamInsert extends Component{
         this.state = {
             PatientKey: '',
             HoursSinceAdmission: 0,
-            BrixiaScore:[0,0,0,0,0,0], 
+            BrixiaScore:'', 
             key_findings:'',
             xRayLink:'',
 
@@ -77,15 +77,8 @@ class ExamInsert extends Component{
 
     
     handleChangeBrixiaScore = async event =>{
-        const BrixiaScore = [];
-        BrixiaScore[0] = event.target.validity.valid ? event.target.value : this.state.BrixiaScore[0];
-        BrixiaScore[1] = event.target.validity.valid ? event.target.value : this.state.BrixiaScore[1];
-        BrixiaScore[2] = event.target.validity.valid ? event.target.value : this.state.BrixiaScore[2];
-        BrixiaScore[3] = event.target.validity.valid ? event.target.value : this.state.BrixiaScore[3];
-        BrixiaScore[4] = event.target.validity.valid ? event.target.value : this.state.BrixiaScore[4];
-        BrixiaScore[5] = event.target.validity.valid ? event.target.value : this.state.BrixiaScore[5];
-
-        this.setState({ BrixiaScore})
+      const BrixiaScore = event.target.value;
+      this.setState({ BrixiaScore })
     };
 
     handleChangeKeyFindings = async event =>{
@@ -145,47 +138,16 @@ class ExamInsert extends Component{
             />
     
             <Label>BrixiaScore: </Label>
-            <InputText
-              type="number"
-              step="0.1"
-              lang="en-US"
-              min="0"
-              max="1000"
-              pattern="[0-9]+([,\.][0-9]+)?"
-              value={BrixiaScore[0]}
-              onChange={this.handleChangeInputPriority}
-            />
-    
-            <Label>Zip Code: </Label>  {/* This used to be Priority */} 
-            <InputText
-              type="number"
-              step="0.1"
-              lang="en-US"
-              min="0"
-              max="1000"
-              pattern="[0-9]+([,\.][0-9]+)?"
-              value={zipcode}
-              onChange={this.handleChangeInputZipCode}
-            />
-    
-            <Label>Age: </Label> {/* This used to be priority */} 
-            <InputText
-              type="number"
-              step="0.1"
-              lang="en-US"
-              min="0"
-              max="1000"
-              pattern="[0-9]+([,\.][0-9]+)?"
-              value={age }
-              onChange={this.handleChangeInputAge}
-            />
-            <Label> Content: </Label> 
-            <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />
+               <InputText type="textarea" value={ BrixiaScore } onChange={this.handleChangeBrixiaScore} />
+      
+
+            <Label> XRay Link: </Label> 
+            <InputText type="textarea" value={xRayLink} onChange={this.handleChangeXray} />
     
             <Label>Key Findings: </Label> {/* This used to be content */} 
-            <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />
+            <InputText type="textarea" value={key_findings} onChange={this.handleChangeKeyFindings} />
     
-            <Button onClick={this.handleInsertItem}>Add Patient</Button>
+            <Button onClick={this.handleInsertItem}>Add Exam</Button>
             <CancelButton href={'/items'}>Cancel</CancelButton>
           </Wrapper>
         );

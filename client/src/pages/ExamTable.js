@@ -236,7 +236,7 @@ class ExamList extends Component {
           <ReactTable
             data={exams}
             columns={columns}
-            defaultPageSize={10}
+            defaultPageSize={20}
             showPageSizeOptions={true}
             minRows={10}
           />
