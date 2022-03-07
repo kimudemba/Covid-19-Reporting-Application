@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table-6';
 import { DeleteButton } from '../components/buttons';
@@ -11,7 +11,7 @@ import 'react-table-6/react-table.css';
 const Wrapper = styled.div`
   padding: 0 40px 40px 40px;
 `;
-
+*/
 /*class ItemsList extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
     };
   }*/
 
-  class PatientList extends Component {
+  /*class PatientList extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
     this.fetchAllPatients();
   }
 
-  fetchAllPatients = () => {
+  fetchAllPatients = () => { */
 
     /*Faking this for now. Once we have the backend API set up we can use this function to make the HTTP request instead using api.getAllItems()...
   this.setState({
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
         debugger;
         const { items } = resp.data;
         console.log('getAllItems: resp');
-        console.log(items); */
+        console.log(items); */ /*
         const firstItem = {patientID: 'COVID-123', examID: '2222', age: 51, zip: 7273, weight: 207, bmi: 37.7 };
         const secondItem = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
         const items = [firstItem, secondItem];
@@ -65,7 +65,7 @@ const Wrapper = styled.div`
         return err;
       }); */
 
-  deleteSingleItem = itemId => {
+  /* deleteSingleItem = itemId => {
     return api
       .deleteItemById(itemId)
       .then(resp => {
@@ -108,7 +108,8 @@ const Wrapper = styled.div`
         accessor: 'patientID',
         filterable: true,
         Cell: props => {
-          return <span data-item-id={props.original.patientID}>{props.original.patientID}</span>;
+          
+          return <Link><span data-item-id={props.original.patientID}>{props.original.patientID}</span></Link>;
         },
       },
       {
@@ -116,7 +117,7 @@ const Wrapper = styled.div`
         accessor: 'examID',
         filterable: true,
         Cell: props => {
-          return <span data-name={props.original.examID}>{props.original.examID}</span>;
+          return <Link><span data-name={props.original.examID}>{props.original.examID}</span></Link>;
         },
       },
       {
@@ -216,3 +217,4 @@ const Wrapper = styled.div`
 
 //export default ItemsList;
 export default PatientList;
+*/

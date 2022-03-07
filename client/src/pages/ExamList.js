@@ -41,7 +41,7 @@ const Table = ({ columns, data }) => {
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <TableRow data-row-patient-id={row.values._id} {...row.getRowProps()}>
+            <TableRow data-row-exam-id={row.values._id} {...row.getRowProps()}>
               {row.cells.map(cell => {
                 return (
                   <TableCell {...cell.getCellProps()}>
@@ -57,69 +57,69 @@ const Table = ({ columns, data }) => {
   );
 };
 
-class PatientTable extends Component {
+class ExamTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      patients: [],
+      exams: [],
       columns: [],
       
     };
   }
 
   componentDidMount() {
-    console.log('PatientList: props');
+    console.log('ExamList: props');
     console.log(this.props);
 
-    this.fetchAllPatients();
+    this.fetchAllExams();
   }
 
-  fetchAllPatients = () => {
+  fetchAllExams = () => {
     api
-      .getAllPatients()
+      .getAllExams()
       .then(resp => {
-        const { patients } = resp.data;
-        console.log('getAllPatients: resp');
-        console.log(patients);
-        this.setState({ patients });
+        const { exams } = resp.data;
+        console.log('getAllExams: resp');
+        console.log(exams);
+        this.setState({ exams });
       })
       .catch(err => {
-        console.error(`ERROR in 'getAllPatients': ${err}`);
+        console.error(`ERROR in 'getAllExams': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  deleteSinglePatient = patientId => {
+  deleteSingleExam = examId => {
     return api
-      .deletePatientById(patientId)
+      .deleteExamById(examId)
       .then(resp => {
-        console.log('deletePatientById: resp');
+        console.log('deleteExamById: resp');
         console.log(resp);
         return resp;
       })
       .catch(err => {
-        console.error(`ERROR in 'deleteSinglePatient': ${err}`);
+        console.error(`ERROR in 'deleteSingleExam': ${err}`);
         console.error(err);
         return err;
       });
   };
 
-  handleRemovePatient = data => {
-    const patientId = data;
+  handleRemoveExam = data => {
+    const examId = data;
 
-    this.deleteSinglePatient(patientId).then(resp => {
-      console.log('handleRemovePatient: resp');
+    this.deleteSingleExam(examId).then(resp => {
+      console.log('handleRemoveExam: resp');
       console.log(resp);
-      this.fetchAllPatients();
+      this.fetchAllExams();
     });
   };
 
   render() {
-    const patients = this.state.patients || {};
+    const exams = this.state.exams || {};
     
     const columns = [
-     /* {
+      {
         Header: 'ID',
         accessor: '._id',
         //filterable: true,
@@ -127,14 +127,14 @@ class PatientTable extends Component {
           const { original } = props.cell.row;
           return <span data-patient-id={original._id}>{original._id}</span>; 
         },
-      },*/
+      },
       {
         Header: 'Patient',
-        accessor: 'PATIENTID',
+        accessor: 'patient_Id',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <Link><span data-PATIENTID={original.PATIENTID}>{original.PATIENTID}</span></Link>
+          return <span data-patient_Id={original.patient_Id}>{original.patient_Id})</span>;
         },
       },
       {
@@ -143,77 +143,62 @@ class PatientTable extends Component {
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-exam_Id={original.exam_Id}>{original.exam_Id}</span>;
+          return <Link><span data-exam_Id={original.exam_Id}>{original.exam_Id}</span></Link>;
         },
       },
-
       {
         Header: 'Image',
         accessor: 'png_filename',
         //filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-png_filename={original.png_filename}>{original.png_filename}</span>;
+          return<span data-png_filename={original.png_filename}>{original.png_filename}</span>;
         },
       },
-     /* {
-        Header: 'Image',
-        accessor: 'daysOfWeek',
-        // filterable: true,
-        Cell: props => {
-          const { daysOfWeek } = props.cell.row.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-            }
-          }
-          return (
-            <span
-              data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-              data-daysofweek-by-id={props.value}>
-              {daysToDisplay || '-'}
-            </span>
-          );
-        },
-      },*/
       {
         Header: 'Key Findings',
         accessor: 'key_findings',
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-key_findings={original.key_findings}>{original.key_findings}</span>;
+          return <span data-key_findings={original.key_findings}>{original.key_findings}</span>
         },
       },
       {
-        Header: 'Age',
-        accessor: 'AGE',
+        Header: 'FIO2',
+        accessor: 'FIO2_at_time_of_img_study',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-AGE={original.AGE}>{original.AGE}</span>;
+          return <span data-FIO2_at_time_of_img_study={original.FIO2_at_time_of_img_study}>{original.FIO2_at_time_of_img_study}</span>;
         },
       },
       {
-        Header: 'Sex',
-        accessor: 'SEX',
-        //filterable: true,
+        Header: 'Diagnosis',
+        accessor: 'FDiagnosis_to_Imaging_time_hrs',
+        // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-SEX={original.SEX}>{original.SEX}</span>;
+          return <span data-Diagnosis_to_Imaging_time_hrs={original.Diagnosis_to_Imaging_time_hrs}>{original.Diagnosis_to_Imaging_time_hrs}</span>;
         },
       },
-  
       {
-        Header: 'Weight',
-          accessor: 'weight',
-          //filterable: true,
-          Cell: props => {
-            const { original } = props.cell.row;
-            return <span data-LATEST_WEIGHT={original.LATEST_WEIGHT}>{original.LATEST_WEIGHT}</span>;
-          },
+        Header: 'Image Study',
+        accessor: 'Image_Study_Description',
+        // filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-Image_Study_Description={original.Image_Study_Description}>{original.Image_Study_Description}</span>;
         },
+      },
+      {
+        Header: 'Study Modality',
+        accessor: 'study_modality',
+        // filterable: true,
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-study_modality={original.study_modality}>{original.study_modality}</span>;
+        },
+      },
       {
         Header: 'Update',
         accessor: '_update',
@@ -221,7 +206,7 @@ class PatientTable extends Component {
           const { original } = props.cell.row;
 
           return (
-            <Link data-update-id={original._id} to={`/patient/update/${original._id}`}>
+            <Link data-update-id={original._id} to={`/exam/update/${original._id}`}>
               Update
             </Link>
           );
@@ -234,7 +219,7 @@ class PatientTable extends Component {
           const { original } = props.cell.row;
           return (
             <span data-delete-id={original._id}>
-              <DeleteButton id={original._id} onDelete={this.handleRemovePatient} />
+              <DeleteButton id={original._id} onDelete={this.handleRemoveExam} />
             </span>
           );
         },
@@ -244,14 +229,14 @@ class PatientTable extends Component {
     return (
       <Wrapper>
         <CssBaseline />
-        {(patients || []).length > 0 ? (
-          <Table data={patients} columns={columns} />
+        {(exams || []).length > 0 ? (
+          <Table data={exams} columns={columns} />
         ) : (
-          `No patients to render... :(`
+          `No exams to render... :(`
         )}
       </Wrapper>
     );
   }
 }
 
-export default PatientTable;
+export default ExamTable;

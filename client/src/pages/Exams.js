@@ -7,9 +7,8 @@ import { routes } from '../constants';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 
-import { PatientList, ItemsPlain, PatientTable, ExamTable} from '../pages';
-import ExamList from './ExamTable'; //for some reason this has to be imported seperately
-//import {ExamList} from './pages/ExamList';
+import { ExamTable, ExamList} from '../pages';
+
 const LinksGridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(10, 1fr [col-start]);
@@ -32,37 +31,38 @@ const linkTextColor = linkPathname => {
 const itemsPageVariants = [
   {
 
-    name: 'Patients',
-    toPathname: routes.PATIENTS,
-    pageComponent: PatientList,
+    name: 'Exams',
+    toPathname: routes.EXAMS,
+   pageComponent: ExamList,
+    /*name: 'Items',
+    toPathname: routes.ITEMS,
+    pageComponent: ItemsPlain,*/
+
+
+
+
   },
   {
-    name: 'Exams',
-    toPathname: routes.EXAMS,//`${routes.EXAMS}/react-table-v6`,//i removed react table
-    pageComponent: ExamList,
+    name: 'Exams (using react-table-v6)',
+    toPathname: `${routes.EXAMS}/react-table-v6`,
+    pageComponent: ExamsTable,
   },
   /*{
     name: 'Items (with only styled-components)',
     toPathname: `${routes.ITEMS}/items-plain`,
     pageComponent: ItemsPlain,
   },*/
-  {
-    name: 'Create Patient',
-    toPathname: routes.PATIENT_INSERT,
-  }
+  
 ];
 
-class Patients extends Component {
+class Exams extends Component {
   render() {
-    // TODO: would be better to dynamically create the routes based on page variations. I had to add extra exam routes
-    const patientsPages = (
+    // TODO: would be better to dynamically create the routes based on page variations
+    const examsPages = (
       <Switch>
-        <Route exact path={routes.PATIENTS} component={PatientList} />
-        <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={PatientTable} />
-        <Route exact path={`${routes.PATIENTS}/items-plain`} component={ItemsPlain} />
         <Route exact path={routes.EXAMS} component={ExamList} />
         <Route exact path={`${routes.EXAMS}/react-table-v6`} component={ExamTable} />
-       {/* <Route exact path={`${routes.EXAMS}/items-plain`} component={ItemsPlain} />*/}
+        <Route exact path={`${routes.EXAMS}/items-plain`} component={ItemsPlain} />
       </Switch>
     );
 
@@ -83,10 +83,10 @@ class Patients extends Component {
             </LinkGridWrapper>
           ))}
         </LinksGridContainer>
-        {patientsPages}
+        {examsPages}
       </>
     );
   }
 }
 
-export default Patients;
+export default Exams;

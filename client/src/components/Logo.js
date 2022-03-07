@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// eslint-disable-next-line
 import logo from '../styles/assets/logo.svg';
 
 const Wrapper = styled.a.attrs({
@@ -15,7 +16,7 @@ class Logo extends Component {
 
     return (
       <Wrapper>
-        <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" />
+         <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" /> 
       </Wrapper>
     );
   }
