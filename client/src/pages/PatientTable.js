@@ -359,6 +359,15 @@ const Wrapper = styled.div`
      },
 
      {
+      Header: 'DIABETES TYPE II',
+       accessor: 'DIABETES_TYPE_II',
+        //filterable: true,
+        Cell: props => {
+          return <span data-DIABETES_TYPE_II={props.original.DIABETES_TYPE_II}>{props.original.DIABETES_TYPE_II}</span>;
+       },
+     },
+
+     {
       Header: 'TRANSPLANT',
        accessor: 'TRANSPLANT',
         //filterable: true,
@@ -376,7 +385,56 @@ const Wrapper = styled.div`
        },
      },
 
+     {
+      Header: 'HEMODIALYSIS_Post_diagnosis',
+       accessor: 'HEMODIALYSIS_Post_diagnosis',
+        //filterable: true,
+        Cell: props => {
+          return <span data-HEMODIALYSIS_Post_diagnosis={props.original.HEMODIALYSIS_Post_diagnosis}>{props.original.HEMODIALYSIS_Post_diagnosis}</span>;
+       },
+      },
 
+      {
+        Header: 'CANCER',
+         accessor: 'CANCER',
+          //filterable: true,
+          Cell: props => {
+            return <span data-CANCER={props.original.CANCER}>{props.original.CANCER}</span>;
+         },
+        },
+
+        {
+          Header: 'Test Name ',
+           accessor: 'TEST_NAME',
+            //filterable: true,
+            Cell: props => {
+              return <span data-TEST_NAME={props.original.TEST_NAME}>{props.original.TEST_NAME}</span>;
+           },
+        },
+
+        {
+          Header: 'ICU Admit',
+           accessor: 'ICU_Admit',
+            //filterable: true,
+            Cell: props => {
+              return <span data-ICU_Admit={props.original.ICU_Admit}>{props.original.ICU_Admit}</span>;
+           },
+        },
+        
+        {
+          Header: 'Number_of_ICU_admits',
+           accessor: 'number_of_ICU_admits',
+            //filterable: true,
+            Cell: props => {
+              return <span data-number_of_ICU_admits
+              ={props.original.number_of_ICU_admits
+              }>{props.original.number_of_ICU_admits
+              }</span>;
+           },
+        },
+
+
+    
       {
         Header: '',
         accessor: '',
