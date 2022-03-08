@@ -163,7 +163,7 @@ class ExamTable extends Component {
           return <span data-key_findings={original.key_findings}>{original.key_findings}</span>
         },
       },
-      {
+/*      {
         Header: 'FIO2',
         accessor: 'FIO2_at_time_of_img_study',
         // filterable: true,
@@ -171,7 +171,7 @@ class ExamTable extends Component {
           const { original } = props.cell.row;
           return <span data-FIO2_at_time_of_img_study={original.FIO2_at_time_of_img_study}>{original.FIO2_at_time_of_img_study}</span>;
         },
-      },
+      },*/
       {
         Header: 'Diagnosis',
         accessor: 'FDiagnosis_to_Imaging_time_hrs',
@@ -219,7 +219,7 @@ class ExamTable extends Component {
           const { original } = props.cell.row;
           return (
             <span data-delete-id={original._id}>
-              <DeleteButton id={original._id} onDelete={this.handleRemoveExam} />
+              <DeleteButton id={original._id} onClick={this.handleRemoveExam} />
             </span>
           );
         },

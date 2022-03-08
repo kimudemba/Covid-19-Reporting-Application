@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 import { PatientList, ItemsPlain, PatientTable, ExamTable} from '../pages';
 import ExamList from './ExamTable'; //for some reason this has to be imported seperately
+//import PatientInsert from './PatientInsert';
 //import {ExamList} from './pages/ExamList';
 const LinksGridContainer = styled.div`
   display: grid;
@@ -48,11 +49,14 @@ const itemsPageVariants = [
   },*/
   {
     name: 'Create Patient',
-    toPathname: routes.PATIENT_INSERT,
+    toPathname: routes.PATIENT_INSERT, 
   },
   { 
   name: 'Create Exam',
   toPathname:routes.EXAM_INSERT,
+
+    //pageComponent: PatientInsert,
+
   }
 ];
 

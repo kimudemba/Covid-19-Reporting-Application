@@ -7,7 +7,11 @@ import ItemsPlain from './ItemsPlain';
 import PatientTable from './PatientTable';
 import PatientUpdate from './PatientUpdate';
 import ExamTable from './ExamTable';
+
 import ExamInsert from './ExamInsert';
+
+import {Patient} from './Patient';
+
 
 export {
   Items,
@@ -20,4 +24,5 @@ export {
   PatientInsert,
   ExamInsert,
   ExamTable,
+  Patient
 };
