@@ -7,8 +7,8 @@ import { routes } from '../constants';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 
-import { PatientList, ItemsPlain, PatientTable, ExamTable} from '../pages';
-import ExamList from './ExamTable'; //for some reason this has to be imported seperately
+import { PatientList, ItemsPlain, PatientTable} from '../pages';
+import ExamList from './ExamList'; //for some reason this has to be imported seperately
 //import PatientInsert from './PatientInsert';
 //import {ExamList} from './pages/ExamList';
 const LinksGridContainer = styled.div`
@@ -69,7 +69,7 @@ class Patients extends Component {
         <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={PatientTable} />
         <Route exact path={`${routes.PATIENTS}/items-plain`} component={ItemsPlain} />
         <Route exact path={routes.EXAMS} component={ExamList} />
-        <Route exact path={`${routes.EXAMS}/react-table-v6`} component={ExamTable} />
+        {/*<Route exact path={`${routes.EXAMS}/react-table-v6`} component={ExamTable} />*/}
        {/* <Route exact path={`${routes.EXAMS}/items-plain`} component={ItemsPlain} />*/}
       </Switch>
     );
