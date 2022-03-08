@@ -223,7 +223,7 @@ class ExamList extends Component {
         Cell: props => {
           return (
             <span data-delete-id={props.original._id}>
-              <DeleteButton id={props.original._id} onDelete={this.handleRemoveItem} />
+              <DeleteButton id={props.original._id} onClick={this.handleRemoveItem} />
             </span>
           );
         },

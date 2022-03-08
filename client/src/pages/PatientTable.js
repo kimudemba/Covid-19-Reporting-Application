@@ -452,7 +452,7 @@ const Wrapper = styled.div`
         Cell: props => {
           return (
             <span data-delete-id={props.original._id}>
-              <DeleteButton id={props.original._id} onDelete={this.handleRemoveItem} />
+              <DeleteButton id={props.original._id} onClick={this.handleRemoveItem} />
             </span>
           );
         },
@@ -477,5 +477,6 @@ const Wrapper = styled.div`
   }
 }
 
+//eddy: line 455
 //export default ItemsList;
 export default PatientList;
