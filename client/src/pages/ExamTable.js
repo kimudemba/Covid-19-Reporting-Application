@@ -103,18 +103,18 @@ class ExamList extends Component {
       {
         Header: 'patient_Id',
         accessor: 'patient_Id',
-        filterable: true,
+       // filterable: true,
         Cell: props => {
-          return <span data-patient_Id={props.original.patient_Id}>{props.original.patient_Id}</span>;
+          return <Link><span data-patient_Id={props.original.patient_Id}>{props.original.patient_Id}</span></Link>;
         },
       },
 
       {
         Header: 'Exam ID',
         accessor: 'exam_Id',
-        filterable: true,
+        //filterable: true,
         Cell: props => {
-          return <Link><span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span></Link>;
+          return <span data-exam_Id={props.original.exam_Id}>{props.original.exam_Id}</span>;
         },
       },
 
@@ -152,7 +152,9 @@ class ExamList extends Component {
         //filterable: true,
         Cell: props => {
           //const { original } = props.cell.row;
-          return <url><span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span></url>
+        
+          return <img src={`https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/${props.original.png_filename}`} width={450} height={100} alt = 'exam' />
+          
         },//https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/
       },
       
@@ -191,20 +193,20 @@ class ExamList extends Component {
       
       {
         Header: 'study_modality',
-        accessor: ' study_modality',
+        accessor: 'study_modality',
         Cell: props => {
-          return <span data- study_modality={props.original.study_modality}>{props.original. study_modality}</span>;
+          return <span data-study_modality={props.original.study_modality}>{props.original.study_modality}</span>;
         },
       },
 
 
-      {
+      /*{
         Header: 'FIO2_at_time_of_img_study',
         accessor: 'FIO2_at_time_of_img_study',
         Cell: props => {
           return <span data-FIO2_at_time_of_img_study={props.original.FIO2_at_time_of_img_study}>{props.original.FIO2_at_time_of_img_study}</span>;
         },
-      },
+      },*/
 
       {
         Header: '',
