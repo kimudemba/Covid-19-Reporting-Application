@@ -7,6 +7,7 @@ import ItemsPlain from './ItemsPlain';
 import PatientTable from './PatientTable';
 import PatientUpdate from './PatientUpdate';
 import ExamTable from './ExamTable';
+import ExamInsert from './ExamInsert';
 
 export {
   Items,
@@ -17,5 +18,6 @@ export {
   PatientTable,
   PatientUpdate,
   PatientInsert,
+  ExamInsert,
   ExamTable,
 };

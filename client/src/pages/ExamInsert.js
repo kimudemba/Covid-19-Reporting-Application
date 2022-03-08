@@ -37,7 +37,7 @@ const InputText = styled.input.attrs({
   }
 `;
 
-const Fieldset = styled.fieldset.attrs({
+/*const Fieldset = styled.fieldset.attrs({
   className: 'form-control',
 })`
   background-color: transparent;
@@ -51,12 +51,24 @@ const Fieldset = styled.fieldset.attrs({
     max-width: 75%;
   }
 `;
+*/
+const Button = styled.button.attrs({
+  className: 'btn btn-primary',
+})`
+  margin: 15px 15px 15px 5px;
+`;
+
+const CancelButton = styled.a.attrs({
+  className: 'btn btn-danger',
+})`
+  margin: 15px 15px 15px 5px;
+`;
 
 class ExamInsert extends Component{
     constructor(props){
         super(props);
         this.state = {
-            PatientKey: '',
+            Key: '',
             HoursSinceAdmission: 0,
             BrixiaScore:'', 
             key_findings:'',
@@ -120,7 +132,7 @@ class ExamInsert extends Component{
     
         return (
           <Wrapper>
-            <Title>Exam</Title>
+            <Title>Create Exam</Title>
     
             <Label>Patient Key: </Label>
             <InputText type="text" value={PatientKey} onChange={this.handleChangeInputPatientKey} />
@@ -148,7 +160,7 @@ class ExamInsert extends Component{
             <InputText type="textarea" value={key_findings} onChange={this.handleChangeKeyFindings} />
     
             <Button onClick={this.handleInsertItem}>Add Exam</Button>
-            <CancelButton href={'/items'}>Cancel</CancelButton>
+            <CancelButton href={'/exams'}>Cancel</CancelButton>
           </Wrapper>
         );
       }
