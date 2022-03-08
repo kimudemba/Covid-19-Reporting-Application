@@ -118,7 +118,7 @@ class ExamList extends Component {
         },
       },
 
-      {
+     /* {
         Header: 'Age',
         accessor: 'age',
         filterable: true,
@@ -143,7 +143,7 @@ class ExamList extends Component {
         Cell: props => {
           return <span data-priority={props.original.priority}>{props.value}</span>;
         },
-      },
+      },*/
 
 
       {
