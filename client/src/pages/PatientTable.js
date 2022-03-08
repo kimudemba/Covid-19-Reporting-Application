@@ -133,7 +133,9 @@ const Wrapper = styled.div`
         accessor: 'png_filename',
         //filterable: true,
         Cell: props => {
-          return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
+          //this is to add the image - although the image looks strange
+          return <img src={`https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/${props.original.png_filename}`} width={250} height={250} alt = 'X Ray' /> 
+          //return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
         },
       },
       /*{
