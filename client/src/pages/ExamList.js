@@ -219,7 +219,7 @@ class ExamTable extends Component {
           const { original } = props.cell.row;
           return (
             <span data-delete-id={original._id}>
-              <DeleteButton id={original._id} onDelete={this.handleRemoveExam} />
+              <DeleteButton id={original._id} onClick={this.handleRemoveExam} />
             </span>
           );
         },

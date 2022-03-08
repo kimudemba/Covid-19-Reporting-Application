@@ -19,7 +19,7 @@ class DeleteButton extends Component {
             `Do you want to permanently delete this patient? ${this.props.id}`
         )
     ) {
-         this.props.onDelete(this.props.id);
+         this.props.onClick(this.props.id);
         // this.confirmDeletePatient(onDelete)
     }
   };
