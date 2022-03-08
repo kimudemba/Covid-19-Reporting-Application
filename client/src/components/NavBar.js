@@ -35,6 +35,11 @@ const navBarItems = [
     toPathname: `${routes.PATIENTS}/react-table-v6`,
     className: 'nav-link',
   },
+  {
+    name:'Patients',
+    toPathname:routes.PATIENTS,
+    className: 'nav-link',
+  },
 
  /* {
     name: 'Create Patient',
