@@ -4,6 +4,7 @@ import ReactTable from 'react-table-6';
 import { DeleteButton } from '../components/buttons';
 import api from '../api';
 
+
 import styled from 'styled-components';
 
 import 'react-table-6/react-table.css';
@@ -24,9 +25,11 @@ const Wrapper = styled.div`
     constructor(props) {
       super(props);
       this.state = {
-        patients:{}
+        patients:{},
+        exams: {}
       };
     }
+
 
   componentDidMount() {
     console.log('PatientList: props');
@@ -95,8 +98,9 @@ const Wrapper = styled.div`
   };
 
   render() {
-    const patients = this.state.patients || {};
+    const patients = this.state.patients || {}
     console.log(patients);
+
 
     const columns = [
       /*{
