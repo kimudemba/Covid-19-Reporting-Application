@@ -20,7 +20,7 @@ patientsRouter.get('/:PATIENT_ID', patientsController.getpatientById);
 
 patientsRouter.put('/:PATIENT_ID', patientsController.updatePatient);
 
-patientsRouter.delete('/:PATIENT_ID', patientsController.deleteOnePatient);
+patientsRouter.delete('/patients', patientsController.deleteOnePatient);
 
 module.exports = patientsRouter; 
 

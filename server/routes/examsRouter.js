@@ -22,6 +22,6 @@ examsRouter.post('/:PATIENTID', examsController.createOneExam); //this was added
 
 examsRouter.put('/:PATIENTID', examsController.updateOneExam);
 
-examsRouter.delete('/:PATIENTID', examsController.deleteOneExam);
+examsRouter.delete('/exams', examsController.deleteOneExam);
 
 module.exports = examsRouter;
