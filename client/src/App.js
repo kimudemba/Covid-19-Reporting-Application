@@ -13,7 +13,8 @@ import './styles/App.css';
 import { NavBar } from './components';
 
 // Pages
-import { PatientInsert, Items, PatientUpdate, PatientList, ExamTable, Patient, ExamInsert} from './pages';
+import { PatientInsert, Items, PatientUpdate, PatientList, Patient, ExamInsert} from './pages';
+import ExamList from './pages/ExamList';
 //import { ExamBasicTable } from './components/ExamSpecificComp/ExamBasictable';
 
 //import PatientTable from './pages/PatientList';
@@ -29,7 +30,7 @@ class App extends Component {
         <Route exact path={routes.PATIENT_UPDATE} component={PatientUpdate} />
         {/* <Route exact path={routes.HOME} component={Welcome} /> */}
         {/*<Route exact path={routes.Exams} component={ExamBasicTable} /> */}
-        <Route exact path={routes.EXAMS} component={ExamTable} /> 
+        <Route exact path={routes.EXAMS} component={ExamList} /> 
         <Route exact path={routes.PATIENTS} component={PatientList} />
         <Route exact path={`${routes.PATIENTS}/items-plain`} component={Items} />
         <Route exact path={`${routes.PATIENTS}/react-table-v6`} component={Items} />

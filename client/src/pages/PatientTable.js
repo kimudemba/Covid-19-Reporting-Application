@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table-6';
-import { DeleteButton } from '../components/buttons';
+//import { DeleteButton } from '../components/buttons';
 import api from '../api';
 
 
@@ -441,7 +441,7 @@ const Wrapper = styled.div`
 
 
     
-      {
+      /*{
         Header: '',
         accessor: '',
         Cell: props => {
@@ -451,8 +451,8 @@ const Wrapper = styled.div`
             </Link>
           );
         },
-      },
-      {
+      },*/
+      /*{
         Header: '',
         accessor: '',
         Cell: props => {
@@ -462,7 +462,7 @@ const Wrapper = styled.div`
             </span>
           );
         },
-      },
+      },*/
     ];
 
     return (
