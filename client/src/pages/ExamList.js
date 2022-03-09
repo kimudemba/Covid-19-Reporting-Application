@@ -213,6 +213,7 @@ class ExamTable extends Component {
             <Link data-update-id={original._id} to={`/exam/update/${original._id}`}>
               Update
             </Link>
+            
           );
         },
       },
