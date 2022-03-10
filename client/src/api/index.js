@@ -18,6 +18,7 @@ export const updatePatientById = (id, payload) => api.put(`/patient/${id}`, payl
 export const deletePatientById = id => api.delete(`/patient/${id}`);
 export const getAllExams = payload => api.get(`/exams`, payload);
 export const getexamById = id => api.get(`/exam/${id}`);
+export const insertExam = playload => api.post(`/exam/`,playload);
 export const updateExamById = (id, payload) => api.put(`/exam/${id}`, payload);
 export const deleteExamById = id => api.delete(`/exam/${id}`);
 
@@ -26,6 +27,7 @@ const apis = {
   getAllPatients,
   getpatientById,
   insertPatient,
+  insertExam,
   updatePatientById,
   deletePatientById,
   getAllExams,
