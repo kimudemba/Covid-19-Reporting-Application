@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table-6';
-import { DeleteButton } from '../components/buttons';
+//import { DeleteButton } from '../components/buttons';
 import api from '../api';
+
 
 import styled from 'styled-components';
 
@@ -24,9 +25,11 @@ const Wrapper = styled.div`
     constructor(props) {
       super(props);
       this.state = {
-        patients:{}
+        patients:{},
+        exams: {}
       };
     }
+
 
   componentDidMount() {
     console.log('PatientList: props');
@@ -95,8 +98,9 @@ const Wrapper = styled.div`
   };
 
   render() {
-    const patients = this.state.patients || {};
+    const patients = this.state.patients || {}
     console.log(patients);
+
 
     const columns = [
       /*{
@@ -129,7 +133,9 @@ const Wrapper = styled.div`
         accessor: 'png_filename',
         //filterable: true,
         Cell: props => {
-          return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
+          //this is to add the image - although the image looks strange
+          return <img src={`https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/${props.original.png_filename}`} width={250} height={250} alt = 'X Ray' /> 
+          //return <span data-png_filename={props.original.png_filename}>{props.original.png_filename}</span>;
         },
       },
       /*{
@@ -359,6 +365,15 @@ const Wrapper = styled.div`
      },
 
      {
+      Header: 'DIABETES TYPE II',
+       accessor: 'DIABETES_TYPE_II',
+        //filterable: true,
+        Cell: props => {
+          return <span data-DIABETES_TYPE_II={props.original.DIABETES_TYPE_II}>{props.original.DIABETES_TYPE_II}</span>;
+       },
+     },
+
+     {
       Header: 'TRANSPLANT',
        accessor: 'TRANSPLANT',
         //filterable: true,
@@ -376,8 +391,57 @@ const Wrapper = styled.div`
        },
      },
 
+     {
+      Header: 'HEMODIALYSIS_Post_diagnosis',
+       accessor: 'HEMODIALYSIS_Post_diagnosis',
+        //filterable: true,
+        Cell: props => {
+          return <span data-HEMODIALYSIS_Post_diagnosis={props.original.HEMODIALYSIS_Post_diagnosis}>{props.original.HEMODIALYSIS_Post_diagnosis}</span>;
+       },
+      },
 
       {
+        Header: 'CANCER',
+         accessor: 'CANCER',
+          //filterable: true,
+          Cell: props => {
+            return <span data-CANCER={props.original.CANCER}>{props.original.CANCER}</span>;
+         },
+        },
+
+        {
+          Header: 'Test Name ',
+           accessor: 'TEST_NAME',
+            //filterable: true,
+            Cell: props => {
+              return <span data-TEST_NAME={props.original.TEST_NAME}>{props.original.TEST_NAME}</span>;
+           },
+        },
+
+        {
+          Header: 'ICU Admit',
+           accessor: 'ICU_Admit',
+            //filterable: true,
+            Cell: props => {
+              return <span data-ICU_Admit={props.original.ICU_Admit}>{props.original.ICU_Admit}</span>;
+           },
+        },
+        
+        {
+          Header: 'Number_of_ICU_admits',
+           accessor: 'number_of_ICU_admits',
+            //filterable: true,
+            Cell: props => {
+              return <span data-number_of_ICU_admits
+              ={props.original.number_of_ICU_admits
+              }>{props.original.number_of_ICU_admits
+              }</span>;
+           },
+        },
+
+
+    
+      /*{
         Header: '',
         accessor: '',
         Cell: props => {
@@ -387,18 +451,18 @@ const Wrapper = styled.div`
             </Link>
           );
         },
-      },
-      {
+      },*/
+      /*{
         Header: '',
         accessor: '',
         Cell: props => {
           return (
             <span data-delete-id={props.original._id}>
-              <DeleteButton id={props.original._id} onDelete={this.handleRemoveItem} />
+              <DeleteButton id={props.original._id} onClick={this.handleRemoveItem} />
             </span>
           );
         },
-      },
+      },*/
     ];
 
     return (
@@ -419,5 +483,6 @@ const Wrapper = styled.div`
   }
 }
 
+//eddy: line 455
 //export default ItemsList;
 export default PatientList;

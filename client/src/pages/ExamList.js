@@ -4,6 +4,7 @@ import { useTable } from 'react-table';
 import { DeleteButton } from '../components/buttons';
 import api from '../api';
 
+
 import MaUTable from '@material-ui/core/Table';
 import { CssBaseline, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 
@@ -17,6 +18,9 @@ const Wrapper = styled.div`
     padding-right: 0.5em;
   }
 `;
+
+
+
 
 const Table = ({ columns, data }) => {
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
@@ -119,7 +123,7 @@ class ExamTable extends Component {
     const exams = this.state.exams || {};
     
     const columns = [
-      {
+     /* {
         Header: 'ID',
         accessor: '._id',
         //filterable: true,
@@ -127,14 +131,14 @@ class ExamTable extends Component {
           const { original } = props.cell.row;
           return <span data-patient-id={original._id}>{original._id}</span>; 
         },
-      },
+      },*/
       {
-        Header: 'Patient',
+        Header: 'Patient ID',
         accessor: 'patient_Id',
         // filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return <span data-patient_Id={original.patient_Id}>{original.patient_Id})</span>;
+          return <Link><span data-patient_Id={original.patient_Id}>{original.patient_Id}</span></Link>;
         },
       },
       {
@@ -152,7 +156,7 @@ class ExamTable extends Component {
         //filterable: true,
         Cell: props => {
           const { original } = props.cell.row;
-          return<span data-png_filename={original.png_filename}>{original.png_filename}</span>;
+          return <img src={`https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/${original.png_filename}`} width={250} height={100} alt = 'exam' />
         },
       },
       {
@@ -163,7 +167,7 @@ class ExamTable extends Component {
           return <span data-key_findings={original.key_findings}>{original.key_findings}</span>
         },
       },
-      {
+/*      {
         Header: 'FIO2',
         accessor: 'FIO2_at_time_of_img_study',
         // filterable: true,
@@ -171,7 +175,7 @@ class ExamTable extends Component {
           const { original } = props.cell.row;
           return <span data-FIO2_at_time_of_img_study={original.FIO2_at_time_of_img_study}>{original.FIO2_at_time_of_img_study}</span>;
         },
-      },
+      },*/
       {
         Header: 'Diagnosis',
         accessor: 'FDiagnosis_to_Imaging_time_hrs',
@@ -209,6 +213,7 @@ class ExamTable extends Component {
             <Link data-update-id={original._id} to={`/exam/update/${original._id}`}>
               Update
             </Link>
+            
           );
         },
       },
@@ -219,7 +224,7 @@ class ExamTable extends Component {
           const { original } = props.cell.row;
           return (
             <span data-delete-id={original._id}>
-              <DeleteButton id={original._id} onDelete={this.handleRemoveExam} />
+              <DeleteButton id={original._id} onClick={this.handleRemoveExam} />
             </span>
           );
         },
