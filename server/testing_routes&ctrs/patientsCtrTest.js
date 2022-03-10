@@ -50,5 +50,4 @@ const createOnePatient = async (req, res, next) => {
 module.exports = {
   getPatients,
   createOnePatient,
-  deleteOnePatient,
 };
