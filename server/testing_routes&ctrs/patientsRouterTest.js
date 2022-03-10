@@ -13,9 +13,7 @@
  patientsRouterTest.post('/', patientsCtrTest.createOnePatient);
  
  // /api/patients/:id
- patientsRouterTest.put('/:PATIENT_ID', patientsCtrTest.updateOnePatient);
- 
- patientsRouterTest.delete('/:PATIENT_ID', patientsCtrTest.deleteOnePatient);
+
  
  module.exports = patientsRouterTest;
  
