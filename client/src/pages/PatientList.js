@@ -137,7 +137,7 @@ class PatientTable extends Component {
           return <Link><span data-PATIENTID={original.PATIENTID}>{original.PATIENTID}</span></Link>
         },
       },
-      {
+      /*{
         Header: 'Exam ID',
         accessor: 'exam_Id',
         // filterable: true,
@@ -145,47 +145,7 @@ class PatientTable extends Component {
           const { original } = props.cell.row;
           return <span data-exam_Id={original.exam_Id}>{original.exam_Id}</span>;
         },
-      },
-
-      {
-        Header: 'Image',
-        accessor: 'png_filename',
-        //filterable: true,
-        Cell: props => {
-          const { original } = props.cell.row;
-          return <span data-png_filename={original.png_filename}>{original.png_filename}</span>;
-        },
-      },
-     /* {
-        Header: 'Image',
-        accessor: 'daysOfWeek',
-        // filterable: true,
-        Cell: props => {
-          const { daysOfWeek } = props.cell.row.original;
-          let daysToDisplay = '';
-          if (daysOfWeek && typeof daysOfWeek === 'object') {
-            for (const day in daysOfWeek) {
-              daysToDisplay =
-                daysToDisplay === '' ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-            }
-          }
-          return (
-            <span
-              data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-              data-daysofweek-by-id={props.value}>
-              {daysToDisplay || '-'}
-            </span>
-          );
-        },
       },*/
-      {
-        Header: 'Key Findings',
-        accessor: 'key_findings',
-        Cell: props => {
-          const { original } = props.cell.row;
-          return <span data-key_findings={original.key_findings}>{original.key_findings}</span>;
-        },
-      },
       {
         Header: 'Age',
         accessor: 'AGE',
@@ -204,6 +164,15 @@ class PatientTable extends Component {
           return <span data-SEX={original.SEX}>{original.SEX}</span>;
         },
       },
+
+      {
+        Header: 'Race',
+        accessor: 'Race',
+        Cell: props => {
+          const { original } = props.cell.row;
+          return <span data-RACE={original.RACE}>{original.RACE}</span>;
+        },
+      },
   
       {
         Header: 'Weight',
@@ -212,6 +181,15 @@ class PatientTable extends Component {
           Cell: props => {
             const { original } = props.cell.row;
             return <span data-LATEST_WEIGHT={original.LATEST_WEIGHT}>{original.LATEST_WEIGHT}</span>;
+          },
+        },
+        {
+          Header: 'Bmi',
+          accessor: 'Bmi',
+          //filterable: true,
+          Cell: props => {
+            const { original } = props.cell.row;
+            return <span data-LATEST_BMI={original.LATEST_BMI}>{original.LATEST_BMI}</span>;
           },
         },
       {

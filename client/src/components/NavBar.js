@@ -26,13 +26,13 @@ const Nav = styled.nav.attrs({
 
 const navBarItems = [
   {
-    name: 'Exams',
-    toPathname:routes.EXAMS,
+    name: 'Index',
+    toPathname: `${routes.PATIENTS}/react-table-v6`,
     className: 'nav-link',
   },
   {
-    name: 'Admin',
-    toPathname: `${routes.PATIENTS}/react-table-v6`,
+    name: 'Exams',
+    toPathname:routes.EXAMS,
     className: 'nav-link',
   },
   {
@@ -41,17 +41,17 @@ const navBarItems = [
     className: 'nav-link',
   },
 
- /* {
+ {
     name: 'Create Patient',
     toPathname: '/patient/create',
     className: 'nav-link',
-  },*/
+  },
 
-//  {
-//    name: 'Create Patient',
-//    toPathname: '/item/create',
-//    className: 'nav-link',
-//  }, 
+ {
+ name: 'Create Exam',
+toPathname: '/exam/create',
+className: 'nav-link',
+}, 
 
 ];
 
