@@ -59,14 +59,15 @@ class PatientUpdate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      _patientID: '',
+      patientID: '',
       sex: '',
-      keyFindings: '',
+      
       bmi: 0,
       age: 0,
-      zipCode: 0,
+      race: '',
+      zipcode: 0,
       weight: 0,
-      examID: '',
+      
     };
   }
 
@@ -137,9 +138,9 @@ class PatientUpdate extends Component {
     this.setState({ patientID });
   };
 
-  handleChangeInputExamID = async event => {
-    const examID = event.target.value;
-    this.setState({ examID });
+  handleChangeInputRace = async event => {
+    const race = event.target.value;
+    this.setState({ race });
   };
   handleChangeInputWeight = async event => {
     const weight = event.target.validity.valid ? event.target.value : this.state.weight;
@@ -147,7 +148,7 @@ class PatientUpdate extends Component {
     this.setState({ weight });
   };
   handleChangeInputZipCode = async event => {
-    const zipcode = event.target.validity.valid ? event.target.value : this.state.priority;
+    const zipcode = event.target.validity.valid ? event.target.value : this.state.zipcode;
 
     this.setState({ zipcode });
   };
@@ -174,8 +175,8 @@ class PatientUpdate extends Component {
   };
 
   handleUpdatePatient = event => {
-    const { _id, patientId, age, zipcode, bmi, weight, sex, keyFindings } = this.state;
-    const patient = { _id, patientId, age, zipcode, bmi, sex, weight, keyFindings};
+    const { _id, patientId, patientID, race, age, zipcode, bmi, weight, sex, keyFindings } = this.state;
+    const patient = { _id, patientId,patientID, race, age, zipcode, bmi, sex, weight, keyFindings};
 
     return this.updateSinglePatient(patient)
       .then(resp => {
@@ -202,7 +203,7 @@ class PatientUpdate extends Component {
   };
 
   render() {
-    const { _id, patientID, age, zipcode, bmi, sex, weight, keyFindings, examID } = this.state;
+    const { _id, patientID, age, race, zipcode, bmi, sex, weight } = this.state;
 
     //const { DAYS_OF_WEEK } = shared;
 
@@ -215,19 +216,15 @@ class PatientUpdate extends Component {
           <InputText type="text" value={patientID} onChange={this.handleChangeInputPatientID} />
 
 
-          <Label>Exam ID: </Label>
-          <InputText type="text" value={examID} onChange={this.handleChangeInputExamID} />
-
-
-          <Label>Key Findings: </Label>
-          <InputText type="text" value={keyFindings} onChange={this.handleChangeInputKeyFindings}/>
-
         <Label>Zip code: </Label>  {/* This used to be Priority */} 
         <InputText type="text" value={zipcode} onChange={this.handleChangeInputZipCode} />
 
           
         <Label>Age: </Label> {/* This used to be priority */} 
         <InputText type="text" value={age} onChange={this.handleChangeInputAge} />
+
+        <Label>Race: </Label>
+        <InputText type="text" value={race} onChange={this.handleChangeInputRace} />
 
         <Label>Weight: </Label> {/* This used to be priority */} 
         <InputText type="text" value={weight} onChange={this.handleChangeInputWeight} />
@@ -242,8 +239,6 @@ class PatientUpdate extends Component {
           {/*<Label>Content: </Label>
           <InputText type="textarea" value={content} onChange={this.handleChangeInputContent} />*/}
 
-          <Label>Key Findings: </Label> 
-        <InputText type="textarea" value={keyFindings} onChange={this.handleChangeInputKeyFindings} />
 
           <Button onClick={this.confirmUpdatePatient}>Update Patient</Button>
           <CancelButton href={'/patients'}>Cancel</CancelButton>

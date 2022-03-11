@@ -129,7 +129,7 @@ class ExamInsert extends Component{
 
     insertSingleItem = item => {
         return api
-          .insertItem(item)
+          .insertExam(item)
           .then(resp => {
             console.log('insertItem: resp');
             console.log(resp);
