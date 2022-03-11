@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Some _really_ great instructions and stuff...eventually.
+Yarn install - to install dependancies in package.json
 
 ## Installing Node Packages
 
