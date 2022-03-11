@@ -77,12 +77,12 @@ class PatientInsert extends Component {
     this.state = {
       patientID: '',
       sex: '',
-      keyFindings: '',
+      
       bmi: 0,
       age: 0,
-      zipCode: 0,
+      zipcode: 0,
       weight: 0,
-      examID: '',
+      race: '',
     };
   }
 
@@ -114,6 +114,11 @@ class PatientInsert extends Component {
     this.setState({ examID });
   };
 
+  handleChangeInputRace = async event => {
+    const race = event.target.value;
+    this.setState({ race });
+  };
+
 
   /*handleChangeInputPriority = async event => {
     const priority = event.target.validity.valid ? event.target.value : this.state.priority;
@@ -132,7 +137,7 @@ class PatientInsert extends Component {
     this.setState({ weight });
   };
   handleChangeInputZipCode = async event => {
-    const zipcode = event.target.validity.valid ? event.target.value : this.state.zipCode;
+    const zipcode = event.target.validity.valid ? event.target.value : this.state.zipcode;
 
     this.setState({ zipcode });
   };
@@ -155,7 +160,7 @@ class PatientInsert extends Component {
 
   insertSingleItem = item => {
     return api
-      .insertItem(item)
+      .insertPatient(item)
       .then(resp => {
         console.log('insertItem: resp');
         console.log(resp);
@@ -175,8 +180,8 @@ class PatientInsert extends Component {
   handleInsertItem = event => {
     event.preventDefault();
 
-    const { examID, keyFindings, age, zipcode, weight, bmi, sex, patientID} = this.state;
-    const item = { examID, keyFindings, age, zipcode, weight, bmi, sex, patientID };
+    const {  age, race, zipcode, weight, bmi, sex, patientID} = this.state;
+    const item = {  age, race, zipcode, weight, bmi, sex, patientID };
 
      this.insertSingleItem(item)
       .then(resp => {
@@ -187,12 +192,13 @@ class PatientInsert extends Component {
           this.setState({
             patientID: '',
             sex: '',
-            keyFindings: '',
+            
             bmi: 0,
             age: 0,
-            zipCode: 0,
+            zipcode: 0,
+            race: '',
             weight: 0,
-            examID: '',
+          
           });
         } else {
           throw resp;
@@ -213,7 +219,7 @@ class PatientInsert extends Component {
 
 
   render() {
-    const { examID, keyFindings, age, zipcode, weight, bmi, sex, patientID } = this.state;
+    const { race, age, zipcode, weight, bmi, sex, patientID } = this.state;
 
     //const { DAYS_OF_WEEK } = shared;
 
@@ -223,8 +229,7 @@ class PatientInsert extends Component {
 
         <Label>Patient ID: </Label>
           <InputText type="text" value={patientID} onChange={this.handleChangeInputPatientID} />
-          <Label>Exam ID: </Label>
-          <InputText type="text" value={examID} onChange={this.handleChangeInputExamID} />
+         
 
           {/*<Fieldset>
             <legend>Day(s) of the Week: </legend>
@@ -244,9 +249,6 @@ class PatientInsert extends Component {
             ))}
           </Fieldset>*/}
 
-          <Label>Key Findings: </Label>
-          <InputText type="text" value={keyFindings} onChange={this.handleChangeInputKeyFindings} />
-
         
 
         <Label>Zip code: </Label>  {/* This used to be Priority */} 
@@ -255,6 +257,9 @@ class PatientInsert extends Component {
         
         <Label>Age: </Label> {/* This used to be priority */} 
         <InputText type="text" value={age} onChange={this.handleChangeInputAge} />
+
+        <Label>Race: </Label>
+          <InputText type="text" value={race} onChange={this.handleChangeInputRace} />
 
         <Label>Weight: </Label> {/* This used to be priority */} 
         <InputText type="text" value={weight} onChange={this.handleChangeInputWeight} />
@@ -268,7 +273,7 @@ class PatientInsert extends Component {
          {/* <Label>Key Findings: </Label> {/* This used to be content 
         <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />*/}
 
-        <Button onClick={this.handleInsertItem}>Add Item</Button>
+        <Button onClick={this.handleInsertItem}>Add Patient</Button>
         <CancelButton href={'/patients'}>Cancel</CancelButton>
         </Wrapper>
       );

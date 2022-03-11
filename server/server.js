@@ -6,8 +6,8 @@ const morgan = require('morgan');
 const db = require('./db');
 const RouteErrorHandler = require('./testing_routes&ctrs/routeErrorHandler');
 
-//const examsRouterTest = require('./testing_routes&ctrs/examsRouterTest');
-//const patientsRouterTest = require('./testing_routes&ctrs/patientsRouterTest');
+// const examsRouterTest = require('./testing_routes&ctrs/examsRouterTest');
+// const patientsRouterTest = require('./testing_routes&ctrs/patientsRouterTest');
 
 /******* uncommenting below two until controllers get fixed to CRUD into mongo db  ********/
 const examsRouter = require('./routes/examsRouter');
@@ -25,8 +25,8 @@ app.use(morgan('tiny')); //for logging errors
 /***************
  registering routes on root server.js
  **************/
-//app.use('/api/exams', examsRouterTest); //first pg user sees
-//app.use('/api/patients', patientsRouterTest);
+// app.use('/api/exams', examsRouterTest); //first pg user sees
+// app.use('/api/patients', patientsRouterTest);
 
 
 app.use('/api/exams', examsRouter); //first pg user sees
