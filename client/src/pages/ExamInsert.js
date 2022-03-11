@@ -68,9 +68,13 @@ class ExamInsert extends Component{
     constructor(props){
         super(props);
         this.state = {
-            Key: '',
+            PatientKey: '',
+            examID: '',
             HoursSinceAdmission: 0,
             BrixiaScore:'', 
+            diagnosis: 0,
+            ImageStudy: '',
+            StudyModality: '',
             key_findings:'',
             xRayLink:'',
 
@@ -82,9 +86,29 @@ class ExamInsert extends Component{
         this.setState({ PatientKey });
       };
 
+    handleChangeExamId = async event => {
+        const examID = event.target.value;
+        this.setState({ examID });
+      };
+
     handleChangeHours = async event => {
         const HoursSinceAdmission = event.target.validity.valid ? event.target.value : this.state.HoursSinceAdmission;
         this.setState({ HoursSinceAdmission });
+      };
+
+      handleChangeImageStudy = async event => {
+        const ImageStudy = event.target.value;
+        this.setState({ ImageStudy });
+      };
+
+      handleChangeStudyModality = async event => {
+        const StudyModality = event.target.value;
+        this.setState({ StudyModality });
+      };
+
+    handleChangeDiagnosis = async event => {
+        const diagnosis = event.target.validity.valid ? event.target.value : this.state.diagnosis;
+        this.setState({ diagnosis });
       };
 
     
@@ -127,7 +151,7 @@ class ExamInsert extends Component{
     };
 
     render() {
-        const { PatientKey, HoursSinceAdmission,  BrixiaScore, key_findings, xRayLink } = this.state;
+        const { PatientKey, HoursSinceAdmission,  BrixiaScore, key_findings, xRayLink, diagnosis, ImageStudy, StudyModality, examID} = this.state;
     
     
         return (
@@ -136,6 +160,9 @@ class ExamInsert extends Component{
     
             <Label>Patient Key: </Label>
             <InputText type="text" value={PatientKey} onChange={this.handleChangeInputPatientKey} />
+
+            <Label> Exam ID: </Label>
+            <InputText type="text" value={ examID } onChange={this.handleChangeExamId} />
     
             <Label> Hours Since Admission: </Label>
             <InputText
@@ -148,6 +175,25 @@ class ExamInsert extends Component{
             value={HoursSinceAdmission}
             onChange={this.handleChangeHours}
             />
+
+            <Label>Diagnosis: </Label>
+            <InputText
+            type="number"
+            step="0.1"
+            lang="en-US"
+            min="0"
+            max="1000"
+            pattern="[0-9]+([,\.][0-9]+)?"
+            value={diagnosis}
+            onChange={this.handleChangeDiagnosis}
+            />
+
+              <Label> Image Study: </Label>
+               <InputText type="textarea" value={ ImageStudy } onChange={this.handleChangeImageStudy} />
+
+               <Label>Study Modality: </Label>
+               <InputText type="textarea" value={ StudyModality } onChange={this.handleChangeStudyModality} />
+
     
             <Label>BrixiaScore: </Label>
                <InputText type="textarea" value={ BrixiaScore } onChange={this.handleChangeBrixiaScore} />
@@ -159,7 +205,7 @@ class ExamInsert extends Component{
             <Label>Key Findings: </Label> {/* This used to be content */} 
             <InputText type="textarea" value={key_findings} onChange={this.handleChangeKeyFindings} />
     
-            <Button onClick={this.handleInsertItem}>Add Exam</Button>
+            <Button href={'/exams'} onClick={this.handleInsertItem}>Add Exam</Button>
             <CancelButton href={'/exams'}>Cancel</CancelButton>
           </Wrapper>
         );

@@ -69,6 +69,7 @@ getpatientById = async (req, res) => {
     });
 };
 
+//keep an eye out here
 createOnePatient = (req, res) => {
 
   //do the same with "body" like examController
