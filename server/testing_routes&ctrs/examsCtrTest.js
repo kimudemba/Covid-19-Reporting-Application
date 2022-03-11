@@ -1,7 +1,6 @@
 const RouteErrorHandler = require('../testing_routes&ctrs/routeErrorHandler');
 const uuid = require('uuid').v4;
 const Exam = require('../models/examModel');
-const Patient = require('../models/patientModel');
 
 let DUMMY_EXAMS = [
   {
@@ -17,15 +16,29 @@ let DUMMY_EXAMS = [
   },
 ];
 /************************************** */
-//aka 'ID' meaning the Mongo ID
-const getExamByID = async (req, res, next) => {
+//aka get all exams - confirmed works by testing in Postman and locally
+const getAllExams = async (req, res, next) => {
+  // return Exam.find({}).exec();
+  let exams;
+  try {
+    exams = await Exam.find({});
+  } catch (err) {
+    const error = new HttpError('Fetching exams failed, please try again later.', 500);
+    return next(error);
+  }
+  res.json({ exams: exams.map(exam => exam.toObject({ getters: true })) });
+};
+
+/************************************** */
+//aka 'ID' meaning the Mongo DB ID - confirmed works by testing in Postman and locally
+const getExamByMongID = async (req, res, next) => {
   const examId = req.params.exam_Id;
 
   let exam;
   try {
     exam = await Exam.findById(examId);
   } catch (err) {
-    const error = new RouteErrorHandler('Something went wrong, could not find a place.', 500);
+    const error = new RouteErrorHandler('Something went wrong, could not find specific exam.', 500);
     return next(error);
   }
 
@@ -38,30 +51,22 @@ const getExamByID = async (req, res, next) => {
 };
 
 /************************************** */
+//aka 'ID' meaning the Patient ID - confirmed works by testing in Postman and locally
 const getExamsByPatientID = async (req, res, next) => {
-  const patientId = req.params.PATIENT_ID;
+  const patientExams = await Exam.find({ patientId: req.params.patientId });
 
-  let exams;
-  try {
-    exams = await Exam.find({ patient_Id: patientId });
-  } catch (err) {
-    const error = new RouteErrorHandler(
-      'Something went wrong, could not find a exam by patient id.',
-      500,
-    );
-    return next(error);
+  if (!patientExams) {
+    res.status(400);
+    throw new Error('No exams for this specific patient id');
   }
 
-  if (!exams || exams.length === 0) {
-    return next(new RouteErrorHandler('Could not find exams for this patient id.', 404));
-  }
-
-  res.json({ exams: exams.map(exam => exam.toObject({ getters: true })) });
+  res.status(200).json(patientExams);
 };
-/************************************** */
 
+/************************************** */
+//works in Postman and locally - I confirmed by retrieving all exams from the database in localhos (http://localhost:3000/api/exams/) and ctrl+f the specific mongo id of the exam I just created
 const createOneExam = async (req, res, next) => {
- //post reqs have a req body
+  //post reqs have a req body
 
   // AGE, SEX, LATEST_BMI, ZIP
   const { patient_Id, exam_Id, png_filename, key_findings } = req.body;
@@ -83,7 +88,7 @@ const createOneExam = async (req, res, next) => {
   res.status(201).json({ exam: createdExam }); //201 for new obj
 };
 /************************************** */
-
+//works in Postman and locally - I confirmed by retrieving all exams from the database in localhost (http://localhost:3000/api/exams/) and ctrl+f the specific mongo id of the exam I just updated
 const updateOneExam = async (req, res, next) => {
   const { png_filename, key_findings } = req.body;
   const examId = req.params.exam_Id;
@@ -108,6 +113,7 @@ const updateOneExam = async (req, res, next) => {
   res.status(200).json({ exam: exam.toObject({ getters: true }) });
 };
 /************************************** */
+//works in Postman and locally - I confirmed by retrieving all exams from the database in localhost (http://localhost:3000/api/exams/) and ctrl+f the specific mongo id of the exam I just deleted
 const deleteOneExam = async (req, res, next) => {
   const examId = req.params.exam_Id;
 
@@ -130,7 +136,8 @@ const deleteOneExam = async (req, res, next) => {
 };
 /************************************** */
 module.exports = {
-  getExamByID,
+  getAllExams,
+  getExamByMongID,
   getExamsByPatientID,
   createOneExam,
   updateOneExam,
