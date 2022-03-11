@@ -99,7 +99,7 @@ createOnePatient = (req, res) => {
   }
 
   // console.log('----------------------- createpatient: patient -----------------------')
-  console.log(patient);
+  //console.log(patient);
 
   return patient
     .save()
