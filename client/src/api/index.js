@@ -13,7 +13,7 @@ const api = axios.create({
 
 export const getAllPatients = payload => api.get(`/patients`, payload);
 export const getpatientById = id => api.get(`/patient/${id}`);
-export const insertPatient = payload => api.post(`/patient`, payload);
+export const insertPatient = payload => api.post(`/patients`, payload);
 export const updatePatientById = (id, payload) => api.put(`/patient/${id}`, payload);
 export const deletePatientById = id => api.delete(`/patient/${id}`);
 export const getAllExams = payload => api.get(`/exams`, payload);
