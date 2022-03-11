@@ -77,13 +77,12 @@ class PatientInsert extends Component {
     this.state = {
       patientID: '',
       sex: '',
-      keyFindings: '',
+      
       bmi: 0,
       age: 0,
       zipcode: 0,
       weight: 0,
       race: '',
-      examID: '',
     };
   }
 
@@ -181,8 +180,8 @@ class PatientInsert extends Component {
   handleInsertItem = event => {
     event.preventDefault();
 
-    const { examID, keyFindings, age, race, zipcode, weight, bmi, sex, patientID} = this.state;
-    const item = { examID, keyFindings, age, race, zipcode, weight, bmi, sex, patientID };
+    const {  age, race, zipcode, weight, bmi, sex, patientID} = this.state;
+    const item = {  age, race, zipcode, weight, bmi, sex, patientID };
 
      this.insertSingleItem(item)
       .then(resp => {
@@ -193,13 +192,13 @@ class PatientInsert extends Component {
           this.setState({
             patientID: '',
             sex: '',
-            keyFindings: '',
+            
             bmi: 0,
             age: 0,
             zipcode: 0,
             race: '',
             weight: 0,
-            examID: '',
+          
           });
         } else {
           throw resp;
@@ -274,7 +273,7 @@ class PatientInsert extends Component {
          {/* <Label>Key Findings: </Label> {/* This used to be content 
         <InputText type="textarea" value={content} onChange={this.handleChangeInputKeyFindings} />*/}
 
-        <Button onClick={this.handleInsertItem}>Add Item</Button>
+        <Button onClick={this.handleInsertItem}>Add Patient</Button>
         <CancelButton href={'/patients'}>Cancel</CancelButton>
         </Wrapper>
       );

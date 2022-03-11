@@ -59,15 +59,15 @@ class PatientUpdate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      _patientID: '',
+      patientID: '',
       sex: '',
-      keyFindings: '',
+      
       bmi: 0,
       age: 0,
       race: '',
       zipcode: 0,
       weight: 0,
-      examID: '',
+      
     };
   }
 
