@@ -148,7 +148,39 @@ class ExamInsert extends Component{
 
       handleInsertItem = event => {
         event.preventDefault();
+        const { PatientKey, HoursSinceAdmission,  BrixiaScore, key_findings, xRayLink, diagnosis, ImageStudy, StudyModality, examID} = this.state;
+        const item = { PatientKey, HoursSinceAdmission,  BrixiaScore, key_findings, xRayLink, diagnosis, ImageStudy, StudyModality, examID };
+    
+         this.insertSingleItem(item)
+          .then(resp => {
+            console.log('handleInsertItem: resp');
+            console.log(resp);
+            if (typeof resp === 'object' && resp.status < 300 && resp.status >= 200) {
+              window.alert('Item inserted successfully');
+              this.setState({
+                PatientKey: '',
+                examID: '',
+                HoursSinceAdmission: 0,
+                BrixiaScore:'', 
+                diagnosis: 0,
+                ImageStudy: '',
+                StudyModality: '',
+                key_findings:'',
+                xRayLink:'',
+              
+              });
+            } else {
+              throw resp;
+            }
+          })
+          .catch(err => {
+            // TODO: pass error object correctly so that things like validation errors can be displayed to user
+            window.alert(`There was an error creating the item... :(`);
+            console.log('handleInsertItem: err');
+            console.log(err);
+          });
     };
+    
 
     render() {
         const { PatientKey, HoursSinceAdmission,  BrixiaScore, key_findings, xRayLink, diagnosis, ImageStudy, StudyModality, examID} = this.state;
