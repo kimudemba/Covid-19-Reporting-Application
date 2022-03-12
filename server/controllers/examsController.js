@@ -180,7 +180,7 @@ deleteOneExam = async (req, res) => {
       if (err) {
         console.error(`[Hack.Diversity React Template] - 400 in 'deleteOneExam': ${err}`);
         return res.status(400).json({
-          succes: false,
+          success: false,
           error: err,
         });
       }

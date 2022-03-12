@@ -9,7 +9,7 @@ import PatientUpdate from './PatientUpdate';
 import ExamTable from './ExamTable';
 
 import ExamInsert from './ExamInsert';
-
+import ExamUpdate from './ExamUpdate';
 import {Patient} from './Patient';
 
 
@@ -24,5 +24,6 @@ export {
   PatientInsert,
   ExamInsert,
   ExamTable,
-  Patient
+  ExamUpdate,
+  Patient,
 };
