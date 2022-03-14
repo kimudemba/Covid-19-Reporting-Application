@@ -1,4 +1,3 @@
-# Hack.Diversity MERN Stack Template
 
 ## Getting Started
 
@@ -27,8 +26,8 @@ Wondering how to get this thing working? Well, do we have the READMEs for you!
   cd server/ && yarn server
   ```
 
-- You should then see the frontend of the app by navigating to `http://localhost:8000/` in a web browser
-- You can also ping the server directly at `http://localhost:3000/`, such as `http://localhost:3000/api/items` (it will be empty if you haven't added items yet)
+- You should then see the frontend of the app by navigating to `http://localhost:3001/patients/react-table-v6` in a web browser after cd-ing into the client folder and running: Yarn start
+- You can also ping the server directly at `http://localhost:3000/api/exams` and `http://localhost:3000/api/patients`
 
 ## FAQ
 
@@ -36,3 +35,7 @@ Wondering how to get this thing working? Well, do we have the READMEs for you!
 
 MERN stands for MongoDB, Express, React, Node which are the technologies
 used in this template.
+
+## UML
+
+<img src="https://i.imgur.com/3S85ygW.jpg" alt="drawing" width="600"/>
