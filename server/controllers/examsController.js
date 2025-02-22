@@ -209,7 +209,6 @@ deleteOneExam = async (req, res) => {
 };
 
 module.exports = {
-  //createExam,
   getExams,
   getexamById,
   createOneExam,
