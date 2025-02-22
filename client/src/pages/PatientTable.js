@@ -56,13 +56,6 @@ const Wrapper = styled.div`
         console.log('getAllPatients: resp');
         console.log(patients);
         this.setState({patients}); 
-    
-        //const firstPatient = {PATIENT_ID, AGE, RACE, SEX, LATEST_BMI, LATEST_WEIGHT, LATEST_HEIGHT,TUBERCULOSIS };
-        /*const secondPatient = {patientID: 'COVID-234', examID: '3333', age: 60, zip: 2940, weight: 120, bmi: 20 };
-        const patients = [secondPatient];
-        const dataForState = { patients: patients}; 
-        this.setState(dataForState); */
-
       })
 
       .catch(err => {
