@@ -213,13 +213,6 @@ deleteOnePatient = async (req, res) => {
 
 };
 
-/*const myEndPoint = async (req, res) => {
-  return res.status(200).json({
-    myValue({ _id: req.params.id }, (err, patients) => {
-
-    });
-  };*/
-
 module.exports = {
   getPatients,
 
